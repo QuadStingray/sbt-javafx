@@ -1,0 +1,24 @@
+language: scala
+scala:
+- 2.12.4
+branches:
+  only:
+  - master
+notifications:
+  email:
+    recipients:
+    - github@quadstingray.com
+jdk:
+- oraclejdk8
+- openjdk8
+addons:
+  apt:
+    packages:
+    - oracle-java8-installer
+deploy:
+  provider: script
+  script: '[ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && sbt publish'
+env:
+  global:
+  - secure: dw2X00HP4K4KChofY6Mmi0QEhW45aNoZMA5DhTyM1ptp4QR6DiLTd/Xs9YKDdtnujTZYn27nkxBTh69NFqi7pXobls5Fsb60Ua2cB7vLk/depyelKsG8bU1IDKSy/I9+USZJK+68mMhBc90/AU3ygNaa4URmKwJaEM3k45bpICWclIlp6MjiOcZYlfO59JNt4AE4WKfvF/+C/8LEMV8nK73/ZfcSukURxrpUXpdWpeaS0eI4X8TjQAdIufwvViXJc6rGefanlHsiJQsT0SKtqe5kZKxmWGfVn6na1yleDrQbZIR7MuyrSSvRBkai7f8uT8B9y+okJ0NlxzDfPBeGquZ/zFPnRNPYg0QQGvlDJ0SN5FwzIMVYkBSEA9O+nXNCdRPRKVtOv6aYa9Hld2q7dIJ2tixfd79VUwVO0zEC/+yMSw39HRWXOfvRO+8Uusstk03Lx1Dgdt/auUiy8UbUf7CmzOe83Fu2vsJM/ZF8ElJsMsqX8TCyVy7Z9O5vvQX6KGv8Maf/aqWem5OaMP6CX9l+MQ40jbczoopbTvwr9nPSeItFobBGsHEGPvFIs6KatgzQsFd+9eckp5xjgDHVz/lugEAQvzH+8yZ6MidFNz4Hji9tEdmWjPeeSZ5IkkFZ4JVv4R+H1IlOft/QqSg2qhL2j+YqN5nh3bbfYAx9muA=
+  - secure: Xq0NkDddKQYgvkZNcbNJP43DNgWH0wJ41F+impSR9Wuqaa7nym7UwxzOfzQKnCVz6miUS5sR+IbgXvv+5elC4Ugk/WC1rpbWi3IrUuUBospcK7YnSmwNu7msstNpxoBqf5SNrIz2wW4Ac1Ah2a6gqYDk4rogOBBoZXXovHkIO1z72n5HqDFVVTXFGpcSQorTS0diVwFs9iM1mNZHFJkNmNnIZYP0tMOnzV8sNbBNr5vClbR9xR1TI+rzCC4cMz8GHuv19aNJx4RTQfxGnjrP4NUpaBYnfgp5BHCi/cfImZvJxZRDdqdU8RDgv4v8CI4oTNlBMVGyy/sYw0AYTtXvJEiIOHVH9mqk8lf9/2jE/gA2prEJBN52tj5mMxouZ6PFY5eGbnX8hzUp8wm3Y6wyB/wsYNzJB0niwSFlkPoaIZQKMefPbCcZmhEGSIZviX2ag8QQck3RlTFGQ4IlcUbkHJobyo/badgUgnzewlP6TeZGHhQGbSGwI1vhqviTeevB9j65T+1jimiUGwdLtIGyhAvHFFNzMA6eEuroBkey94N4RmBadCWS5K6QF9yO5QyE0LAgwB9xnkkjg1aVCmfTUjeVmTlr7H7FIylUWg8Qtae8d6y8rdrHYI6jrZwb7cBpPcOTSSw9byxWRPUdZz5RAtDCvP3zqNcDnz0dmEPqdlg=
