@@ -7,7 +7,7 @@ organization := "com.quadstingray"
 
 name := "sbt-javafx"
 
-version := "0.5.0"
+version := "0.6.0"
 
 scalaVersion := "2.12.4"
 
