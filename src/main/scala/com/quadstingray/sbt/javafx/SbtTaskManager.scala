@@ -1,10 +1,11 @@
 package com.quadstingray.sbt.javafx
 
-import better.files.File
 import com.quadstingray.sbt.javafx.model.AppSettings
 import org.apache.tools.ant
 import org.apache.tools.ant.{BuildEvent, BuildListener}
 import sbt.internal.util.ManagedLogger
+
+import scala.reflect.io.File
 
 class SbtTaskManager(logger: ManagedLogger, logAntInformations: Boolean) {
 
@@ -19,7 +20,7 @@ class SbtTaskManager(logger: ManagedLogger, logAntInformations: Boolean) {
     if (buildFile.exists)
       buildFile.delete()
 
-    buildFile.append(settings.toXMLString)
+    buildFile.writeAll(settings.toXMLString)
 
     logger.info("prepare build finished")
     buildFile
@@ -73,7 +74,7 @@ class SbtTaskManager(logger: ManagedLogger, logAntInformations: Boolean) {
 
     antProject.init()
 
-    ant.ProjectHelper.getProjectHelper.parse(antProject, buildFile.toJava)
+    ant.ProjectHelper.getProjectHelper.parse(antProject, buildFile.jfile)
 
     antProject.executeTarget("default")
 

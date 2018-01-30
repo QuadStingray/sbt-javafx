@@ -1,11 +1,12 @@
 package com.quadstingray.sbt
 
-import better.files.File
 import com.quadstingray.sbt.javafx.model._
 import com.quadstingray.sbt.javafx.{model, _}
 import sbt.Keys.{crossTarget, _}
 import sbt.internal.inc.classpath.ClasspathUtilities
 import sbt.{AutoPlugin, Def, _}
+
+import scala.reflect.io.File
 
 object JavafxPlugin extends AutoPlugin {
 

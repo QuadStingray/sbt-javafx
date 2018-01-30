@@ -1,6 +1,5 @@
 package com.quadstingray.sbt.javafx
 
-import better.files.File
 import com.quadstingray.sbt.javafx.model._
 import sbt.Keys._
 import sbt.{Def, _}
@@ -10,7 +9,7 @@ trait SbtSettingsTrait {
   // Tasks
   val javaFxPackage = taskKey[Unit]("Packages a JavaFX application.")
 
-  val javaFxPrepareBuild = taskKey[File]("Prepare Build of JavaFX application.")
+  val javaFxPrepareBuild = taskKey[scala.reflect.io.File]("Prepare Build of JavaFX application.")
 
   val javaFxRunBuild = taskKey[Unit]("Run Build of prepared JavaFX application.")
 
@@ -67,19 +66,19 @@ trait SbtSettingsTrait {
 
   val javaFxSigningKeyStoreType = settingKey[Option[String]]("keystore type for signing.")
 
-  val javaFxPostProcess = settingKey[() => Unit]("Optionally post-processing of the packaged artifact.")
+  val javaFxPostProcess = settingKey[() => Unit]("post-processing of the packaged artifact. (Optionally)")
 
-  val javaFxCssToBin = settingKey[Boolean]("Convert CSS files to binary.")
+  val javaFxCssToBin = settingKey[Boolean]("convert CSS files to binary.")
 
-  val javaFxVerbose = settingKey[Boolean]("Sets verbose flag in fx:deploy task (output currently swallowed by sbt).")
+  val javaFxVerbose = settingKey[Boolean]("sets verbose flag in fx:deploy task.")
 
-  val javaFxJavafx = settingKey[Option[String]]("Required JavaFX version.")
+  val javaFxJavafx = settingKey[Option[String]]("required JavaFX version.")
 
-  val javaFxJ2se = settingKey[Option[String]]("Required JRE version.")
+  val javaFxJ2se = settingKey[Option[String]]("required JRE version.")
 
   val javaFxJvmargs = settingKey[Seq[String]]("JVM options.")
 
-  val javaFxJvmuserargs = settingKey[Seq[(String, String)]]("User overridable JVM options.")
+  val javaFxJvmuserargs = settingKey[Seq[(String, String)]]("user overridable JVM options.")
 
   val javaFxProperties = settingKey[Seq[(String, String)]]("JVM properties.")
 
