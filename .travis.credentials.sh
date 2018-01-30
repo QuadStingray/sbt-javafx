@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir ~/.bintray/
 BINTRAY_FILE=$TRAVIS_BUILD_DIR/credentials.properties
 cat <<EOF >$BINTRAY_FILE
 realm = Bintray API Realm
