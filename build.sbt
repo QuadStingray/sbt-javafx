@@ -11,6 +11,8 @@ version := "0.5.0"
 
 scalaVersion := "2.12.4"
 
+crossSbtVersions := Vector("1.0.0", "1.1.0")
+
 scalacOptions ++= Seq("-deprecation", "-feature")
 
 resolvers += Resolver.sonatypeRepo("snapshots")
