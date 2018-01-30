@@ -7,7 +7,7 @@ organization := "com.quadstingray"
 
 name := "sbt-javafx"
 
-version := "0.6.1"
+version := "0.6.0"
 
 scalaVersion := "2.12.4"
 
@@ -17,7 +17,7 @@ scalacOptions ++= Seq("-deprecation", "-feature")
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-publishMavenStyle := false
+publishMavenStyle := true
 
 /** Console */
 initialCommands in console := "import  com.quadstingray.sbt.javafx._"
