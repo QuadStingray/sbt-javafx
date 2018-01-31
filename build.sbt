@@ -5,7 +5,7 @@ organization := "com.quadstingray"
 
 name := "sbt-javafx"
 
-version := "0.9.1"
+version := "0.9.0"
 
 homepage := Some(url("https://github.com/QuadStingray/sbt-javafx"))
 
@@ -37,7 +37,7 @@ publishTo := {
   if (isSnapshot.value)
     Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository/")))
   else
-    Some("Bintray API Realm" at "https://api.bintray.com/content/quadstingray/plugins/%s/%s;publish=1;override=1".format(name.value, version.value))
+    Some("Bintray API Realm" at "https://api.bintray.com/content/quadstingray/sbt-plugins/%s/%s;publish=1;override=1".format(name.value, version.value))
 }
 
 credentials += Credentials(new File("credentials.properties"))
