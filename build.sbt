@@ -7,21 +7,18 @@ organization := "com.quadstingray"
 
 name := "sbt-javafx"
 
-version := "0.6.0"
+version := "1.0.0"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 scalaVersion := "2.12.4"
 
-crossSbtVersions := Vector("1.0.0", "1.1.0")
+crossSbtVersions := Vector("1.1.0", "1.0.0")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-publishMavenStyle := true
-
-/** Console */
 initialCommands in console := "import  com.quadstingray.sbt.javafx._"
 
 libraryDependencies += "org.apache.ant" % "ant" % "1.10.1"
