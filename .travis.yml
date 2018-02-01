@@ -4,7 +4,7 @@ scala:
 branches:
   only:
   - master
-before_deploy:
+before_install:
   - git config --global user.name "$USER"
   - git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
   # Decrypt the secret deploy key using instructions from `travis encrypt-file`
@@ -13,8 +13,7 @@ before_deploy:
   # Start ssh-agent in the background and load the deploy key
   - eval "$(ssh-agent -s)"
   - ssh-add project/travis-deploy-key
-
-
+  - $TRAVIS_BUILD_DIR/.travis.credentials.sh
 notifications:
   email:
     recipients:
@@ -28,10 +27,12 @@ addons:
   apt:
     packages:
     - oracle-java8-installer
-deploy:
-  provider: script
-  script: '[ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] &&
-    /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && /bin/bash "$TRAVIS_BUILD_DIR/.travis.build.sh"'
-  on:
-     branch: master
-     condition: $TRAVIS_PULL_REQUEST = false
+jobs:
+  include:
+    - stage: SBT publish
+      scala: 2.12.4
+      script: 'sbt ^publish'
+    - stage: Release and Build Docu
+      scala: 2.12.4
+      jdk: oraclejdk8
+      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.build.sh"'
