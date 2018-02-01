@@ -30,8 +30,8 @@ jobs:
   include:
     - stage: SBT publish
       scala: 2.12.4
-      script: 'sbt ^publish'
+      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
       scala: 2.12.4
       jdk: oraclejdk8
-      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.build.sh"'
+      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
