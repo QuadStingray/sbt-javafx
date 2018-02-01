@@ -33,5 +33,4 @@ deploy:
   script: '[ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] &&
     /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && /bin/bash "$TRAVIS_BUILD_DIR/.travis.build.sh"'
   on:
-     tags: true
      condition: $TRAVIS_PULL_REQUEST = false
