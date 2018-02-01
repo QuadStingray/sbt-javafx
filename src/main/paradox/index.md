@@ -38,12 +38,12 @@ sbt-javafx is deployed on bintray (jcenter).
 
 @@@ index
 
-* [Enabling the plugin](features/multi-configuration.md)
-* [Running from within SBT](features/organizing-pages.md)
-* [Customizing paths to necessary JavaFX files](features/markdown.md)
-* [Packaging](features/linking.md)
-* [Other settings](features/groups.md)
-* [Advanced features](features/snippet-inclusion.md)
-* [Examples](features/callouts.md)
+* [Enabling the plugin](index.md)
+* [Running from within SBT](index.md)
+* [Customizing paths to necessary JavaFX files](index.md)
+* [Packaging](index.md)
+* [Other settings](index.md)
+* [Advanced features](index.md)
+* [Examples](index.md)
 
 @@@
