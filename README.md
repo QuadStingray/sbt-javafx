@@ -11,7 +11,7 @@ Add an `plugins.sbt` to the project's `project` directory, with the
 following content:
 
 ```scala
-addSbtPlugin("com.quadstingray" % "sbt-javafx" % "0.9.0")
+addSbtPlugin("com.quadstingray" % "sbt-javafx" % "X.Y.Z")
 ```
 
 add to `build.sbt` file (e.g. `build.sbt`) :
