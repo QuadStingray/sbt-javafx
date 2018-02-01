@@ -5,8 +5,6 @@ organization := "com.quadstingray"
 
 name := "sbt-javafx"
 
-version := "0.9.0"
-
 homepage := Some(url("https://github.com/QuadStingray/sbt-javafx"))
 
 scmInfo := Some(ScmInfo(url("https://github.com/QuadStingray/sbt-javafx"), "https://github.com/QuadStingray/sbt-javafx.git"))
