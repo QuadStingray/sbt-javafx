@@ -13,7 +13,7 @@ before_install:
   # Start ssh-agent in the background and load the deploy key
   - eval "$(ssh-agent -s)"
   - ssh-add project/travis-deploy-key
-  - $TRAVIS_BUILD_DIR/.travis.credentials.sh
+  - /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh"'
 notifications:
   email:
     recipients:
