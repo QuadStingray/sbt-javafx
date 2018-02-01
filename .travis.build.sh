@@ -2,13 +2,10 @@
 
 if grep -q "SNAPSHOT" version.sbt
 then
-    sbt paradox
+    sbt paradox ghpagesPushSite
 else
     sbt ^publish
     rm -rf credentials.properties
     sbt release with-defaults
+    sbt paradox ghpagesPushSite
 fi
-
-# sbt ^publish
-
-# sbt release with-defaults
