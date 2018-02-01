@@ -20,4 +20,4 @@ addons:
 deploy:
   provider: script
   script: '[ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] &&
-    /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && sbt ^publish'
+    /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && /bin/bash "$TRAVIS_BUILD_DIR/.travis.build.sh"'
