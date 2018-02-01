@@ -5,6 +5,8 @@
  [ ![Download](https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg) ](https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/_latestVersion)
  [![Build Status](https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master)](https://travis-ci.org/QuadStingray/sbt-javafx)
 
+## Documentation
+https://quadstingray.github.io/sbt-javafx/
 
 ## Quick start
 Add an `plugins.sbt` to the project's `project` directory, with the
