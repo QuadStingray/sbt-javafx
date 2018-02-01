@@ -5,6 +5,7 @@ then
     echo ""
 else
     rm -rf credentials.properties &&
+    rm -rf project/travis-deploy-key &&
     git remote rm origin &&
     git remote add origin git@github.com:QuadStingray/sbt-javafx.git &&
     git fetch origin master &&
