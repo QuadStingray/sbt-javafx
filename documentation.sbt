@@ -28,6 +28,6 @@ enablePlugins(SiteScaladocPlugin)
 
 enablePlugins(GhpagesPlugin)
 
-git.remoteRepo := "git@github.com:QuadStingray/sbt-javafx.git"
+git.remoteRepo := "https://$GITHUB_USERNAME:$GITHUB_API_KEY@github.com/QuadStingray/sbt-javafx.git"
 
 ghpagesNoJekyll := true
