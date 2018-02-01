@@ -6,6 +6,6 @@ then
 else
     sbt ^publish
     rm -rf credentials.properties
-    sbt release with-defaults
+    sbt "release with-defaults"
     sbt paradox ghpagesPushSite
 fi
