@@ -8,31 +8,40 @@ import sbt.{AutoPlugin, Def, _}
 
 import scala.reflect.io.File
 
-object JavafxPlugin extends AutoPlugin {
+object JavaFxPlugin extends AutoPlugin {
 
   object autoImport extends SbtSettingsTrait {
 
     lazy val javaFxPluginTasks: Seq[Def.Setting[_]] = Seq(
       javaFxPrepareBuild := {
         packageBin.value
-        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxLogAntInformations.value)
+        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.prepareBuild(javaFxGetAppSettings.value)
       },
       javaFxRunBuild := {
         val buildFile = File(javaFxGetAppSettings.value.javaFxBuildSettings.jarDir + "/build.xml")
-        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxLogAntInformations.value)
+        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.runBuild(javaFxGetAppSettings.value, buildFile)
       },
       javaFxPackage := {
         val buildFile = javaFxPrepareBuild.value
-        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxLogAntInformations.value)
+        val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.runBuild(javaFxGetAppSettings.value, buildFile)
       },
       javaFxGetAppSettings := {
         model.AppSettings(
-          JavaFxBuildSettings(javaFxNativeBundles.value, javaFxArtifactName.value, packageOptions.value, (classDirectory in Compile).value, crossTarget.value, fullClasspath.value map (_.data) filter ClasspathUtilities.isArchive filterNot (_.getName endsWith "jfxrt" +
-            ".jar"), javaFxCssToBin.value, javaFxVerbose.value, javaFxPostProcess.value),
-          JavaFxBuildPaths(javaFxDevKit.value, JavaDevKit.jfxrt(javaFxDevKit.value), JavaDevKit.antLib(javaFxDevKit.value), javaFxPkgResourcesDir.value),
+          JavaFxBuildSettings(
+            javaFxNativeBundles.value,
+            javaFxArtifactName.value,
+            packageOptions.value,
+            classDirectory.value,
+            crossTarget.value,
+            fullClasspath.value.map(_.data).filter(ClasspathUtilities.isArchive).filterNot(_.getName.endsWith("jfxrt.jar")),
+            javaFxCssToBin.value,
+            javaFxVerbose.value,
+            javaFxPostProcess.value
+          ),
+          JavaFxBuildPaths(javaFxDevKit.value, javaFxPkgResourcesDir.value),
           javaFxTemplate.value,
           AppDimensions(javaFxWidth.value, javaFxHeight.value, javaFxEmbeddedWidth.value, javaFxEmbeddedHeight.value),
           javaFxPermissions.value,

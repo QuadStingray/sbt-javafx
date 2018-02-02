@@ -15,14 +15,12 @@ trait SbtSettingsTrait {
 
   val javaFxGetAppSettings = taskKey[AppSettings]("Get AppSettings from SBT keys.")
 
-  // Settings
-  val javaFxLogAntInformations = settingKey[Boolean]("Log the output of ant task to sbt console")
+  val javaFxMainClass = taskKey[String]("Main Class for JavaFX application, must extend javafx.application.Application and implement the start() method.")
 
+  // Settings
   val javaFxDevKit = settingKey[JavaDevKit]("Path to JDK or SDK for JavaFx App.")
 
   val javaFxPkgResourcesDir = settingKey[String]("Path containing the `package/{windows,macosx,linux}` directory for drop-in resources. See https://blogs.oracle.com/talkingjavadeployment/entry/native_packaging_cookbook_using_drop for details.")
-
-  val javaFxMainClass = settingKey[String]("Main Class for JavaFX application, must extend javafx.application.Application and implement the start() method.")
 
   val javaFxJavaOnly = settingKey[Boolean]("Setting for JavaFX applications in pure Java, sets some other settings to usable defaults for this scenario.")
 
@@ -70,7 +68,7 @@ trait SbtSettingsTrait {
 
   val javaFxCssToBin = settingKey[Boolean]("convert CSS files to binary.")
 
-  val javaFxVerbose = settingKey[Boolean]("sets verbose flag in fx:deploy task.")
+  val javaFxVerbose = settingKey[Boolean]("sets verbose flag in fx:deploy task and log the output of ant task to sbt console")
 
   val javaFxJavafx = settingKey[Option[String]]("required JavaFX version.")
 
@@ -84,43 +82,48 @@ trait SbtSettingsTrait {
 
   val javaFxFileAssociations = settingKey[Seq[FileAssociation]]("seq of file associations")
 
-  def defaultJdk = JDK(System.getProperty("java.home") + "/..")
-
-  lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = Seq(
-    javaFxLogAntInformations := false,
-    javaFxDevKit := defaultJdk,
-    javaFxPkgResourcesDir := (baseDirectory.value / "src/deploy").getAbsolutePath,
-    javaFxMainClass := "",
-    javaFxJavaOnly := false,
-    javaFxNativeBundles := "all",
-    javaFxArtifactName := List(Some(artifact.value.name), Some("_" + scalaVersion.value), Some("-" + projectID.value.revision)).flatten.mkString,
-    javaFxTemplate := TemplateSettings(None, None, "javafx"),
-    javaFxVendor := "Unknown",
-    javaFxTitle := name.value,
-    javaFxAppVersion := version.value,
-    javaFxCategory := "",
-    javaFxDescription := "",
-    javaFxCopyright := "",
-    javaFxLicense := "",
-    javaFxWidth := 800,
-    javaFxHeight := 800,
-    javaFxEmbeddedWidth := "100%",
-    javaFxEmbeddedHeight := "100%",
-    javaFxPermissions := Permissions(elevated = false, cacheCertificates = false),
-    javaFxKeyStore := None,
-    javaFxStorePass := None,
-    javaFxSigningAlias := None,
-    javaFxSigningKeyPass := None,
-    javaFxSigningKeyStoreType := None,
-    javaFxJavafx := None,
-    javaFxJ2se := None,
-    javaFxJvmargs := Seq(),
-    javaFxJvmuserargs := Seq(),
-    javaFxProperties := Seq(),
-    javaFxCssToBin := false,
-    javaFxVerbose := true,
-    javaFxPostProcess := { () => },
-    javaFxFileAssociations := Seq()
-  )
+  lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
+    Seq(
+      javaFxDevKit := JDK(System.getProperty("java.home") + "/.."),
+      javaFxPkgResourcesDir := (baseDirectory.value / "src/deploy").getAbsolutePath,
+      javaFxJavaOnly := false,
+      javaFxNativeBundles := "all",
+      javaFxArtifactName := List(Some(artifact.value.name), Some("_" + scalaVersion.value), Some("-" + projectID.value.revision)).flatten.mkString,
+      javaFxTemplate := TemplateSettings(None, None),
+      javaFxVendor := "Unknown",
+      javaFxTitle := name.value,
+      javaFxAppVersion := version.value,
+      javaFxCategory := "",
+      javaFxDescription := description.value,
+      javaFxCopyright := "",
+      javaFxLicense := {
+        var licence: String = ""
+        licenses.value.headOption.foreach(sbtLicence => {
+          licence = sbtLicence._1
+        })
+        licence
+      },
+      javaFxWidth := 800,
+      javaFxHeight := 800,
+      javaFxEmbeddedWidth := "100%",
+      javaFxEmbeddedHeight := "100%",
+      javaFxPermissions := Permissions(elevated = false, cacheCertificates = false),
+      javaFxKeyStore := None,
+      javaFxStorePass := None,
+      javaFxSigningAlias := None,
+      javaFxSigningKeyPass := None,
+      javaFxSigningKeyStoreType := None,
+      javaFxJavafx := None,
+      javaFxJ2se := None,
+      javaFxJvmargs := Seq(),
+      javaFxJvmuserargs := Seq(),
+      javaFxProperties := Seq(),
+      javaFxCssToBin := false,
+      javaFxVerbose := false,
+      javaFxPostProcess := { () => },
+      javaFxFileAssociations := Seq(),
+      javaFxMainClass := (mainClass in Compile).value.getOrElse("")
+    )
+  }
 
 }

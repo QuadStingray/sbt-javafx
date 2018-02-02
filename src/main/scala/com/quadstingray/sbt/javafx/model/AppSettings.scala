@@ -8,20 +8,14 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
   def prepare(): Unit = {
 
-    if (buildPaths.antLib.equalsIgnoreCase("")) {
+    if (buildPaths.devKit.antLib.equalsIgnoreCase("")) {
       sys.error("Path to ant-javafx.jar not defined.")
     }
 
-    val antLib = buildPaths.antLib
-
-    if (!file(antLib).exists)
-      sys.error(antLib + " does not exist.")
-
-    //	Setup paths and delete anything left over from previous build
+    if (!file(buildPaths.devKit.antLib).exists)
+      sys.error(buildPaths.devKit.antLib + " does not exist.")
 
     val pkgResourcesDir = buildPaths.pkgResourcesDir
-
-    val jarFile = javaFxBuildSettings.jarDir / (javaFxBuildSettings.artifactName + ".jar")
 
     IO.delete(javaFxBuildSettings.libDir)
     IO.delete(javaFxBuildSettings.distDir)
@@ -33,19 +27,18 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
     IO.copy(srcToDest)
   }
-
   def toXMLString: String = {
 
     val antBuildXml: Elem =
       <project name={appInfo.title} default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
         <target name="default">
-          <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesDir + ":" + buildPaths.antLib}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
+          <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesDir + ":" + buildPaths.devKit.antLib}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
           signing.getSigningXml(javaFxBuildSettings.distDir)
           if (javaFxBuildSettings.libJars.nonEmpty) {
             signing.getSigningXml(javaFxBuildSettings.libDir)
           }
         }}<fx:deploy width={dimensions.width.toString} height={dimensions.height.toString} embeddedWidth={dimensions.embeddedWidth} embeddedHeight={dimensions.embeddedHeight} outdir={javaFxBuildSettings.distDir.getAbsolutePath} outfile={javaFxBuildSettings.artifactName}
-                     placeholderId={template.placeholderId} nativeBundles={javaFxBuildSettings.nativeBundles} verbose={javaFxBuildSettings.verbose.toString}>
+                     placeholderId="javafx" nativeBundles={javaFxBuildSettings.nativeBundles} verbose={javaFxBuildSettings.verbose.toString}>
           <fx:platform refid="platform"/>
           <fx:application refid={appInfo.title}/>
           <fx:info vendor={appInfo.vendor} title={appInfo.title} category={appInfo.category} description={appInfo.description} copyright={appInfo.copyright} license={appInfo.license}>
