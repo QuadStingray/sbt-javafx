@@ -22,6 +22,19 @@ ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Paradox)
 
 paradoxMaterialTheme in Paradox ~= {
   _.withRepository(uri("https://github.com/QuadStingray/sbt-javafx"))
+    .withLogoIcon("desktop_mac")
+    .withCopyright("© QuadStingray 2018")
+    .withColor("teal", "indigo")
+}
+
+paradoxMaterialTheme in Paradox ~= {
+  _.withRepository(uri("https://github.com/QuadStingray/sbt-javafx"))
+}
+
+paradoxMaterialTheme in Compile ~= {
+  _.withLogoIcon("desktop_mac")
+    .withCopyright("© QuadStingray 2018")
+    .withColor("teal", "indigo")
 }
 
 enablePlugins(SiteScaladocPlugin)
