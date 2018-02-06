@@ -23,6 +23,7 @@ jobs:
         - oraclejdk8
         - openjdk8
       script: sbt ^test
+      os: linux
     - stage: SBT Plugin Tests
       scala: 2.12.4
       os: osx
