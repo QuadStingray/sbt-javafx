@@ -1,4 +1,5 @@
 //#sample-build-sbt
+import com.quadstingray.sbt.javafx.model.FileAssociation
 
 name := "file-association-javafx-simple"
 

@@ -23,6 +23,12 @@ addons:
     - oracle-java8-installer
 jobs:
   include:
+    - stage: SBT Test
+      language: scala
+      scala: 2.12.4
+      os: linux
+      jdk: oraclejdk8
+      script: 'sbt ^test'
     - stage: SBT Plugin Tests
       before_install:
         - brew update
@@ -33,12 +39,6 @@ jobs:
       os: osx
       osx_image: xcode8
       script: sbt scripted
-    - stage: SBT Test
-      language: scala
-      scala: 2.12.4
-      os: linux
-      jdk: oraclejdk8
-      script: 'sbt ^test'
     - scala: 2.12.4
       language: scala
       os: linux
