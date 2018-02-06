@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
-<meta name="generator" content="Paradox, paradox-material-theme=v0.9.1, mkdocs-material=2.2.2">
+<meta name="generator" content="Paradox, paradox-material-theme=1.0.0, mkdocs-material=2.2.2">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -18,8 +18,9 @@
 
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Other settings · sbt-javafx</title>
+<title>Drop-in Resources · sbt-javafx</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.7a4cdee3.css">
+<link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
 <link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="../lib/prettify/prettify.css">
 <script src="../lib/modernizr/modernizr.min.js"></script>
@@ -33,6 +34,8 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 <link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
 </head>
 <body
+data-md-color-primary="teal"
+data-md-color-accent="indigo"
 >
 <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
 <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
@@ -42,7 +45,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 <div class="md-flex">
 <div class="md-flex__cell md-flex__cell--shrink">
 <a href="../index.html" title="sbt-javafx" class="md-header-nav__button md-logo">
-<i class="md-icon">local_library</i>
+<i class="md-icon">desktop_mac</i>
 </a>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
@@ -54,7 +57,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 sbt-javafx
 </span>
 <span class="md-header-nav__topic">
-Other settings
+Drop-in Resources
 </span>
 </div>
 </div>
@@ -111,7 +114,7 @@ QuadStingray/sbt-javafx
 <nav class="md-nav md-nav--primary" data-md-level="0" style="visibility: hidden">
 <label class="md-nav__title md-nav__title--site" for="drawer">
 <span class="md-nav__button md-logo">
-<i class="md-icon">local_library</i>
+<i class="md-icon">desktop_mac</i>
 </span>
 <a href="../index.html" title="sbt-javafx">
 sbt-javafx
@@ -132,19 +135,30 @@ QuadStingray/sbt-javafx
 
 </div>
 <ul>
-  <li><a href="../features/plugin_configuration.html" class="page">Enabling the plugin</a></li>
-  <li><a href="../features/running_sbt.html" class="page">Running from within SBT</a></li>
-  <li><a href="../features/packaging.html" class="page">Packaging</a></li>
-  <li><a href="../features/customizing_path.html" class="page">Customizing paths to necessary JavaFX files</a></li>
-  <li><a href="../features/other.html" class="active page">Other settings</a></li>
-  <li><a href="../features/advanced.html" class="page">Advanced features</a></li>
-  <li><a href="../features/examples.html" class="page">Examples</a></li>
+  <li><a href="../enable_the_plugin.html" class="page">Quick Start</a></li>
+  <li><a href="../sbt_tasks.html" class="page">SBT Tasks</a></li>
+  <li><a href="../settings/index.html" class="page">List of all possible Settings</a>
+  <ul>
+    <li><a href="../settings/build_settings.html" class="page">Build Process Settings</a></li>
+    <li><a href="../settings/application_settings.html" class="page">Application Settings</a></li>
+    <li><a href="../settings/native_bundles.html" class="page">Native Bundles</a></li>
+    <li><a href="../settings/drop-in_resources.html" class="active page">Drop-in Resources</a></li>
+    <li><a href="../settings/platform_settings.html" class="page">Platform Settings</a></li>
+    <li><a href="../settings/signing_settings.html" class="page">Signing Settings</a></li>
+  </ul></li>
+  <li><a href="../examples/index.html" class="page">Examples</a>
+  <ul>
+    <li><a href="../examples/simple.html" class="page">Simple Example</a></li>
+    <li><a href="../examples/drop-in-resources.html" class="page">Drop-in-Resources</a></li>
+    <li><a href="../examples/licence.html" class="page">Licence Example</a></li>
+    <li><a href="../examples/file-association.html" class="page">File Association</a></li>
+  </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 </nav>
 
 <div class="md-nav__title--site md-version" title="Version">
-<i class="md-icon">label_outline</i> v0.9.1
+<i class="md-icon">label_outline</i> 1.0.0
 </div>
 </nav>
 
@@ -154,16 +168,29 @@ QuadStingray/sbt-javafx
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#other-settings" name="other-settings" class="anchor"><span class="anchor-link"></span></a>Other settings</h1>
+<h4><a href="#drop-in-resources" name="drop-in-resources" class="anchor"><span class="anchor-link"></span></a>Drop-in Resources</h4>
+<p>The native Packages for your platform can be customized. The Ant-Tasks <code>fx:deploy</code> <code>ant-javafx.jar</code> is not very flexible to specify of these &ldquo;drop-in&rdquo; resources, so tweaking an installer can be frustrating the first time around. Any encountered problems are likely to be associated with mis-named or mis-located files.</p>
+<p>At the heart of the process of specifying the location of drop-in resources is ensuring the classpath of the ClassLoader executing <code>fx:deploy</code> can resolve the desired resources. The plugin provides the <code>javaFxPkgResourcesDir</code> setting for prepending a path to the <code>fx:deploy</code> classpath (which is <em>not</em> the same as the SBT classpath or the <code>scalac</code> classpath).</p>
+<p>Default value:</p>
+<pre class="prettyprint"><code class="language-scala">javaFxPkgResourcesDir := (baseDirectory.value / &quot;src/deploy&quot;).getAbsolutePath
+</code></pre>
+<p>See the <a href="https://docs.oracle.com/javafx/2/deployment/self-contained-packaging.htm#BCGICFDB">Oracle Java Fx Drop In Resources Documentation</a> for specifics, but the basic structure is <code>package/{macosx,windows,linux}/[drop-in-resources]</code>.</p>
+<p>Example of Drop-In Files:</p>
+<ul>
+  <li><code>src/deploy/package/macosx/Info.plist</code> for a custom <code>Info.plist</code> file on MacOS X</li>
+  <li><code>src/deploy/package/macosx/Application Name.icns</code> for a custom Application Icon file on MacOS X</li>
+  <li><code>src/deploy/package/windows/Application Name.ico</code> for a custom Application Icon on Windows</li>
+</ul>
+<p>For debugging the build task with output for a list of customizable files use: <a href="build_settings.html#log-build-output-to-console">javaFxVerbose</a></p>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/features/other.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/settings/drop-in_resources.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-v0.9.1
+1.0.0
 </span>
 </div>
 </article>
@@ -173,7 +200,7 @@ v0.9.1
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../features/customizing_path.html" title="Customizing paths to necessary JavaFX files" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../settings/native_bundles.html" title="Native Bundles" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -182,17 +209,17 @@ v0.9.1
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Customizing paths to necessary JavaFX files
+Native Bundles
 </span>
 </div>
 </a>
-<a href="../features/advanced.html" title="Advanced features" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../settings/platform_settings.html" title="Platform Settings" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Advanced features
+Platform Settings
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
@@ -204,6 +231,9 @@ Advanced features
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+© QuadStingray 2018
+</div>
 Powered by
 <a href="https://github.com/lightbend/paradox">Paradox</a>
 and
