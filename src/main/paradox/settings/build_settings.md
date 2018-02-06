@@ -8,22 +8,13 @@ Default: JDK(System.getProperty("java.home") + "/..")
 
 Individual JDK
 ```scala
-  javaFxDevKit := JDK("/path/to/individual/sdk")
+  javaFxDevKit := JDK("/path/to/individual/jdk")
 ```
 
-Individual SKD
+Individual SDK
 ```scala
   javaFxDevKit := SDK("/path/to/individual/sdk")
 ```
-
-@@@ note { .tip title="Tip" }
-
-SBT does not limit you to using only a single .sbt build settings file for your project. Instead, the settings of all the .sbt files in the root of the project are combined. It's a good idea to leave the path configuration settings in a separate file as the main build
-file and to exclude that file from version control, especially if you collaborate with others in the project or compile on different machines for other reasons. The paths may not be equal. (Note that SBT seems to load the .sbt files in alphabetical order, which is
-sometimes important ...)
-
-@@@
-
 
 ## Log Build Output to Console
 To debug the packaging process, set `javaFxVerbose := true` in your `build.sbt` file. Default the value is `false`

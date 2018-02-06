@@ -1,5 +1,7 @@
 package com.quadstingray.sbt.javafx.model
 
+import scala.reflect.io.File
+
 trait JavaDevKit {
   def path: String
 

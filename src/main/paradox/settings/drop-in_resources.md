@@ -1,6 +1,6 @@
 #### Drop-in Resources
-The native Packages for your platform can be customized. The Ant-Tasks `fx:deploy` `ant-javafx.jar` is not very flexible with regard to this specification of these "drop-in" resources, so tweaking an installer can be frustrating the first time around. Any encountered
-problems are likely to be associated with mis-named or mis-located files.
+The native Packages for your platform can be customized. The Ant-Tasks `fx:deploy` `ant-javafx.jar` is not very flexible to specify of these "drop-in" resources, so tweaking an installer can be frustrating the first time around. Any encountered problems are likely
+to be associated with mis-named or mis-located files.
 
 At the heart of the process of specifying the location of drop-in resources is ensuring the classpath of the ClassLoader executing `fx:deploy` can resolve the desired resources. The plugin provides the `javaFxPkgResourcesDir` setting for prepending a path
 to the `fx:deploy` classpath (which is *not* the same as the SBT classpath or the `scalac` classpath).

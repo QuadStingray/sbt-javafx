@@ -2,6 +2,8 @@
 
 For creating so-called "native bundles", that is, self-contained applications which co-bundles the JRE, use this setting:
 
+Default: `all`
+
 ```scala
 javaFxNativeBundles := bundleString
 ```

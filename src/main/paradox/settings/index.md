@@ -1,5 +1,13 @@
 # List of all possible Settings
 
+@@@ note { .tip title="Tip" }
+
+SBT has no limit to use only a single .sbt build settings file for your project. Instead, the settings of all the .sbt files in the root of the project are combined. It's a good idea to leave the path configuration settings in a separate file as the main build file and
+to exclude that file from version control, especially if you collaborate with others in the project or compile on different machines for other reasons. The paths may not be equal. (Note that SBT seems to load the .sbt files in alphabetical order, which is sometimes
+important ...)
+
+@@@
+
 ## Build Process Settings
 * @ref[javaFxNativeBundles](native_bundles.md)
 * @ref[javaFxPkgResourcesDir](drop-in_resources.md)
