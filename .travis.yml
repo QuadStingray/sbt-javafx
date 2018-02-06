@@ -19,10 +19,8 @@ jobs:
   include:
     - stage: Test
       scala: 2.12.4
-      jdk:
-        - oraclejdk8
-        - openjdk8
       script: sbt ^test
+      jdk: oraclejdk8
       os: linux
     - stage: SBT Plugin Tests
       scala: 2.12.4
