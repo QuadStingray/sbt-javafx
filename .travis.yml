@@ -7,15 +7,16 @@ branches:
 before_install:
   - git config --global user.name "$USER"
   - git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
+  # Decrypt the secret deploy key using instructions from `travis encrypt-file`
   - openssl aes-256-cbc -K $encrypted_4308745bc0f5_key -iv $encrypted_4308745bc0f5_iv -in project/travis-deploy-key.enc -out project/travis-deploy-key -d
   - chmod 600 project/travis-deploy-key
+  # Start ssh-agent in the background and load the deploy key
   - eval "$(ssh-agent -s)"
   - ssh-add project/travis-deploy-key
 notifications:
   email:
     recipients:
     - github@quadstingray.com
-#os: linux
 jdk:
   - oraclejdk8
   - openjdk8
@@ -27,24 +28,27 @@ addons:
     - oracle-java8-installer
 jobs:
   include:
-    - stage: Test
+    - stage: SBT Test
       scala: 2.12.4
-      script: sbt ^test
+      os: linux
       jdk: oraclejdk8
-      os: linux
+      script: 'sbt ^test'
     - scala: 2.12.4
-      script: sbt ^test
-      jdk: openjdk8
       os: linux
+      jdk: oraclejdk8
+      script: 'sbt ^test'
     - stage: SBT Plugin Tests
       scala: 2.12.4
       os: osx
       osx_image: xcode8
-      script: - sbt scripted
-    - stage: SBT Publish
+      script: sbt scripted
+    - stage: Release and Build Docu
       scala: 2.12.4
+      os: linux
+      jdk: oraclejdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
       scala: 2.12.4
+      os: linux
       jdk: oraclejdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
