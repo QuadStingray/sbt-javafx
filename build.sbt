@@ -3,15 +3,13 @@ name := "sbt-javafx"
 
 organization := "com.quadstingray"
 
-name := "sbt-javafx"
-
-homepage := Some(url("https://github.com/QuadStingray/sbt-javafx"))
+homepage := Some(url("https://quadstingray.github.io/sbt-javafx/"))
 
 scmInfo := Some(ScmInfo(url("https://github.com/QuadStingray/sbt-javafx"), "https://github.com/QuadStingray/sbt-javafx.git"))
 
 developers := List(Developer("QuadStingray", "QuadStingray", "github@quadstingray.com", url("https://github.com/QuadStingray")))
 
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
+licenses += ("Apache-2.0", url("https://github.com/QuadStingray/sbt-javafx/blob/master/LICENSE"))
 
 description := "Sbt plugin for building JavaFx Applications"
 

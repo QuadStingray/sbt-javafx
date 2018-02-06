@@ -13,6 +13,6 @@ else
     git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* &&
     git config branch.master.remote origin &&
     git config branch.master.merge refs/heads/master &&
-    sbt "release with-defaults" &&
-    sbt paradox ghpagesPushSite
+    sbt paradox ghpagesPushSite &&
+    sbt "release with-defaults"
 fi

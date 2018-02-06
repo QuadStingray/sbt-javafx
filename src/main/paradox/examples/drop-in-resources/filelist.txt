@@ -1,0 +1,16 @@
+├── build.sbt
+├── project
+│   ├── build.properties
+│   └── plugins.sbt
+├── src
+│   ├── deploy
+│   │   └── package
+│   │       ├── macosx
+│   │       │   └── DropInResources.icns
+│   │       └── windows
+│   │           └── DropInResources.ico
+│   └── main
+│       └── scala
+│           └── com.quadstingray.javafx.sample
+│               └── hello.scala
+└── test

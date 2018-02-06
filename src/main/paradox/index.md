@@ -22,7 +22,8 @@ sbt-javafx is deployed on bintray (jcenter).
 
 * [Enabling the plugin](enable_the_plugin.md)
 * [Running from within SBT](sbt_tasks.md)
-* [List of all Settings](features/settings/index.md)
-* [Examples](examples.md)
+* [List of all Settings](settings/index.md)
+* [Examples](examples/index.md)
 
 @@@
+

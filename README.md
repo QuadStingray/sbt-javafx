@@ -39,6 +39,5 @@ sbt-javafx is deployed on bintray (jcenter).
 
 
 ## Todos:
-
 - Tests
-- Examples
+- more documentation
