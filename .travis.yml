@@ -36,11 +36,12 @@ jobs:
       jdk: openjdk8
       script: 'sbt ^test'
     - stage: SBT Plugin Tests
-      scala: 2.12.4
+      before_install:
+        - brew install sbt
       os: osx
       osx_image: xcode8
       script: sbt scripted
-    - stage: Release and Build Docu
+    - stage: SBT Publish
       scala: 2.12.4
       os: linux
       jdk: oraclejdk8
