@@ -29,6 +29,11 @@ jobs:
       os: linux
       jdk: oraclejdk8
       script: 'sbt ^test'
+    - scala: 2.12.4
+      language: scala
+      os: linux
+      jdk: openjdk8
+      script: 'sbt ^test'
     - stage: SBT Plugin Tests
       before_install:
         - brew update
@@ -39,11 +44,6 @@ jobs:
       os: osx
       osx_image: xcode8
       script: sbt scripted
-    - scala: 2.12.4
-      language: scala
-      os: linux
-      jdk: openjdk8
-      script: 'sbt ^test'
     - stage: SBT Publish
       language: scala
       scala: 2.12.4
