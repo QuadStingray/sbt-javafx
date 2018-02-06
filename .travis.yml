@@ -1,6 +1,3 @@
-language: scala
-scala:
-  - 2.12.4
 branches:
   only:
   - master
@@ -27,11 +24,13 @@ addons:
 jobs:
   include:
     - stage: SBT Test
+      language: scala
       scala: 2.12.4
       os: linux
       jdk: oraclejdk8
       script: 'sbt ^test'
     - scala: 2.12.4
+      language: scala
       os: linux
       jdk: openjdk8
       script: 'sbt ^test'
@@ -50,11 +49,13 @@ jobs:
       osx_image: xcode8
       script: sbt scripted
     - stage: SBT Publish
+      language: scala
       scala: 2.12.4
       os: linux
       jdk: oraclejdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
+      language: scala
       scala: 2.12.4
       os: linux
       jdk: oraclejdk8
