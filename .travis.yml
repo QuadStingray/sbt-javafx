@@ -16,6 +16,15 @@ notifications:
     recipients:
     - github@quadstingray.com
 os: linux
+jdk:
+  - oraclejdk8
+  - openjdk8
+script:
+  - sbt ^test
+addons:
+  apt:
+    packages:
+    - oracle-java8-installer
 jobs:
   include:
     - stage: Test
