@@ -17,11 +17,9 @@ notifications:
   email:
     recipients:
     - github@quadstingray.com
-jdk:
-  - oraclejdk8
-  - openjdk8
 script:
-  - sbt ^test
+  - echo ''
+os: linux
 addons:
   apt:
     packages:
@@ -35,7 +33,7 @@ jobs:
       script: 'sbt ^test'
     - scala: 2.12.4
       os: linux
-      jdk: oraclejdk8
+      jdk: openjdk8
       script: 'sbt ^test'
     - stage: SBT Plugin Tests
       scala: 2.12.4
