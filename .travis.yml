@@ -34,8 +34,7 @@ jobs:
       os: linux
       jdk: openjdk8
       script: 'sbt ^test'
-    - stage: SBT Plugin Tests
-      before_install:
+    - before_install:
         - brew update
         - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
         - sudo rm -rf /Library/Java/JavaVirtualMachines
