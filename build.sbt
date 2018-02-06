@@ -15,9 +15,13 @@ description := "Sbt plugin for building JavaFx Applications"
 
 sbtPlugin := true
 
+publishMavenStyle := false
+
+bintrayReleaseOnPublish in ThisBuild := true
+
 scalaVersion := "2.12.4"
 
-crossSbtVersions := Vector("1.1.0", "1.0.0")
+crossSbtVersions := Vector("0.13.17", "1.1.0")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
@@ -28,15 +32,6 @@ libraryDependencies += "org.apache.ant" % "ant" % "1.10.1"
 resolvers += Resolver.sonatypeRepo("releases")
 
 resolvers += Resolver.jcenterRepo
-
-publishTo := {
-  if (isSnapshot.value)
-    Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository/")))
-  else
-    Some("Bintray API Realm" at "https://api.bintray.com/content/quadstingray/sbt-plugins/%s/%s;publish=1;override=1".format(name.value, version.value))
-}
-
-credentials += Credentials(new File("credentials.properties"))
 
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 

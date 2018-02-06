@@ -16,3 +16,6 @@ JavaFX
 addSbtPlugin("com.quadstingray" % "sbt-javafx" % "$project.version$")
 ```
 @@@
+
+## For debug activate
+@@snip [build.sbt](../../../sbt-test/sbt-javafx/mainclass-sbt/build.sbt){#for-debug-activate}

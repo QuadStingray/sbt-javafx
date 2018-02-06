@@ -1,6 +1,6 @@
 scriptedLaunchOpts := {
   scriptedLaunchOpts.value ++
-    Seq("-Xmx1024M", "-XX:MaxPermSize=256M", "-Dplugin.version=" + version.value)
+    Seq("-Dplugin.version=" + version.value)
 }
 
-scriptedBufferLog := true
+scriptedBufferLog := false

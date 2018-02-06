@@ -11,4 +11,6 @@ addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.3.2")
 
 addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.7")
 
+addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.3")
+
 libraryDependencies += "org.scala-sbt" %% "scripted-plugin" % sbtVersion.value

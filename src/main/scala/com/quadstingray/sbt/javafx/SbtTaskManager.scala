@@ -3,11 +3,12 @@ package com.quadstingray.sbt.javafx
 import com.quadstingray.sbt.javafx.model.AppSettings
 import org.apache.tools.ant
 import org.apache.tools.ant.{BuildEvent, BuildListener}
-import sbt.internal.util.ManagedLogger
+import sbt._
 
 import scala.reflect.io.File
 
-class SbtTaskManager(logger: ManagedLogger, logAntInformations: Boolean) {
+
+class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
   def prepareBuild(settings: AppSettings): File = {
 

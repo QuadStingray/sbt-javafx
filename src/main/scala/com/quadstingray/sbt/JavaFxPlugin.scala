@@ -3,7 +3,6 @@ package com.quadstingray.sbt
 import com.quadstingray.sbt.javafx.model._
 import com.quadstingray.sbt.javafx.{model, _}
 import sbt.Keys.{crossTarget, _}
-import sbt.internal.inc.classpath.ClasspathUtilities
 import sbt.{AutoPlugin, Def, _}
 
 import scala.reflect.io.File
@@ -36,7 +35,7 @@ object JavaFxPlugin extends AutoPlugin {
             packageOptions.value,
             classDirectory.value,
             crossTarget.value,
-            fullClasspath.value.map(_.data).filter(ClasspathUtilities.isArchive).filterNot(_.getName.endsWith("jfxrt.jar")),
+            fullClasspath.value.map(_.data).filter(PluginCompat.ClasspathUtilities.isArchive).filterNot(_.getName.endsWith("jfxrt.jar")),
             javaFxCssToBin.value,
             javaFxVerbose.value,
             javaFxPostProcess.value

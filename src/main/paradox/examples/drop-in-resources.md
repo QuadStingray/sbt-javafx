@@ -23,4 +23,8 @@ addSbtPlugin("com.quadstingray" % "sbt-javafx" % "$project.version$")
 ```
 @@@
 
+## For debug activate
+@@snip [build.sbt](../../../sbt-test/sbt-javafx/drop-in-change-dir/build.sbt){#for-debug-activate}
+
+
 

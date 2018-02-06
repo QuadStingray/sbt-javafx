@@ -13,6 +13,10 @@ mainClass := Option("com.quadstingray.javafx.sample.HelloApp")
 
 //#sample-build-sbt
 
+//#for-debug-activate
+javaFxVerbose := true
+//#for-debug-activate
+
 //#sample-native-bundles
 javaFxNativeBundles := "image"
 //#sample-native-bundles

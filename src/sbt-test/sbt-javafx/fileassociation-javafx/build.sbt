@@ -18,4 +18,8 @@ javaFxFileAssociations += FileAssociation("mov", "video/quicktime", "Mov Files")
 
 //#sample-build-sbt
 
+//#for-debug-activate
+javaFxVerbose := true
+//#for-debug-activate
+
 javaFxNativeBundles := "image"

@@ -42,7 +42,7 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode8
-      script: sbt scripted
+      script: sbt ^publishLocal ^scripted
     - stage: SBT Publish
       language: scala
       scala: 2.12.4

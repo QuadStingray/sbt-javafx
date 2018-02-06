@@ -10,3 +10,6 @@
 addSbtPlugin("com.quadstingray" % "sbt-javafx" % "$project.version$")
 ```
 @@@
+
+## For debug activate
+@@snip [build.sbt](../../../sbt-test/sbt-javafx/fileassociation-javafx/build.sbt){#for-debug-activate}

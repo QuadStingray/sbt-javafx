@@ -15,4 +15,8 @@ licenses += ("Apache-2.0", url("https://github.com/QuadStingray/sbt-javafx/blob/
 
 //#sample-build-sbt
 
+//#for-debug-activate
+javaFxVerbose := true
+//#for-debug-activate
+
 javaFxNativeBundles := "image"

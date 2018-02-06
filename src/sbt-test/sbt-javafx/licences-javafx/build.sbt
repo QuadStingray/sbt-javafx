@@ -15,4 +15,8 @@ javaFxLicense := "Apache-2.0"
 
 //#sample-build-sbt
 
+//#for-debug-activate
+javaFxVerbose := true
+//#for-debug-activate
+
 javaFxNativeBundles := "image"
