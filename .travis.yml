@@ -15,17 +15,20 @@ notifications:
   email:
     recipients:
     - github@quadstingray.com
-jdk: oraclejdk8
-script:
-  - sbt ^test
 jobs:
   include:
-    - stage: SBT Tests
+    - stage: Test
+      scala: 2.12.4
+      jdk:
+        - oraclejdk8
+        - openjdk8
+      script: sbt ^test
+    - stage: SBT Plugin Tests
       scala: 2.12.4
       os: osx
       osx_image: xcode9.2
-      script: sbt ^test
-    - stage: SBT publish
+      script: sbt scripted
+    - stage: SBT Publish
       scala: 2.12.4
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
