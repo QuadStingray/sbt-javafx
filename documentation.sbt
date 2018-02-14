@@ -35,7 +35,6 @@ paradoxMaterialTheme in Compile ~= {
   _.withLogoIcon("desktop_mac")
     .withCopyright("© QuadStingray 2018")
     .withColor("teal", "indigo")
-    .withGoogleAnalytics("UA-114151627-2") // Remember to change this!
 }
 
 enablePlugins(SiteScaladocPlugin)
