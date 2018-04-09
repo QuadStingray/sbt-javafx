@@ -25,11 +25,11 @@ jobs:
   include:
     - stage: SBT Test
       language: scala
-      scala: 2.12.4
+      scala: 2.12.5
       os: linux
       jdk: oraclejdk8
       script: 'sbt ^test'
-    - scala: 2.12.4
+    - scala: 2.12.5
       language: scala
       os: linux
       jdk: openjdk8
@@ -45,13 +45,13 @@ jobs:
       script: sbt ^publishLocal ^scripted
     - stage: SBT Publish
       language: scala
-      scala: 2.12.4
+      scala: 2.12.5
       os: linux
       jdk: oraclejdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
       language: scala
-      scala: 2.12.4
+      scala: 2.12.5
       os: linux
       jdk: oraclejdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
