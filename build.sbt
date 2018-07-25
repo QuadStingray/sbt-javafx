@@ -19,15 +19,15 @@ publishMavenStyle := false
 
 bintrayReleaseOnPublish in ThisBuild := true
 
-scalaVersion := "2.12.5"
+scalaVersion := "2.12.6"
 
-crossSbtVersions := Vector("0.13.17", "1.1.3")
+crossSbtVersions := Vector("0.13.17", "1.1.6")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
 initialCommands in console := "import com.quadstingray.sbt.javafx._"
 
-libraryDependencies += "org.apache.ant" % "ant" % "1.10.3"
+libraryDependencies += "org.apache.ant" % "ant" % "1.10.5"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
