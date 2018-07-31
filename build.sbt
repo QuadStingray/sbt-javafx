@@ -13,15 +13,13 @@ licenses += ("Apache-2.0", url("https://github.com/QuadStingray/sbt-javafx/blob/
 
 description := "Sbt plugin for building JavaFx Applications"
 
-sbtPlugin := true
-
 publishMavenStyle := false
 
 bintrayReleaseOnPublish in ThisBuild := true
 
 scalaVersion := "2.12.6"
 
-crossSbtVersions := Vector("0.13.17", "1.1.6")
+crossSbtVersions := Vector("0.13.17", "1.2.0")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
