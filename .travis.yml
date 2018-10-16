@@ -44,8 +44,8 @@ jobs:
     - cd /Library/Java/JavaVirtualMachines
     - sudo curl https://download.java.net/java/ga/jdk11/openjdk-11_osx-x64_bin.tar.gz -O
     - sudo tar xvf openjdk-11*_bin.tar.gz
-    - sudo export JAVA_HOME=/Library/Java/JavaVirtalMachines/jdk-11.jdk/Contents/Home
-    - export JAVA_HOME=/Library/Java/JavaVirtalMachines/jdk-11.jdk/Contents/Home
+    - echo "export JAVA_HOME=/Library/Java/JavaVirtalMachines/jdk-11.jdk/Contents/Home" >>  .bash_profile
+    - source .bash_profile
     - brew install sbt
     os: osx
     osx_image: xcode8
