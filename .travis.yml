@@ -47,9 +47,10 @@ jobs:
     - sudo tar xvf openjdk-11*_bin.tar.gz
     - echo "export JAVA_HOME=/Library/Java/JavaVirtalMachines/jdk-11.jdk/Contents/Home" >> ~/.bash_profile
     - source ~/.bash_profile
+    - cd $TRAVIS_BUILD_DIR
     os: osx
     osx_image: xcode8
-    script: sbt ^publishLocal '^scripted sbt-javafx/antjar-change'
+    script: sbt clean ^publishLocal '^scripted sbt-javafx/antjar-change'
   - stage: Publish
     language: scala
     scala: 2.12.5
