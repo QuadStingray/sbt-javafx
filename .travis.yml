@@ -26,25 +26,21 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 8"
       before_install:
-      - brew update
-      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 8.0.0-open
-      - brew install sbt
+      - sdk install java 8.0.181-oracle
+      - sdk install sbt
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal ^scripted
     - stage: Tests
       name: "Test on Mac with Java 9"
       before_install:
-      - brew update
-      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 9.0.0-open
+      - sdk install java 9.0.4-open
       - brew install sbt
       os: osx
       osx_image: xcode8
@@ -52,12 +48,10 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 10"
       before_install:
-      - brew update
-      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 10.0.0-open
+      - sdk install java 10.0.2-open
       - brew install sbt
       os: osx
       osx_image: xcode8
@@ -65,8 +59,6 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 11"
       before_install:
-      - brew update
-      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
