@@ -26,6 +26,8 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 8"
       before_install:
+      - touch ~/.sdkman/etc/config
+      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -37,6 +39,8 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 9"
       before_install:
+      - touch ~/.sdkman/etc/config
+      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -48,6 +52,8 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 10"
       before_install:
+      - touch ~/.sdkman/etc/config
+      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -59,6 +65,8 @@ jobs:
     - stage: Tests
       name: "Test on Mac with Java 11"
       before_install:
+      - touch ~/.sdkman/etc/config
+      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
       - sudo rm -rf /Library/Java/JavaVirtualMachines
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -67,7 +75,7 @@ jobs:
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
-    - stage: SBT Publish
+    - stage: Publish
       language: scala
       scala: 2.12.5
       os: linux
