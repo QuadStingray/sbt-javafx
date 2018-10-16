@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
-<meta name="generator" content="Paradox, paradox-material-theme=1.2.1, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=1.3.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -156,6 +156,7 @@ QuadStingray/sbt-javafx
     <li><a href="../examples/drop-in-resources.html" class="active page">Drop-in-Resources</a></li>
     <li><a href="../examples/licence.html" class="page">Licence Example</a></li>
     <li><a href="../examples/file-association.html" class="page">File Association</a></li>
+    <li><a href="../examples/ant-jar.html" class="page">Ant Jar</a></li>
   </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -175,7 +176,7 @@ QuadStingray/sbt-javafx
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.2.1
+<i class="md-icon" title="Version">label_outline</i> 1.3.0
 </label>
 </li>
 </ul>
@@ -215,12 +216,12 @@ organization := &quot;com.quadstingray&quot;
 
 version := &quot;0.1&quot;
 
-scalaVersion := &quot;2.12.4&quot;
+scalaVersion := &quot;2.12.7&quot;
 
 enablePlugins(JavaFxPlugin)
 
 mainClass := Option(&quot;com.quadstingray.javafx.sample.HelloApp&quot;)
-</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.2.1/src/sbt-test/sbt-javafx/drop-in/build.sbt#L2-L13">Full source at GitHub</a></dd>
+</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.3.0/src/sbt-test/sbt-javafx/drop-in/build.sbt#L2-L13">Full source at GitHub</a></dd>
   <dt>Changed Directory</dt>
   <dd>
   <pre class="prettyprint"><code class="language-sbt">name := &quot;DropInResourcesChanged&quot;
@@ -229,15 +230,16 @@ organization := &quot;com.quadstingray&quot;
 
 version := &quot;0.1&quot;
 
-scalaVersion := &quot;2.12.4&quot;
+scalaVersion := &quot;2.12.7&quot;
 
 enablePlugins(JavaFxPlugin)
 
 mainClass := Option(&quot;com.quadstingray.javafx.sample.HelloApp&quot;)
 
-javaFxPkgResourcesDir := (baseDirectory.value / &quot;src/change&quot;).getAbsolutePath
-</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.2.1/src/sbt-test/sbt-javafx/drop-in-change-dir/build.sbt#L2-L15">Full source at GitHub</a></dd>
-</dl>
+javaFxPkgResourcesPath := (baseDirectory.value / &quot;src/change&quot;).getAbsolutePath
+</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.3.0/src/sbt-test/sbt-javafx/drop-in-change-dir/build.sbt#L2-L15">Full source at GitHub</a></dd>
+</dl><div class="callout warning tip"><div class="callout-title">Change SBT Key</div>
+<p>In Version 1.3.0 the SBT Key is renamed from <code>javaFxPkgResourcesDir</code> to <code>javaFxPkgResourcesPath</code>.</p></div>
 <h2><a href="#directory-structure" name="directory-structure" class="anchor"><span class="anchor-link"></span></a>Directory Structure</h2>
 <dl>
   <dt>Default</dt>
@@ -257,7 +259,7 @@ javaFxPkgResourcesDir := (baseDirectory.value / &quot;src/change&quot;).getAbsol
 │       └── scala
 │           └── com.quadstingray.javafx.sample
 │               └── hello.scala
-└── test</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.2.1/src/main/paradox/examples/drop-in-resources/filelist.txt">Full source at GitHub</a></dd>
+└── test</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.3.0/src/main/paradox/examples/drop-in-resources/filelist.txt">Full source at GitHub</a></dd>
   <dt>Changed Directory</dt>
   <dd>
   <pre class="prettyprint"><code class="language-txt">├── build.sbt
@@ -275,13 +277,13 @@ javaFxPkgResourcesDir := (baseDirectory.value / &quot;src/change&quot;).getAbsol
 │       └── scala
 │           └── com.quadstingray.javafx.sample
 │               └── hello.scala
-└── test</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.2.1/src/main/paradox/examples/drop-in-resources/filechanged.txt">Full source at GitHub</a></dd>
+└── test</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.3.0/src/main/paradox/examples/drop-in-resources/filechanged.txt">Full source at GitHub</a></dd>
 </dl>
 <h2><a href="#project-plugin-sbt" name="project-plugin-sbt" class="anchor"><span class="anchor-link"></span></a>/project/plugin.sbt</h2>
-<pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.quadstingray&quot; % &quot;sbt-javafx&quot; % &quot;1.2.1&quot;)
+<pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.quadstingray&quot; % &quot;sbt-javafx&quot; % &quot;1.3.0&quot;)
 </code></pre>
 <h2><a href="#for-debug-activate" name="for-debug-activate" class="anchor"><span class="anchor-link"></span></a>For debug activate</h2>
-<pre class="prettyprint"><code class="language-sbt">javaFxVerbose := true</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.2.1/src/sbt-test/sbt-javafx/drop-in-change-dir/build.sbt#L19">Full source at GitHub</a>
+<pre class="prettyprint"><code class="language-sbt">javaFxVerbose := true</code></pre><a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.3.0/src/sbt-test/sbt-javafx/drop-in-change-dir/build.sbt#L19">Full source at GitHub</a>
 </div>
 <div>
 <a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/examples/drop-in-resources.md" title="Edit this page" class="md-source-file md-edit">
@@ -290,7 +292,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.2.1
+1.3.0
 </span>
 </div>
 </article>
