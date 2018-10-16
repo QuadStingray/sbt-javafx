@@ -41,7 +41,7 @@ jobs:
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
       - sdk install java 9.0.4-open
-      - brew install sbt
+      - sdk install sbt
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal ^scripted
@@ -52,7 +52,7 @@ jobs:
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
       - sdk install java 10.0.2-open
-      - brew install sbt
+      - sdk install sbt
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal ^scripted
@@ -63,7 +63,7 @@ jobs:
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
       - sdk install java 11.0.0-open
-      - brew install sbt
+      - sdk install sbt
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
