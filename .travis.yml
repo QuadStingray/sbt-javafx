@@ -25,14 +25,18 @@ jobs:
   include:
     - stage: SBT Test
       language: scala
-      scala: 2.12.5
+      scala: 2.12.7
       os: linux
       jdk: oraclejdk8
       script: 'sbt ^test'
-    - scala: 2.12.5
+    - scala: 2.12.7
       language: scala
       os: linux
       jdk: openjdk8
+    - scala: 2.12.7
+      language: scala
+      os: linux
+      jdk: openjdk11
       script: 'sbt ^test'
     - before_install:
         - brew update

@@ -2,20 +2,23 @@ package com.quadstingray.sbt.javafx.model
 
 import sbt.{IO, _}
 
+import scala.reflect.io.File
 import scala.xml.Elem
 
 case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: JavaFxBuildPaths, template: TemplateSettings, dimensions: AppDimensions, permissions: Permissions, appInfo: AppInfo, signing: SigningSettings, platformSettings: JavaPlatformSettings, fileAssociations: Seq[FileAssociation]) {
 
   def prepare(): Unit = {
 
-    if (buildPaths.devKit.antLib.equalsIgnoreCase("")) {
+    if (buildPaths.javafxAntPath.equalsIgnoreCase("")) {
       sys.error("Path to ant-javafx.jar not defined.")
     }
 
-    if (!file(buildPaths.devKit.antLib).exists)
-      sys.error(buildPaths.devKit.antLib + " does not exist.")
+    val antJarFile = File(buildPaths.javafxAntPath)
+    if (!antJarFile.exists)
+      sys.error(buildPaths.javafxAntPath + " does not exist.")
 
-    val pkgResourcesDir = buildPaths.pkgResourcesDir
+    if (buildPaths.javafxAntPath != antJarFile.toAbsolute.toString())
+      buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
 
     IO.delete(javaFxBuildSettings.libDir)
     IO.delete(javaFxBuildSettings.distDir)
@@ -32,7 +35,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
     val antBuildXml: Elem =
       <project name={appInfo.title} default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
         <target name="default">
-          <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesDir + ":" + buildPaths.devKit.antLib}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
+          <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesPath + ":" + buildPaths.javafxAntPath}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
           signing.getSigningXml(javaFxBuildSettings.distDir)
           if (javaFxBuildSettings.libJars.nonEmpty) {
             signing.getSigningXml(javaFxBuildSettings.libDir)

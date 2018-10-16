@@ -40,7 +40,7 @@ object JavaFxPlugin extends AutoPlugin {
             javaFxVerbose.value,
             javaFxPostProcess.value
           ),
-          JavaFxBuildPaths(javaFxDevKit.value, javaFxPkgResourcesDir.value),
+          JavaFxBuildPaths(javaFxAntPath.value, javaFxPkgResourcesPath.value),
           javaFxTemplate.value,
           AppDimensions(javaFxWidth.value, javaFxHeight.value, javaFxEmbeddedWidth.value, javaFxEmbeddedHeight.value),
           javaFxPermissions.value,

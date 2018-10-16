@@ -17,7 +17,7 @@ publishMavenStyle := false
 
 bintrayReleaseOnPublish in ThisBuild := true
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.7"
 
 crossSbtVersions := Vector("0.13.17", "1.2.1")
 
@@ -32,6 +32,8 @@ resolvers += Resolver.sonatypeRepo("releases")
 resolvers += Resolver.jcenterRepo
 
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
+
+import scala.reflect.io.File
 
 releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies, // : ReleaseStep

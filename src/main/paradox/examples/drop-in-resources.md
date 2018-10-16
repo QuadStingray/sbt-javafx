@@ -7,6 +7,10 @@ Default
 Changed Directory
 : @@snip [build.sbt](../../../sbt-test/sbt-javafx/drop-in-change-dir/build.sbt){#sample-dropinresources-changed-build-sbt}
 
+@@@ warning { .tip title="Change SBT Key" }
+In Version 1.3.0 the SBT Key is renamed from `javaFxPkgResourcesDir` to `javaFxPkgResourcesPath`.
+@@@
+
 ## Directory Structure
 
 Default

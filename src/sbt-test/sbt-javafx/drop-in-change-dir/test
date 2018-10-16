@@ -1,6 +1,6 @@
 # check if the file gets created
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
-$ exists target/scala-2.12/dropinresourceschanged_2.12.4-0.1.jar
-$ exists target/scala-2.12/dropinresourceschanged_2.12.4-0.1/bundles/DropInResourcesChanged.app
-$ exists target/scala-2.12/dropinresourceschanged_2.12.4-0.1/bundles/DropInResourcesChanged.app/Contents/Resources/DropInResourcesChanged.icns
+$ exists target/scala-2.12/dropinresourceschanged_2.12.7-0.1.jar
+$ exists target/scala-2.12/dropinresourceschanged_2.12.7-0.1/bundles/DropInResourcesChanged.app
+$ exists target/scala-2.12/dropinresourceschanged_2.12.7-0.1/bundles/DropInResourcesChanged.app/Contents/Resources/DropInResourcesChanged.icns

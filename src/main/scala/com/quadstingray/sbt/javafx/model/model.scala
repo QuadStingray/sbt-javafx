@@ -1,6 +1,6 @@
 package com.quadstingray.sbt.javafx.model
 
-case class JavaFxBuildPaths(devKit: JavaDevKit, pkgResourcesDir: String)
+case class JavaFxBuildPaths(var javafxAntPath: String, pkgResourcesPath: String)
 
 case class TemplateSettings(file: Option[sbt.File], destFile: Option[sbt.File])
 
