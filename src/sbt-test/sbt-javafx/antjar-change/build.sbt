@@ -1,6 +1,6 @@
 import scala.reflect.io.File
 
-name := "sbt-javafx-simple"
+name := "sbt-antjar-change"
 
 organization := "com.quadstingray"
 

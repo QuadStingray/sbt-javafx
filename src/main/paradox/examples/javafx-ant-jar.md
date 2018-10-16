@@ -13,6 +13,3 @@ file to your project and than you can use an relative path like in our example. 
 addSbtPlugin("com.quadstingray" % "sbt-javafx" % "$project.version$")
 ```
 @@@
-
-## For debug activate
-@@snip [build.sbt](../../../sbt-test/sbt-javafx/antjar-change/build.sbt){#for-debug-activate}

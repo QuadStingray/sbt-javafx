@@ -17,28 +17,15 @@ notifications:
 script:
   - echo ''
 os: linux
-addons:
-  apt:
-    packages:
-    - oracle-java8-installer
+cache:
+    directories:
+    - $HOME/.m2
+    - $HOME/.ivy2
 jobs:
   include:
-    - stage: SBT Test
-      language: scala
-      scala: 2.12.7
-      os: linux
-      jdk: oraclejdk8
-      script: 'sbt ^test'
-    - scala: 2.12.7
-      language: scala
-      os: linux
-      jdk: openjdk8
-    - scala: 2.12.7
-      language: scala
-      os: linux
-      jdk: openjdk11
-      script: 'sbt ^test'
-    - before_install:
+    - stage: Tests
+      name: "Test on Mac with Java 8"
+      before_install:
         - brew update
         - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
         - sudo rm -rf /Library/Java/JavaVirtualMachines
@@ -47,15 +34,48 @@ jobs:
       os: osx
       osx_image: xcode8
       script: sbt ^publishLocal ^scripted
+    - stage: Tests
+      name: "Test on Mac with Java 9"
+      before_install:
+      - brew update
+      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - brew cask install caskroom/versions/java9
+      - brew install sbt
+      os: osx
+      osx_image: xcode8
+      script: sbt ^publishLocal ^scripted
+    - stage: Tests
+      name: "Test on Mac with Java 10"
+      before_install:
+      - brew update
+      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - brew cask install caskroom/versions/java10
+      - brew install sbt
+      os: osx
+      osx_image: xcode8
+      script: sbt ^publishLocal ^scripted
+    - stage: Tests
+      name: "Test on Mac with Java 11"
+      before_install:
+      - brew update
+      - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - brew cask install caskroom/versions/java11
+      - brew install sbt
+      os: osx
+      osx_image: xcode8
+      script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
     - stage: SBT Publish
       language: scala
       scala: 2.12.5
       os: linux
-      jdk: oraclejdk8
+      jdk: openjdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
     - stage: Release and Build Docu
       language: scala
       scala: 2.12.5
       os: linux
-      jdk: oraclejdk8
+      jdk: openjdk8
       script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
