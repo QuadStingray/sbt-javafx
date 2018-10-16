@@ -10,8 +10,9 @@ important ...)
 
 ## Build Process Settings
 * @ref[javaFxNativeBundles](native_bundles.md)
-* @ref[javaFxPkgResourcesDir](drop-in_resources.md)
-* @ref[javaFxDevKit](build_settings.md#jdk-or-sdk)
+* @ref[javaFxPkgResourcesPath](drop-in_resources.md)
+* @ref[javaFxHome](build_settings.md#java-home)
+* @ref[indiviualAntJar](build_settings.md#ant-javafx-jar)
 * @ref[javaFxJavaOnly](build_settings.md#java-only-application)
 * @ref[javaFxArtifactName](build_settings.md#artifact-name)
 * @ref[javaFxPostProcess](build_settings.md#post-process)

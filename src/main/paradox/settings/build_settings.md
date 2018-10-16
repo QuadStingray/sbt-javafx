@@ -1,19 +1,22 @@
 # Build Process Settings
 
-## JDK or SDK
+## Java Home
 Self-contained applications must be packaged with the JDK version of the JRE, not the stand-alone JRE. (On Windows, you probably have both installed if you have the JDK installed.) If you try to use the JRE version, you will get the error message "jvm.dll not found". By
 default the plugin use the `JAVA_HOME` to choose the JDK.
 
-Default: JDK(System.getProperty("java.home") + "/..")
+Default: System.getProperty("java.home")
 
-Individual JDK
+Individual Java Home
 ```scala
-  javaFxDevKit := JDK("/path/to/individual/jdk")
+  javaFxJavaHome := "/path/to/individual/java/home"
 ```
 
-Individual SDK
+# Ant JavaFx Jar
+At Java 11 the Jar `ant-javafx.jar` is not included any more. So when you are using Java 11 or you want use an alternativ Jar you can do it with that setting.
+
+Default: System.getProperty("java.home") + "/../lib/ant-javafx.jar"
 ```scala
-  javaFxDevKit := SDK("/path/to/individual/sdk")
+  javaFxAntPath := "/path/to/individual/ant-javafx.jar"
 ```
 
 ## Log Build Output to Console

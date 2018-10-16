@@ -7,7 +7,7 @@ to the `fx:deploy` classpath (which is *not* the same as the SBT classpath or th
 
 Default value:
 ```scala
-javaFxPkgResourcesDir := (baseDirectory.value / "src/deploy").getAbsolutePath
+javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath
 ```
 
 See the [Oracle Java Fx Drop In Resources Documentation](https://docs.oracle.com/javafx/2/deployment/self-contained-packaging.htm#BCGICFDB) for specifics, but the basic structure is `package/{macosx,windows,linux}/[drop-in-resources]`.

@@ -18,6 +18,8 @@ trait SbtSettingsTrait {
   val javaFxMainClass = taskKey[String]("Main Class for JavaFX application, must extend javafx.application.Application and implement the start() method.")
 
   // Settings
+  val javaFxJavaHome = settingKey[String]("Path to java home for self-contained applications")
+
   val javaFxAntPath = settingKey[String]("Path to JavaFx Ant jar ")
 
   val javaFxPkgResourcesPath = settingKey[String]("Path containing the `package/{windows,macosx,linux}` directory for drop-in resources. See https://blogs.oracle.com/talkingjavadeployment/entry/native_packaging_cookbook_using_drop for details.")
@@ -84,6 +86,7 @@ trait SbtSettingsTrait {
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
     Seq(
+      javaFxJavaHome :=  System.getProperty("java.home"),
       javaFxAntPath :=  System.getProperty("java.home") + "/../lib/ant-javafx.jar",
       javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath,
       javaFxJavaOnly := false,

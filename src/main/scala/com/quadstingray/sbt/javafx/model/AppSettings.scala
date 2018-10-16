@@ -34,6 +34,9 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
     val antBuildXml: Elem =
       <project name={appInfo.title} default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
+
+        <property name="JAVA_HOME" value={buildPaths.javaHome}/>
+
         <target name="default">
           <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesPath + ":" + buildPaths.javafxAntPath}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
           signing.getSigningXml(javaFxBuildSettings.distDir)

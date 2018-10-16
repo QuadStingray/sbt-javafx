@@ -1,10 +1,11 @@
 # Examples
 
 * @ref[Simple Example](simple.md)
-* @ref[Drop in Resources](drop-in-resources.md)
-* @ref[Drop in Resources](licence.md)
-* @ref[file-association](file-association.md)
-* @ref[ant-jar](ant-jar.md)
+* @ref[Drop in Resources Example](drop-in-resources.md)
+* @ref[Licence Example](licence.md)
+* @ref[File Association Example](file-association.md)
+* @ref[Individual JavaFx Ant Jar Example](javafx-ant-jar.md)
+* @ref[Java 11 Example](java11.md)
 
 @@@ index
 
@@ -12,6 +13,7 @@
 * [Drop in Resources](drop-in-resources.md)
 * [licence](licence.md)
 * [file-association](file-association.md)
-* [ant-jar](ant-jar.md)
+* [ant-jar](javafx-ant-jar.md)
+* [java11](java11.md)
 
 @@@
