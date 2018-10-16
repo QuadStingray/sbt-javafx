@@ -36,6 +36,30 @@ jobs:
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
   - stage: Tests
+    name: "Test on Mac with Java 9"
+    before_install:
+    - brew update
+    - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
+    - brew install sbt
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - brew tap AdoptOpenJDK/openjdk
+    - brew install adoptopenjdk-openjdk9
+    os: osx
+    osx_image: xcode10
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Java 10"
+    before_install:
+    - brew update
+    - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
+    - brew install sbt
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - brew tap AdoptOpenJDK/openjdk
+    - brew install adoptopenjdk-openjdk10
+    os: osx
+    osx_image: xcode10
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
     name: "Test on Mac with Java 11"
     before_install:
     - brew update
