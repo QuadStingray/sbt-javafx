@@ -46,7 +46,7 @@ jobs:
     - sdk install sbt
     os: osx
     osx_image: xcode8
-    script: sbt ^publishLocal ^scripted
+    script: sbt ^publishLocal '^scripted sbt-javafx/antjar-change'
   - stage: Tests
     name: "Test on Mac with Java 10"
     before_install:
@@ -58,7 +58,7 @@ jobs:
     - sdk install sbt
     os: osx
     osx_image: xcode8
-    script: sbt ^publishLocal ^scripted
+    script: sbt ^publishLocal '^scripted sbt-javafx/antjar-change'
   - stage: Tests
     name: "Test on Mac with Java 11"
     before_install:
@@ -70,7 +70,7 @@ jobs:
     - sdk install sbt
     os: osx
     osx_image: xcode8
-    script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
+    script: sbt ^publishLocal '^scripted sbt-javafx/antjar-change'
   - stage: Publish
     language: scala
     scala: 2.12.5

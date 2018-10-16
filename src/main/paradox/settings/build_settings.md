@@ -4,7 +4,7 @@
 Self-contained applications must be packaged with the JDK version of the JRE, not the stand-alone JRE. (On Windows, you probably have both installed if you have the JDK installed.) If you try to use the JRE version, you will get the error message "jvm.dll not found". By
 default the plugin use the `JAVA_HOME` to choose the JDK.
 
-Default: System.getProperty("java.home")+ "/../",
+Default: System.getProperty("java.home")
 
 Individual Java Home
 ```scala
@@ -14,7 +14,7 @@ Individual Java Home
 # Ant JavaFx Jar
 At Java 11 the Jar `ant-javafx.jar` is not included any more. So when you are using Java 11 or you want use an alternativ Jar you can do it with that setting.
 
-Default: System.getProperty("java.home") + "/../lib/ant-javafx.jar"
+Default: System.getProperty("java.home") + "/lib/ant-javafx.jar"
 ```scala
   javaFxAntPath := "/path/to/individual/ant-javafx.jar"
 ```

@@ -4,6 +4,8 @@ import com.quadstingray.sbt.javafx.model._
 import sbt.Keys._
 import sbt.{Def, _}
 
+import scala.reflect.io.File
+
 trait SbtSettingsTrait {
 
   // Tasks
@@ -85,9 +87,19 @@ trait SbtSettingsTrait {
   val javaFxFileAssociations = settingKey[Seq[FileAssociation]]("seq of file associations")
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
+
+    var javaHome = System.getProperty("java.home")+ "/"
+
+    if (!File(javaHome+ "release").exists) {
+      javaHome = System.getProperty("java.home")+ "/../"
+      if (!File(javaHome+ "/release").exists) {
+        println("Could not find usable value for JAVA_HOME")
+      }
+    }
+
     Seq(
-      javaFxJavaHome :=  System.getProperty("java.home")+ "/../",
-      javaFxAntPath :=  System.getProperty("java.home") + "/../lib/ant-javafx.jar",
+      javaFxJavaHome :=  javaHome,
+      javaFxAntPath :=  javaHome + "lib/ant-javafx.jar",
       javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath,
       javaFxJavaOnly := false,
       javaFxNativeBundles := "all",
