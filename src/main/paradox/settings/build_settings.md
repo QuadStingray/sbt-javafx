@@ -4,7 +4,7 @@
 Self-contained applications must be packaged with the JDK version of the JRE, not the stand-alone JRE. (On Windows, you probably have both installed if you have the JDK installed.) If you try to use the JRE version, you will get the error message "jvm.dll not found". By
 default the plugin use the `JAVA_HOME` to choose the JDK.
 
-Default: System.getProperty("java.home")
+Default: System.getProperty("java.home")+ "/../",
 
 Individual Java Home
 ```scala

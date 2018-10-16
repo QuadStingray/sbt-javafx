@@ -86,7 +86,7 @@ trait SbtSettingsTrait {
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
     Seq(
-      javaFxJavaHome :=  System.getProperty("java.home"),
+      javaFxJavaHome :=  System.getProperty("java.home")+ "/../",
       javaFxAntPath :=  System.getProperty("java.home") + "/../lib/ant-javafx.jar",
       javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath,
       javaFxJavaOnly := false,
