@@ -2,88 +2,88 @@ branches:
   only:
   - master
 before_install:
-  - git config --global user.name "$USER"
-  - git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
-  # Decrypt the secret deploy key using instructions from `travis encrypt-file`
-  - openssl aes-256-cbc -K $encrypted_4308745bc0f5_key -iv $encrypted_4308745bc0f5_iv -in project/travis-deploy-key.enc -out project/travis-deploy-key -d
-  - chmod 600 project/travis-deploy-key
-  # Start ssh-agent in the background and load the deploy key
-  - eval "$(ssh-agent -s)"
-  - ssh-add project/travis-deploy-key
+- git config --global user.name "$USER"
+- git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
+# Decrypt the secret deploy key using instructions from `travis encrypt-file`
+- openssl aes-256-cbc -K $encrypted_4308745bc0f5_key -iv $encrypted_4308745bc0f5_iv -in project/travis-deploy-key.enc -out project/travis-deploy-key -d
+- chmod 600 project/travis-deploy-key
+# Start ssh-agent in the background and load the deploy key
+- eval "$(ssh-agent -s)"
+- ssh-add project/travis-deploy-key
 notifications:
   email:
     recipients:
     - github@quadstingray.com
 script:
-  - echo ''
+- echo ''
 os: linux
 cache:
-    directories:
-    - $HOME/.m2
-    - $HOME/.ivy2
+  directories:
+  - $HOME/.m2
+  - $HOME/.ivy2
 jobs:
   include:
-    - stage: Tests
-      name: "Test on Mac with Java 8"
-      before_install:
-      - touch ~/.sdkman/etc/config
-      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
-      - sudo rm -rf /Library/Java/JavaVirtualMachines
-      - curl -s "https://get.sdkman.io" | bash
-      - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 8.0.181-oracle
-      - sdk install sbt
-      os: osx
-      osx_image: xcode8
-      script: sbt ^publishLocal ^scripted
-    - stage: Tests
-      name: "Test on Mac with Java 9"
-      before_install:
-      - touch ~/.sdkman/etc/config
-      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
-      - sudo rm -rf /Library/Java/JavaVirtualMachines
-      - curl -s "https://get.sdkman.io" | bash
-      - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 9.0.4-open
-      - sdk install sbt
-      os: osx
-      osx_image: xcode8
-      script: sbt ^publishLocal ^scripted
-    - stage: Tests
-      name: "Test on Mac with Java 10"
-      before_install:
-      - touch ~/.sdkman/etc/config
-      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
-      - sudo rm -rf /Library/Java/JavaVirtualMachines
-      - curl -s "https://get.sdkman.io" | bash
-      - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 10.0.2-open
-      - sdk install sbt
-      os: osx
-      osx_image: xcode8
-      script: sbt ^publishLocal ^scripted
-    - stage: Tests
-      name: "Test on Mac with Java 11"
-      before_install:
-      - touch ~/.sdkman/etc/config
-      - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
-      - sudo rm -rf /Library/Java/JavaVirtualMachines
-      - curl -s "https://get.sdkman.io" | bash
-      - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 11.0.0-open
-      - sdk install sbt
-      os: osx
-      osx_image: xcode8
-      script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
-    - stage: Publish
-      language: scala
-      scala: 2.12.5
-      os: linux
-      jdk: openjdk8
-      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
-    - stage: Release and Build Docu
-      language: scala
-      scala: 2.12.5
-      os: linux
-      jdk: openjdk8
-      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
+  - stage: Tests
+    name: "Test on Mac with Java 8"
+    before_install:
+    - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -s "https://get.sdkman.io" | bash
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - sdk install java 8.0.181-oracle
+    - sdk install sbt
+    os: osx
+    osx_image: xcode8
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Java 9"
+    before_install:
+    - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -s "https://get.sdkman.io" | bash
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - sdk install java 9.0.4-open
+    - sdk install sbt
+    os: osx
+    osx_image: xcode8
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Java 10"
+    before_install:
+    - echo "sdkman_auto_answer=true" >>  ~/.sdkman/etc/config
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -s "https://get.sdkman.io" | bash
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - sdk install java 10.0.2-open
+    - sdk install sbt
+    os: osx
+    osx_image: xcode8
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Java 11"
+    before_install:
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -s "https://get.sdkman.io" | bash
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - sdk install java 11.0.0-open
+    - sdk install sbt
+    os: osx
+    osx_image: xcode8
+    script: sbt ^publishLocal '^scripted sbt-javafx/javadevkit-sbt'
+  - stage: Publish
+    language: scala
+    scala: 2.12.5
+    os: linux
+    jdk: openjdk8
+    script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
+  - stage: Release and Build Docu
+    language: scala
+    scala: 2.12.5
+    os: linux
+    jdk: openjdk8
+    script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
