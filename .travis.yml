@@ -30,9 +30,10 @@ jobs:
     - brew outdated caskroom/cask/brew-cask || brew upgrade caskroom/cask/brew-cask
     - brew install sbt
     - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - brew cask install java8
+    - brew tap AdoptOpenJDK/openjdk
+    - brew install adoptopenjdk-openjdk8
     os: osx
-    osx_image: xcode8
+    osx_image: xcode10
     script: sbt ^publishLocal ^scripted
   - stage: Tests
     name: "Test on Mac with Java 11"
@@ -49,17 +50,17 @@ jobs:
     - source ~/.bash_profile
     - cd $TRAVIS_BUILD_DIR
     os: osx
-    osx_image: xcode8
+    osx_image: xcode10
     script: sbt clean ^publishLocal '^scripted sbt-javafx/antjar-change'
   - stage: Publish
     language: scala
-    scala: 2.12.5
+    scala: 2.12.7
     os: linux
-    jdk: openjdk8
+    jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
   - stage: Release and Build Docu
     language: scala
-    scala: 2.12.5
+    scala: 2.12.7
     os: linux
-    jdk: openjdk8
+    jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
