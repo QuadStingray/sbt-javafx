@@ -12,6 +12,7 @@ enablePlugins(JavaFxPlugin)
 
 mainClass := Option("com.quadstingray.javafx.sample.HelloApp")
 
+javaFxNativeBundles := "image"
 
 //#alternativ-ant-path
 javaFxAntPath := "alternativ/path/ant-javafx.jar"
