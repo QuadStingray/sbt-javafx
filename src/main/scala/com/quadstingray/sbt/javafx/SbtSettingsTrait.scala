@@ -88,18 +88,16 @@ trait SbtSettingsTrait {
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
 
-    var javaHome = System.getProperty("java.home")+ "/"
+    var javaHome = System.getProperty("java.home")
+    var defaultAntPath = javaHome + "/../lib/ant-javafx.jar"
 
-    if (!File(javaHome+ "release").exists) {
-      javaHome = System.getProperty("java.home")+ "/../"
-      if (!File(javaHome+ "/release").exists) {
-        println("Could not find usable value for JAVA_HOME")
-      }
+    if (!File(defaultAntPath).exists) {
+      defaultAntPath = javaHome + "/lib/ant-javafx.jar"
     }
 
     Seq(
       javaFxJavaHome :=  javaHome,
-      javaFxAntPath :=  javaHome + "lib/ant-javafx.jar",
+      javaFxAntPath :=  defaultAntPath,
       javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath,
       javaFxJavaOnly := false,
       javaFxNativeBundles := "all",
