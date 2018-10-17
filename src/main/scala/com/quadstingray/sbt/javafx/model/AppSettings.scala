@@ -1,11 +1,11 @@
 package com.quadstingray.sbt.javafx.model
 
+import java.net.HttpURLConnection
+
 import sbt.{IO, _}
 
 import scala.reflect.io.File
 import scala.xml.Elem
-import sys.process._
-import java.net.URL
 
 case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: JavaFxBuildPaths, template: TemplateSettings, dimensions: AppDimensions, permissions: Permissions, appInfo: AppInfo, signing: SigningSettings, platformSettings: JavaPlatformSettings, fileAssociations: Seq[FileAssociation]) {
 
@@ -18,11 +18,23 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
     var antJarFile = File(buildPaths.javafxAntPath)
     if (!antJarFile.exists) {
       logger.info("Started Download javafx-ant.jar")
+      import sys.process._
+      import java.net.URL
 
-      antJarFile = File.makeTemp("downloaded-javafx-ant-", ".jar")
+      antJarFile = scala.reflect.io.File.makeTemp("downloaded-javafx-ant-", ".jar")
       buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
 
-      new URL("https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar") #> new java.io.File(antJarFile.toString())  !!
+      val url = new URL("https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar")
+
+      val connection = url.openConnection().asInstanceOf[HttpURLConnection]
+      connection.setConnectTimeout(5000)
+      connection.setReadTimeout(5000)
+      connection.connect()
+
+      if (connection.getResponseCode >= 400)
+        println("error")
+      else
+        url #> antJarFile.outputStream() !!
 
       logger.info("Started Download javafx-ant.jar")
     }
