@@ -33,8 +33,6 @@ resolvers += Resolver.jcenterRepo
 
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 
-import scala.reflect.io.File
-
 releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies, // : ReleaseStep
     inquireVersions, // : ReleaseStep
