@@ -27,6 +27,18 @@ initialCommands in console := "import com.quadstingray.sbt.javafx._"
 
 libraryDependencies += "org.apache.ant" % "ant" % "1.10.5"
 
+val osName: SettingKey[String] = SettingKey[String]("osName")
+
+osName := (System.getProperty("os.name") match {
+    case name if name.startsWith("Linux") => "linux"
+    case name if name.startsWith("Mac") => "mac"
+    case name if name.startsWith("Windows") => "win"
+    case _ => throw new Exception("Unknown platform!")
+})
+
+libraryDependencies += "org.openjfx" % "javafx-base" % "11" classifier osName.value
+
+
 resolvers += Resolver.sonatypeRepo("releases")
 
 resolvers += Resolver.jcenterRepo

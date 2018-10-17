@@ -51,6 +51,8 @@ jobs:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
     - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - sdk install java 10.0.1-open
+    - sdk install sbt
     - sdk install sbt
     os: osx
     osx_image: xcode10
