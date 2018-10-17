@@ -20,11 +20,11 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
       antJarFile = File.makeTemp("downloaded-javafx-ant-", ".jar")
       buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
 
-      val src = scala.io.Source.fromURL("https://github.com/QuadStingray/sbt-javafx/blob/master/src/sbt-test/sbt-javafx/antjar-change/build.sbt")
+      val src = scala.io.Source.fromURL("https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar")
       antJarFile.outputStream().write(src.mkString.getBytes)
       antJarFile.outputStream().close
 
-      logger.info("Finished Download javafx-ant.jar")
+      logger.info("Started Download javafx-ant.jar")
     }
 
     if (buildPaths.javafxAntPath != antJarFile.toAbsolute.toString())
