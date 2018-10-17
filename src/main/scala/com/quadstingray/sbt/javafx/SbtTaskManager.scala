@@ -16,7 +16,7 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
     val buildFile = File(settings.javaFxBuildSettings.jarDir.getAbsolutePath + "/build.xml")
 
-    settings.prepare()
+    settings.prepare(logger)
 
     if (buildFile.exists)
       buildFile.delete()

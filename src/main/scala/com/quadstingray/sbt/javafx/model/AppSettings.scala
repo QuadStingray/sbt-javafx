@@ -7,15 +7,25 @@ import scala.xml.Elem
 
 case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: JavaFxBuildPaths, template: TemplateSettings, dimensions: AppDimensions, permissions: Permissions, appInfo: AppInfo, signing: SigningSettings, platformSettings: JavaPlatformSettings, fileAssociations: Seq[FileAssociation]) {
 
-  def prepare(): Unit = {
+  def prepare(logger: Logger): Unit = {
 
     if (buildPaths.javafxAntPath.equalsIgnoreCase("")) {
       sys.error("Path to ant-javafx.jar not defined.")
     }
 
-    val antJarFile = File(buildPaths.javafxAntPath)
-    if (!antJarFile.exists)
-      sys.error(buildPaths.javafxAntPath + " does not exist.")
+    var antJarFile = File(buildPaths.javafxAntPath)
+    if (!antJarFile.exists) {
+      logger.info("Started Download javafx-ant.jar")
+
+      antJarFile = File.makeTemp("downloaded-javafx-ant-", ".jar")
+      buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
+
+      val src = scala.io.Source.fromURL("https://github.com/QuadStingray/sbt-javafx/blob/master/src/sbt-test/sbt-javafx/antjar-change/build.sbt")
+      antJarFile.outputStream().write(src.mkString.getBytes)
+      antJarFile.outputStream().close
+
+      logger.info("Finished Download javafx-ant.jar")
+    }
 
     if (buildPaths.javafxAntPath != antJarFile.toAbsolute.toString())
       buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
