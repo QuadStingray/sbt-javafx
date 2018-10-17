@@ -27,7 +27,7 @@ jobs:
     name: "Test on Mac with Java 8"
     before_install:
     - curl -s "https://get.sdkman.io" | bash
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - sdk install sbt
     os: osx
     osx_image: xcode9.3
@@ -37,9 +37,9 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - sdk install java 9.0.4-open
     - sdk install sbt
     os: osx
@@ -50,7 +50,7 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - sdk install sbt
     os: osx
     osx_image: xcode10
@@ -60,9 +60,9 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
-    - source "~/.sdkman/bin/sdkman-init.sh"
+    - source "$HOME/.sdkman/bin/sdkman-init.sh"
     - sdk install java 11.0.0-open
     - sdk install sbt
     os: osx
