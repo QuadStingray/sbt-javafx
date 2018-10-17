@@ -4,6 +4,8 @@ import sbt.{IO, _}
 
 import scala.reflect.io.File
 import scala.xml.Elem
+import sys.process._
+import java.net.URL
 
 case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: JavaFxBuildPaths, template: TemplateSettings, dimensions: AppDimensions, permissions: Permissions, appInfo: AppInfo, signing: SigningSettings, platformSettings: JavaPlatformSettings, fileAssociations: Seq[FileAssociation]) {
 
@@ -20,9 +22,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
       antJarFile = File.makeTemp("downloaded-javafx-ant-", ".jar")
       buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
 
-      val src = scala.io.Source.fromURL("https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar")
-      antJarFile.outputStream().write(src.mkString.getBytes)
-      antJarFile.outputStream().close
+      new URL("https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar") #> new java.io.File(antJarFile.toString())  !!
 
       logger.info("Started Download javafx-ant.jar")
     }
