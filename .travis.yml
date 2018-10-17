@@ -28,8 +28,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - sdk install java 8.0.181-oracle
     - sdk install sbt
     os: osx
@@ -40,8 +40,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - sdk install java 9.0.4-open
     - sdk install sbt
     os: osx
@@ -52,8 +52,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - sdk install java 10.0.2-oracle
     - sdk install sbt
     os: osx
@@ -64,8 +64,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -s "https://get.sdkman.io" | bash
-    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - source "$HOME/.sdkman/bin/sdkman-init.sh"
+    - echo sdkman_auto_answer=true > ~/.sdkman/etc/config
     - sdk install java 11.0.0-open
     - sdk install sbt
     os: osx
