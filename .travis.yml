@@ -26,9 +26,7 @@ jobs:
   - stage: Tests
     name: "Test on Mac with Java 8"
     before_install:
-    - curl -s "https://get.sdkman.io" | bash
-    - source "$HOME/.sdkman/bin/sdkman-init.sh"
-    - sdk install sbt
+    - brew install sbt
     os: osx
     osx_image: xcode9.3
     script: sbt ^publishLocal ^scripted
@@ -37,8 +35,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - brew install sbt
     - jabba install openjdk@1.9.0-4
+    - brew install sbt
     os: osx
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
@@ -47,8 +45,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - brew install sbt
     - jabba install openjdk@1.10.0-2
+    - brew install sbt
     os: osx
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
@@ -57,8 +55,8 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - brew install sbt
     - jabba install openjdk@1.11.0-1
+    - brew install sbt
     os: osx
     osx_image: xcode10
     script: sbt clean ^publishLocal ^scripted
