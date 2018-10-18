@@ -19,7 +19,7 @@ bintrayReleaseOnPublish in ThisBuild := true
 
 scalaVersion := "2.12.7"
 
-crossSbtVersions := Vector("1.2.5")
+crossSbtVersions := Vector("1.2.6")
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 

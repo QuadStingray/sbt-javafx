@@ -1,8 +1,5 @@
 package com.quadstingray.sbt.javafx.utils
 
-/**
-  * Created by simon on 12.10.16.
-  */
 object SystemTools {
   def getJavaVersion: String = System.getProperty("java.version")
 

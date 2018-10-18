@@ -89,24 +89,22 @@ trait SbtSettingsTrait {
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
 
-    var javaHome = System.getProperty("java.home")
+    var javaHome = SystemTools.getJavaHome
 
     if (javaHome.endsWith(SystemTools.getFileSeparator))
       javaHome = javaHome.split(SystemTools.getFileSeparator).mkString(SystemTools.getFileSeparator)
 
-    if (javaHome.endsWith("jre"))
-      javaHome = javaHome + "/../"
+    var defaultAntPath = javaHome + SystemTools.getFileSeparator + ".." + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
 
-    var defaultAntPath = javaHome + "../lib/ant-javafx.jar"
 
     if (!File(defaultAntPath).exists) {
-      defaultAntPath = javaHome + "lib/ant-javafx.jar"
+      defaultAntPath = javaHome + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
     }
 
     Seq(
-      javaFxJavaHome :=  javaHome,
-      javaFxAntPath :=  defaultAntPath,
-      javaFxPkgResourcesPath := (baseDirectory.value / "src/deploy").getAbsolutePath,
+      javaFxJavaHome := javaHome,
+      javaFxAntPath := defaultAntPath,
+      javaFxPkgResourcesPath := (baseDirectory.value / ("src" + SystemTools.getFileSeparator + "deploy")).getAbsolutePath,
       javaFxJavaOnly := false,
       javaFxNativeBundles := "all",
       javaFxArtifactName := List(Some(artifact.value.name), Some("_" + scalaVersion.value), Some("-" + projectID.value.revision)).flatten.mkString,
