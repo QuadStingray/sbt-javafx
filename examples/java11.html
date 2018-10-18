@@ -20,7 +20,7 @@
 
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Signing Settings · sbt-javafx</title>
+<title>Java 11 Support · sbt-javafx</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
 <meta name="theme-color" content="#009688" />
@@ -60,7 +60,7 @@ data-md-color-accent="indigo"
 sbt-javafx
 </span>
 <span class="md-header-nav__topic">
-Signing Settings
+Java 11 Support
 </span>
 </div>
 </div>
@@ -148,7 +148,7 @@ QuadStingray/sbt-javafx
     <li><a href="../settings/native_bundles.html" class="page">Native Bundles</a></li>
     <li><a href="../settings/drop-in_resources.html" class="page">Drop-in Resources</a></li>
     <li><a href="../settings/platform_settings.html" class="page">Platform Settings</a></li>
-    <li><a href="../settings/signing_settings.html" class="active page">Signing Settings</a></li>
+    <li><a href="../settings/signing_settings.html" class="page">Signing Settings</a></li>
   </ul></li>
   <li><a href="../examples/index.html" class="page">Examples</a>
   <ul>
@@ -157,7 +157,7 @@ QuadStingray/sbt-javafx
     <li><a href="../examples/licence.html" class="page">Licence Example</a></li>
     <li><a href="../examples/file-association.html" class="page">File Association</a></li>
     <li><a href="../examples/javafx-ant-jar.html" class="page">JavaFx Ant Jar</a></li>
-    <li><a href="../examples/java11.html" class="page">Java 11 Support</a></li>
+    <li><a href="../examples/java11.html" class="active page">Java 11 Support</a></li>
   </ul></li>
   <li><a href="../versions/index.html" class="page">Version History</a>
   <ul>
@@ -169,14 +169,10 @@ QuadStingray/sbt-javafx
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../settings/signing_settings.html#signing-settings" class="header">Signing Settings</a>
+  <li><a href="../examples/java11.html#java-11-support" class="header">Java 11 Support</a>
   <ul>
-    <li><a href="../settings/signing_settings.html#javafxpermissions" class="header">javaFxPermissions</a></li>
-    <li><a href="../settings/signing_settings.html#keystore" class="header">KeyStore</a></li>
-    <li><a href="../settings/signing_settings.html#store-password" class="header">Store Password</a></li>
-    <li><a href="../settings/signing_settings.html#signing-alias" class="header">Signing Alias</a></li>
-    <li><a href="../settings/signing_settings.html#keypass" class="header">KeyPass</a></li>
-    <li><a href="../settings/signing_settings.html#keystore-type" class="header">Keystore type</a></li>
+    <li><a href="../examples/java11.html#javafx-ant-jar" class="header">JavaFX Ant Jar</a></li>
+    <li><a href="../examples/java11.html#java-home" class="header">Java Home</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -198,14 +194,10 @@ QuadStingray/sbt-javafx
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../settings/signing_settings.html#signing-settings" class="header">Signing Settings</a>
+  <li><a href="../examples/java11.html#java-11-support" class="header">Java 11 Support</a>
   <ul>
-    <li><a href="../settings/signing_settings.html#javafxpermissions" class="header">javaFxPermissions</a></li>
-    <li><a href="../settings/signing_settings.html#keystore" class="header">KeyStore</a></li>
-    <li><a href="../settings/signing_settings.html#store-password" class="header">Store Password</a></li>
-    <li><a href="../settings/signing_settings.html#signing-alias" class="header">Signing Alias</a></li>
-    <li><a href="../settings/signing_settings.html#keypass" class="header">KeyPass</a></li>
-    <li><a href="../settings/signing_settings.html#keystore-type" class="header">Keystore type</a></li>
+    <li><a href="../examples/java11.html#javafx-ant-jar" class="header">JavaFX Ant Jar</a></li>
+    <li><a href="../examples/java11.html#java-home" class="header">Java Home</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -216,36 +208,17 @@ QuadStingray/sbt-javafx
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#signing-settings" name="signing-settings" class="anchor"><span class="anchor-link"></span></a>Signing Settings</h1>
-<p>Digitally signs an application JAR file with a certificate.</p>
-<p>Signs the JAR file as BLOB. In other words, instead of every entry being signed separately, the JAR file is signed as a single binary object.</p>
-<p>This is a new signing method in JavaFX. For traditional signing, the standard Ant signjar task should be used. See: <a href="https://docs.oracle.com/javafx/2/deployment/javafx_ant_task_reference.htm#CIADDAEE">Oracle JavaFX documentation</a></p>
-<h2><a href="#javafxpermissions" name="javafxpermissions" class="anchor"><span class="anchor-link"></span></a>javaFxPermissions</h2>
-<pre class="prettyprint"><code class="language-scala">import com.quadstingray.sbt.javafx.model.Permissions
-javaFxPermissions := Permissions(elevated = true, cacheCertificates = false)
-</code></pre>
-<h2><a href="#keystore" name="keystore" class="anchor"><span class="anchor-link"></span></a>KeyStore</h2>
-<p>Keystore file name</p>
-<pre class="prettyprint"><code class="language-scala">javaFxKeyStore := Some(&quot;path/to/keystore&quot;)
-</code></pre>
-<h2><a href="#store-password" name="store-password" class="anchor"><span class="anchor-link"></span></a>Store Password</h2>
-<p>Password to check integrity of the keystore or unlock the keystore</p>
-<pre class="prettyprint"><code class="language-scala">javaFxStorePass := Some(&quot;somepassword&quot;)
-</code></pre>
-<h2><a href="#signing-alias" name="signing-alias" class="anchor"><span class="anchor-link"></span></a>Signing Alias</h2>
-<p>The alias for the key</p>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningAlias := Some(&quot;alias&quot;)
-</code></pre>
-<h2><a href="#keypass" name="keypass" class="anchor"><span class="anchor-link"></span></a>KeyPass</h2>
-<p>Password for the private key</p>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningKeyPass := Some(&quot;somekeypass&quot;)
-</code></pre>
-<h2><a href="#keystore-type" name="keystore-type" class="anchor"><span class="anchor-link"></span></a>Keystore type</h2>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningKeyStoreType := Some(&quot;jks&quot;)
+<h1><a href="#java-11-support" name="java-11-support" class="anchor"><span class="anchor-link"></span></a>Java 11 Support</h1>
+<p>The Plugin is ready to use with Java 11. There are some small information for building your JavaFx Application with Java 11.</p>
+<h2><a href="#javafx-ant-jar" name="javafx-ant-jar" class="anchor"><span class="anchor-link"></span></a>JavaFX Ant Jar</h2>
+<p>At Java 11 the Jar <code>ant-javafx.jar</code> is not included any more. So when you can use your own ant-javafx.jar or we download an ant jar at the build process from the antjar-change test.</p>
+<h2><a href="#java-home" name="java-home" class="anchor"><span class="anchor-link"></span></a>Java Home</h2>
+<p>When you have more than one installations of Java on your device, you can change the JavaHome Path by adding:</p>
+<pre class="prettyprint"><code class="language-scala">  javaFxJavaHome := &quot;/path/to/individual/java/home&quot;
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/settings/signing_settings.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/examples/java11.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -261,7 +234,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../settings/platform_settings.html" title="Platform Settings" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../examples/javafx-ant-jar.html" title="JavaFx Ant Jar" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -270,17 +243,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Platform Settings
+JavaFx Ant Jar
 </span>
 </div>
 </a>
-<a href="../examples/index.html" title="Examples" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../versions/index.html" title="Version History" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Examples
+Version History
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
