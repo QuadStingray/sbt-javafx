@@ -17,21 +17,40 @@ notifications:
 script:
 - echo ''
 os: linux
-cache:
-  directories:
-  - $HOME/.m2
-  - $HOME/.ivy2
 jobs:
   include:
   - stage: Tests
-    name: "Test on Mac with Java 8"
+    name: "Test on Mac with Oracle JDK 8"
     before_install:
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+    - jabba install 1.8.192
     - brew install sbt
     os: osx
-    osx_image: xcode9.3
+    osx_image: xcode10
     script: sbt ^publishLocal ^scripted
   - stage: Tests
-    name: "Test on Mac with Java 9"
+    name: "Test on Mac with Oracle JDK 10"
+    before_install:
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+    - jabba install 1.10.0
+    - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Oracle JDK 11"
+    before_install:
+    - sudo rm -rf /Library/Java/JavaVirtualMachines
+    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+    - jabba install 1.11.0
+    - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with OpenJDK 9"
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
@@ -41,7 +60,7 @@ jobs:
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
   - stage: Tests
-    name: "Test on Mac with Java 10"
+    name: "Test on Mac with OpenJDK 10"
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
@@ -51,7 +70,7 @@ jobs:
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
   - stage: Tests
-    name: "Test on Mac with Java 11"
+    name: "Test on Mac with OpenJDK 11"
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh

@@ -42,8 +42,3 @@ https://quadstingray.github.io/sbt-javafx/versions/index.html
 
 ## Licence
 [Apache 2 License.](https://github.com/QuadStingray/sbt-javafx/blob/master/LICENSE)
-
-
-## Todos:
-- Tests
-- more documentation

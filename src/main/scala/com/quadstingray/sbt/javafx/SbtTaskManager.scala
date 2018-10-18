@@ -1,6 +1,7 @@
 package com.quadstingray.sbt.javafx
 
 import com.quadstingray.sbt.javafx.model.AppSettings
+import com.quadstingray.sbt.javafx.utils.SystemTools
 import org.apache.tools.ant
 import org.apache.tools.ant.{BuildEvent, BuildListener}
 import sbt._
@@ -14,7 +15,7 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
     logger.info("started prepare build")
 
-    val buildFile = File(settings.javaFxBuildSettings.jarDir.getAbsolutePath + "/build.xml")
+    val buildFile = File(settings.javaFxBuildSettings.jarDir.getAbsolutePath + SystemTools.getFileSeparator + "build.xml")
 
     settings.prepare(logger)
 

@@ -1,6 +1,7 @@
 package com.quadstingray.sbt
 
 import com.quadstingray.sbt.javafx.model._
+import com.quadstingray.sbt.javafx.utils.SystemTools
 import com.quadstingray.sbt.javafx.{model, _}
 import sbt.Keys.{crossTarget, _}
 import sbt.{AutoPlugin, Def, _}
@@ -18,7 +19,7 @@ object JavaFxPlugin extends AutoPlugin {
         sbtTaskManager.prepareBuild(javaFxGetAppSettings.value)
       },
       javaFxRunBuild := {
-        val buildFile = File(javaFxGetAppSettings.value.javaFxBuildSettings.jarDir + "/build.xml")
+        val buildFile = File(javaFxGetAppSettings.value.javaFxBuildSettings.jarDir + SystemTools.getFileSeparator + "build.xml")
         val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.runBuild(javaFxGetAppSettings.value, buildFile)
       },
