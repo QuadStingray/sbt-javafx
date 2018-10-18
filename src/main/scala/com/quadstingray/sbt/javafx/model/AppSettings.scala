@@ -34,7 +34,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
       if (connection.getResponseCode >= 400)
         println("error")
       else
-        url #> antJarFile.outputStream() !!
+        (url #> antJarFile.outputStream()).!!
 
       logger.info("Started Download javafx-ant.jar")
     }

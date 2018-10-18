@@ -2,10 +2,22 @@
 The Plugin is ready to use with Java 11. There are some small informations for building your JavaFx Application with Java 11.
 
 ## JavaFX Ant Jar
-At Java 11 the Jar `ant-javafx.jar` is not included any more. So when you are using Java 11 or you want use an alternativ Jar you can do it with that setting.
-* Download javafx-ant-jar and add to project.
-* Add to build.sbt @@snip [build.sbt](https://github.com/QuadStingray/sbt-javafx/blob/master/src/sbt-test/sbt-javafx/antjar-change/build.sbt) { #alternativ-ant-path }
-* More information: @ref[javafxant-jar](javafx-ant-jar.md)
+At Java 11 the Jar `ant-javafx.jar` is not included any more. So when you can use your own ant-javafx.jar or we download an ant jar at the build process from the antjar-change test.
+
+## build.sbt
+You need the OpenJFX Framework in you projekt. For example:
+```sbt
+  val osName: SettingKey[String] = SettingKey[String]("osName")
+  
+  osName := (System.getProperty("os.name") match {
+    case name if name.startsWith("Linux") => "linux"
+    case name if name.startsWith("Mac") => "mac"
+    case name if name.startsWith("Windows") => "win"
+    case _ => throw new Exception("Unknown platform!")
+  })
+  
+  libraryDependencies += "org.openjfx" % "javafx-base" % "11" classifier osName.value
+```
 
 ## Java Home
 When you have multible installations of Java on your device, you can change the JavaHome Path by adding:
