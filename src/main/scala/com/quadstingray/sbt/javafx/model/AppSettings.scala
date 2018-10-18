@@ -12,7 +12,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
   def prepare(logger: Logger): Unit = {
 
     var antJarFile = File(buildPaths.javafxAntPath)
-    if (buildPaths.javafxAntPath.equalsIgnoreCase("") && !antJarFile.exists) {
+    if (buildPaths.javafxAntPath.equalsIgnoreCase("") || !antJarFile.exists) {
       logger.info("Started Download javafx-ant.jar")
       import sys.process._
       import java.net.URL
