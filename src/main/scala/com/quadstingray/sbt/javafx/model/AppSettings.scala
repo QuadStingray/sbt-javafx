@@ -11,12 +11,8 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
   def prepare(logger: Logger): Unit = {
 
-    if (buildPaths.javafxAntPath.equalsIgnoreCase("")) {
-      sys.error("Path to ant-javafx.jar not defined.")
-    }
-
     var antJarFile = File(buildPaths.javafxAntPath)
-    if (!antJarFile.exists) {
+    if (buildPaths.javafxAntPath.equalsIgnoreCase("") && !antJarFile.exists) {
       logger.info("Started Download javafx-ant.jar")
       import sys.process._
       import java.net.URL

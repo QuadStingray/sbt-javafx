@@ -1,6 +1,7 @@
 package com.quadstingray.sbt.javafx
 
 import com.quadstingray.sbt.javafx.model._
+import com.quadstingray.sbt.javafx.utils.SystemTools
 import sbt.Keys._
 import sbt.{Def, _}
 
@@ -89,10 +90,17 @@ trait SbtSettingsTrait {
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
 
     var javaHome = System.getProperty("java.home")
-    var defaultAntPath = javaHome + "/../lib/ant-javafx.jar"
+
+    if (javaHome.endsWith(SystemTools.getFileSeparator))
+      javaHome = javaHome.split(SystemTools.getFileSeparator).mkString(SystemTools.getFileSeparator)
+
+    if (javaHome.endsWith("jre"))
+      javaHome = javaHome + "/../"
+
+    var defaultAntPath = javaHome + "../lib/ant-javafx.jar"
 
     if (!File(defaultAntPath).exists) {
-      defaultAntPath = javaHome + "/lib/ant-javafx.jar"
+      defaultAntPath = javaHome + "lib/ant-javafx.jar"
     }
 
     Seq(
