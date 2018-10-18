@@ -1,5 +1,6 @@
 package com.quadstingray.sbt.javafx.model
 
+import com.quadstingray.sbt.javafx.utils.SystemTools
 import sbt.Package.{JarManifest, ManifestAttributes}
 import sbt.{File, PackageOption, _}
 
@@ -18,10 +19,10 @@ case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, pack
     if (cssToBin) {
       Some(
         <delete>
-          <fileset dir={classDir.getAbsolutePath} includes="**/*.bss"/>
+          <fileset dir={classDir.getAbsolutePath} includes={"**" + SystemTools.getFileSeparator + "*.bss"}/>
         </delete>
           <fx:csstobin outdir={classDir.getAbsolutePath}>
-            <fileset dir={classDir.getAbsolutePath} includes="**/*.css"/>
+            <fileset dir={classDir.getAbsolutePath} includes={"**" + SystemTools.getFileSeparator + "*.css"}/>
           </fx:csstobin>
       )
     } else {
@@ -43,7 +44,7 @@ case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, pack
       <fx:fileset dir={classDir.getAbsolutePath}/>
       <fx:resources>
         {if (libJars.nonEmpty)
-          <fx:fileset dir={jarDir.getAbsolutePath} includes="lib/*.jar"/>}
+          <fx:fileset dir={jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>}
       </fx:resources>{if (manifestXMLAttributes.nonEmpty)
       <manifest>
         {manifestXMLAttributes}

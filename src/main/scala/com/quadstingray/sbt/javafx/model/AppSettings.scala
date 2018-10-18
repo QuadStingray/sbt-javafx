@@ -2,7 +2,7 @@ package com.quadstingray.sbt.javafx.model
 
 import java.net.HttpURLConnection
 
-import com.quadstingray.sbt.javafx.utils.DownloadTools
+import com.quadstingray.sbt.javafx.utils.{DownloadTools, SystemTools}
 import sbt.{IO, _}
 
 import scala.reflect.io.File
@@ -56,7 +56,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
           </fx:info>
           <fx:resources>
             <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={javaFxBuildSettings.artifactName + ".jar"}/>{if (javaFxBuildSettings.libJars.nonEmpty)
-              <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes="lib/*.jar"/>}
+              <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>}
           </fx:resources>
           <fx:permissions elevated={permissions.elevated.toString} cacheCertificates={permissions.cacheCertificates.toString}/>{if (template.file.isDefined) {
             val tf = template.file.get
