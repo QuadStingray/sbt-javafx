@@ -1,5 +1,5 @@
 # check if the file gets created
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
-$ exists target/scala-2.12/javafx-licences-simple_2.12.7-0.1.jar
-$ exists target/scala-2.12/javafx-licences-simple_2.12.7-0.1/bundles/javafx-licences-simple.app
+$ exists target/scala-2.12/javafx-licences-simple_2.12.8-0.1.jar
+$ exists target/scala-2.12/javafx-licences-simple_2.12.8-0.1/bundles/javafx-licences-simple.app

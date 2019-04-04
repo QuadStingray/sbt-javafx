@@ -78,13 +78,13 @@ jobs:
     script: sbt clean ^publishLocal ^scripted
   - stage: Publish
     language: scala
-    scala: 2.12.7
+    scala: 2.12.8
     os: linux
     jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
   - stage: Release and Build Docu
     language: scala
-    scala: 2.12.7
+    scala: 2.12.8
     os: linux
     jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'

@@ -17,7 +17,7 @@ publishMavenStyle := false
 
 bintrayReleaseOnPublish in ThisBuild := true
 
-scalaVersion := "2.12.7"
+scalaVersion := "2.12.8"
 
 crossSbtVersions := Vector("1.2.8")
 
