@@ -7,7 +7,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7)](https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade)
 
 ## Documentation
-https://quadstingray.github.io/sbt-javafx/
+[https://quadstingray.github.io/sbt-javafx/](https://quadstingray.github.io/sbt-javafx/)
 
 ## Quick start
 Add an `plugins.sbt` to the project's `project` directory, with the following content:
@@ -31,8 +31,8 @@ To package the application, simply run the `sbt javaFxPackage`.
 
 ## Contributing
 If you find this plugin helpfull, so you can see here how you can help:
-  - Send a pull request with your features and bug fixes
-  - Help users resolve their [issues](https://github.com/QuadStingray/sbt-javafx/issues).
+* Send a pull request with your features and bug fixes
+* Help users resolve their [issues](https://github.com/QuadStingray/sbt-javafx/issues).
 
 ## maven
 sbt-javafx is deployed on bintray (jcenter).

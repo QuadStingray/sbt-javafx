@@ -100,7 +100,7 @@ trait SbtSettingsTrait {
 
 
     val defaultAntPath =
-      if (File(defaultAntPath).exists) {
+      if (File(baseAntPath).exists) {
         baseAntPath
       } else {
         javaHome + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
@@ -120,13 +120,7 @@ trait SbtSettingsTrait {
       javaFxCategory := "",
       javaFxDescription := description.value,
       javaFxCopyright := "",
-      javaFxLicense := {
-        var licence: String = ""
-        licenses.value.headOption.foreach(sbtLicence => {
-          licence = sbtLicence._1
-        })
-        licence
-      },
+      javaFxLicense := licenses.value.headOption.getOrElse(("", ""))._1,
       javaFxWidth := 800,
       javaFxHeight := 800,
       javaFxEmbeddedWidth := "100%",
