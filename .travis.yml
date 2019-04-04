@@ -31,7 +31,7 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.8.192
+    - jabba install 1.8.202
     - brew install sbt
     os: osx
     osx_image: xcode10
@@ -41,7 +41,7 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.11.0
+    - jabba install 1.11.0-2
     - brew install sbt
     os: osx
     osx_image: xcode10
@@ -71,20 +71,32 @@ jobs:
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install openjdk@1.11.0-1
+    - jabba install openjdk@1.11.0-2
     - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt clean ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with OpenJDK 13"
+    before_install:
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+      - jabba install openjdk@1.13.0-14
+      - brew install sbt
     os: osx
     osx_image: xcode10
     script: sbt clean ^publishLocal ^scripted
   - stage: Publish
     language: scala
-    scala: 2.12.8
+    scala:
+      - 2.12.8
     os: linux
     jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
   - stage: Release and Build Docu
     language: scala
-    scala: 2.12.8
+    scala:
+      - 2.12.8
     os: linux
     jdk: openjdk11
     script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'

@@ -13,25 +13,29 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
   def prepare(logger: Logger): Unit = {
 
-    var antJarFile = File(buildPaths.javafxAntPath)
 
-    if (buildPaths.javafxAntPath.equalsIgnoreCase("") || !antJarFile.exists) {
-      antJarFile = DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJar, logger)
+    val antJarFile = if (buildPaths.javafxAntPath.equalsIgnoreCase("") || !File(buildPaths.javafxAntPath).exists) {
+      DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJar, logger)
+    } else {
+      File(buildPaths.javafxAntPath)
     }
 
-    if (buildPaths.javafxAntPath != antJarFile.toAbsolute.toString())
+    if (buildPaths.javafxAntPath != antJarFile.toAbsolute.toString()) {
       buildPaths.javafxAntPath = antJarFile.toAbsolute.toString()
+    }
 
     IO.delete(javaFxBuildSettings.libDir)
     IO.delete(javaFxBuildSettings.distDir)
 
-    if (javaFxBuildSettings.distDir.exists && javaFxBuildSettings.distDir.list.nonEmpty)
+    if (javaFxBuildSettings.distDir.exists && javaFxBuildSettings.distDir.list.nonEmpty) {
       sys.error("Could not delete previous build. Make sure no files are open in " + javaFxBuildSettings.distDir)
+    }
 
     val srcToDest = javaFxBuildSettings.libJars.map(src => (src, javaFxBuildSettings.libDir / src.getName))
 
     IO.copy(srcToDest)
   }
+
   def toXMLString: String = {
 
     val antBuildXml: Elem =
@@ -55,8 +59,9 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
           )}
           </fx:info>
           <fx:resources>
-            <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={javaFxBuildSettings.artifactName + ".jar"}/>{if (javaFxBuildSettings.libJars.nonEmpty)
-              <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>}
+            <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={javaFxBuildSettings.artifactName + ".jar"}/>{if (javaFxBuildSettings.libJars.nonEmpty) {
+              <fx:fileset dir={javaFxBuildSettings.jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>
+          }}
           </fx:resources>
           <fx:permissions elevated={permissions.elevated.toString} cacheCertificates={permissions.cacheCertificates.toString}/>{if (template.file.isDefined) {
             val tf = template.file.get

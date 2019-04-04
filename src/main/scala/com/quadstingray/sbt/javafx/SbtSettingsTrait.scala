@@ -89,17 +89,22 @@ trait SbtSettingsTrait {
 
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
 
-    var javaHome = SystemTools.getJavaHome
-
-    if (javaHome.endsWith(SystemTools.getFileSeparator))
-      javaHome = javaHome.split(SystemTools.getFileSeparator).mkString(SystemTools.getFileSeparator)
-
-    var defaultAntPath = javaHome + SystemTools.getFileSeparator + ".." + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
-
-
-    if (!File(defaultAntPath).exists) {
-      defaultAntPath = javaHome + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
+    val javaHome = if (SystemTools.getJavaHome.endsWith(SystemTools.getFileSeparator)) {
+      SystemTools.getJavaHome.split(SystemTools.getFileSeparator).mkString(SystemTools.getFileSeparator)
     }
+    else {
+      SystemTools.getJavaHome
+    }
+
+    val baseAntPath = javaHome + SystemTools.getFileSeparator + ".." + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
+
+
+    val defaultAntPath =
+      if (File(defaultAntPath).exists) {
+        baseAntPath
+      } else {
+        javaHome + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
+      }
 
     Seq(
       javaFxJavaHome := javaHome,
