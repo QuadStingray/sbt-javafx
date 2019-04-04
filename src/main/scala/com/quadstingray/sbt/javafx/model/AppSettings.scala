@@ -64,8 +64,9 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
           }}
           </fx:resources>
           <fx:permissions elevated={permissions.elevated.toString} cacheCertificates={permissions.cacheCertificates.toString}/>{if (template.file.isDefined) {
-            val tf = template.file.get
-              <fx:template file={tf.getAbsolutePath} tofile={template.destFile.getOrElse(tf).getAbsolutePath}/>
+            template.file.foreach(tf => {
+                <fx:template file={tf.getAbsolutePath} tofile={template.destFile.getOrElse(tf).getAbsolutePath}/>
+            })
           }}
         </fx:deploy>
         </target>
