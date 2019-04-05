@@ -43,12 +43,14 @@ case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, pack
       <fx:platform refid="platform"/>
       <fx:fileset dir={classDir.getAbsolutePath}/>
       <fx:resources>
-        {if (libJars.nonEmpty)
-          <fx:fileset dir={jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>}
-      </fx:resources>{if (manifestXMLAttributes.nonEmpty)
+        {if (libJars.nonEmpty) {
+          <fx:fileset dir={jarDir.getAbsolutePath} includes={"lib" + SystemTools.getFileSeparator + "*.jar"}/>
+      }}
+      </fx:resources>{if (manifestXMLAttributes.nonEmpty) {
       <manifest>
         {manifestXMLAttributes}
-      </manifest>}
+      </manifest>
+    }}
     </fx:jar>
   }
 

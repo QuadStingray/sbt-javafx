@@ -19,8 +19,9 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
     settings.prepare(logger)
 
-    if (buildFile.exists)
+    if (buildFile.exists) {
       buildFile.delete()
+    }
 
     buildFile.writeAll(settings.toXMLString)
 
@@ -28,49 +29,58 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
     buildFile
   }
 
+  private val buildListener = new BuildListener {
+
+    override def taskStarted(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
+      }
+    }
+
+    override def taskFinished(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
+      }
+    }
+
+    override def buildStarted(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.buildStarted: " + buildEvent.getProject.getName)
+      }
+    }
+
+    override def buildFinished(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.buildFinished: " + buildEvent.getProject.getName)
+      }
+    }
+
+
+    override def targetStarted(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.targetStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
+      }
+    }
+
+    override def targetFinished(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.targetFinished: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
+      }
+    }
+
+    override def messageLogged(buildEvent: BuildEvent): Unit = {
+      if (logAntInformations) {
+        logger.info("antProject.message: " + buildEvent.getMessage)
+      }
+    }
+  }
+
   def runBuild(settings: AppSettings, buildFile: File): Unit = {
     logger.info("build started")
 
     val antProject = new ant.Project
 
-    antProject.addBuildListener(new BuildListener {
-
-      override def taskStarted(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
-      }
-
-      override def taskFinished(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
-      }
-
-      override def buildStarted(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.buildStarted: " + buildEvent.getProject.getName)
-      }
-
-      override def buildFinished(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.buildFinished: " + buildEvent.getProject.getName)
-      }
-
-
-      override def targetStarted(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.targetStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
-      }
-
-      override def targetFinished(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.targetFinished: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
-      }
-
-      override def messageLogged(buildEvent: BuildEvent): Unit = {
-        if (logAntInformations)
-          logger.info("antProject.message: " + buildEvent.getMessage)
-      }
-    })
+    antProject.addBuildListener(buildListener)
 
     antProject.setUserProperty("ant.file", buildFile.path.toString)
 

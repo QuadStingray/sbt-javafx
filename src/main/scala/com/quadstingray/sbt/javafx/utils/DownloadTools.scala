@@ -5,12 +5,12 @@ import java.net.HttpURLConnection
 import sbt.Logger
 
 import scala.reflect.io.File
+import sys.process._
+import java.net.URL
 
 object DownloadTools {
   def downloadToTempFile(urlString: String, logger: Logger): File = {
     logger.info("Started Download javafx-ant.jar")
-    import sys.process._
-    import java.net.URL
 
     val tempFile = java.io.File.createTempFile("downloaded-javafx-ant-", ".jar")
     tempFile.deleteOnExit()
@@ -19,14 +19,18 @@ object DownloadTools {
     val url = new URL(urlString)
 
     val connection = url.openConnection().asInstanceOf[HttpURLConnection]
-    connection.setConnectTimeout(5000)
-    connection.setReadTimeout(5000)
+
+    val timeout: Int = 5000
+    connection.setConnectTimeout(timeout)
+    connection.setReadTimeout(timeout)
     connection.connect()
 
-    if (connection.getResponseCode >= 400)
-      println("error")
-    else
+    if (connection.getResponseCode >= 400) {
+      logger.error("downloading error status code == " + connection.getResponseCode)
+    }
+    else {
       (url #> downloadFile.outputStream()).!!
+    }
 
     logger.info("Started Download javafx-ant.jar")
 

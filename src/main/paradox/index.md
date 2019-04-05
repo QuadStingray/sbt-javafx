@@ -2,6 +2,7 @@
 ## Build Informations
  [ ![Download](https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg) ](https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/_latestVersion)
  [![Build Status](https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master)](https://travis-ci.org/QuadStingray/sbt-javafx)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7)](https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade)
 
 ## How to use Plugin with Java 11
 @ref[Java 11 Example](examples/java11.md)

@@ -2,7 +2,7 @@
 
 ## javaFxPackage
 This is the main task you use to build your application and build it into the desired native packages. The task uses the two tasks listed below to build the application. The packaged application you can find inside `target/<scala-version>/<artifact-name>/`, e.g.
-`target/scala-2.12/my_javafx_application_2.12.7-1.0.2/`. (It is possible to customize the name of the directory.)
+`target/scala-2.12/my_javafx_application_2.12.8-1.0.2/`. (It is possible to customize the name of the directory.)
 ```shell
 sbt javaFxPackage
 ```

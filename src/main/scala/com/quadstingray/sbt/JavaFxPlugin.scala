@@ -56,9 +56,9 @@ object JavaFxPlugin extends AutoPlugin {
 
   import autoImport._
 
-  override def requires = sbt.plugins.JvmPlugin
+  override def requires: AutoPlugin = sbt.plugins.JvmPlugin
 
-  override def trigger = allRequirements
+  override def trigger: PluginTrigger = allRequirements
 
   override val projectSettings: Seq[Def.Setting[_]] = inConfig(Compile)(javaFxPluginTasks) ++ javaFxPluginSettings
 

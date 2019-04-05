@@ -27,7 +27,7 @@ If the JavaFx application does not use Scala classes then the option `javaFxJava
 
 ## Artifact Name
 Pattern: artifact.value.name_scalaVersion.value-projectID.value.revision
-Default: my_javafx_application_2.12.7-1.0.2
+Default: my_javafx_application_2.12.8-1.0.2
 ```scala
 javaFxArtifactName := List(Some(artifact.value.name), Some("_" + scalaVersion.value), Some("-" + projectID.value.revision)).flatten.mkString
 ```
