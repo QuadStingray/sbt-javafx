@@ -25,7 +25,7 @@ scalacOptions ++= Seq("-deprecation", "-feature")
 
 initialCommands in console := "import com.quadstingray.sbt.javafx._"
 
-libraryDependencies += "org.apache.ant" % "ant" % "1.10.5"
+libraryDependencies += "org.apache.ant" % "ant" % "1.10.6"
 
 resolvers += Resolver.sonatypeRepo("releases")
 

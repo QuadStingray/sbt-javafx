@@ -76,6 +76,16 @@ jobs:
     os: osx
     osx_image: xcode10
     script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
+  - stage: Tests
+    name: "Test on Mac with OpenJDK 12"
+    before_install:
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+      - jabba install openjdk@1.12.0-1
+      - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
   - stage: Publish
     language: scala
     scala:
