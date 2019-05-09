@@ -27,21 +27,11 @@ before_cache:
 jobs:
   include:
   - stage: Tests
-    name: "Test on Mac with Oracle JDK 8"
+    name: "Test on Mac with Zulu OpenJdk 8"
     before_install:
     - sudo rm -rf /Library/Java/JavaVirtualMachines
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.8.202
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt ^publishLocal ^scripted
-  - stage: Tests
-    name: "Test on Mac with Oracle JDK 11"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.11.0-2
+    - jabba install zulu@1.8.212
     - brew install sbt
     os: osx
     osx_image: xcode10
@@ -63,6 +53,16 @@ jobs:
     - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
     - jabba install openjdk@1.10.0-2
     - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt ^publishLocal ^scripted
+  - stage: Tests
+    name: "Test on Mac with Oracle JDK 11"
+    before_install:
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+      - jabba install 1.11.0-3
+      - brew install sbt
     os: osx
     osx_image: xcode10
     script: sbt ^publishLocal ^scripted
