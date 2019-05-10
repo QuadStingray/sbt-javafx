@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf /Users/travis/.ivy2/local
+
 if [[ "$BRANCH" != "master" ]]; then
   echo 'Nothing to do';
 else
