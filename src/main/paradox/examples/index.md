@@ -5,7 +5,7 @@
 * @ref[Licence Example](licence.md)
 * @ref[File Association Example](file-association.md)
 * @ref[Individual JavaFx Ant Jar Example](javafx-ant-jar.md)
-* @ref[Java 11 Example](java11.md)
+* @ref[Java 11 Example](../java/java11.md)
 
 @@@ index
 
@@ -14,6 +14,6 @@
 * [licence](licence.md)
 * [file-association](file-association.md)
 * [ant-jar](javafx-ant-jar.md)
-* [java11](java11.md)
+* [java11](../java/java11.md)
 
 @@@

@@ -9,6 +9,9 @@
 ## Documentation
 [https://quadstingray.github.io/sbt-javafx/](https://quadstingray.github.io/sbt-javafx/)
 
+## Information
+This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.
+
 ## Quick start
 Add an `plugins.sbt` to the project's `project` directory, with the following content:
 
@@ -27,7 +30,9 @@ javaFxMainClass := "com.example.MainClass"
 To package the application, simply run the `sbt javaFxPackage`.
 
 ## How to use Plugin with Java 11
-[Java 11 Example](https://quadstingray.github.io/sbt-javafx/examples/java11.html)
+[Java 11 Support](https://quadstingray.github.io/sbt-javafx/java/java11.html)
+[Java 12 Support](https://quadstingray.github.io/sbt-javafx/java/java12.html)
+[Java 13 Support](https://quadstingray.github.io/sbt-javafx/java/java13.html)
 
 ## Contributing
 If you find this plugin helpfull, so you can see here how you can help:

@@ -4,8 +4,18 @@
  [![Build Status](https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master)](https://travis-ci.org/QuadStingray/sbt-javafx)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7)](https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade)
 
+@@@ warning
+This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.
+@@@
+
 ## How to use Plugin with Java 11
-@ref[Java 11 Example](examples/java11.md)
+@ref[Java 11 Example](java/java11.md)
+
+## How to use Plugin with Java 12
+@ref[Java 12](java/java12.md)
+
+## How to use Plugin with Java 13
+@ref[Java 13](java/java13.md)
 
 ## maven
 sbt-javafx is deployed on bintray (jcenter).

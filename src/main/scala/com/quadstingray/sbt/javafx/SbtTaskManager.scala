@@ -6,6 +6,7 @@ import org.apache.tools.ant
 import org.apache.tools.ant.{BuildEvent, BuildListener}
 import sbt._
 
+import scala.collection.mutable.ArrayBuffer
 import scala.reflect.io.File
 
 
@@ -78,6 +79,9 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   def runBuild(settings: AppSettings, buildFile: File): Unit = {
     logger.info("build started")
 
+    val javaHome = File(settings.buildPaths.javaHome)
+    val files: ArrayBuffer[File] = workaroundForJavaWithMovedJli(javaHome)
+
     val antProject = new ant.Project
 
     antProject.addBuildListener(buildListener)
@@ -94,6 +98,44 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
     logger.info("Post Process started")
     settings.javaFxBuildSettings.postProcess()
     logger.info("Post Process finished")
+
+    files.foreach(_.delete())
+  }
+
+  private def workaroundForJavaWithMovedJli(javaHome: File): ArrayBuffer[File] = {
+    val files: ArrayBuffer[File] = ArrayBuffer()
+
+    val version = getJavaHomeVersion(javaHome)
+    if (version.startsWith("12.") || version.startsWith("13.")) {
+      val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"
+
+      if (!(javaHome / "lib").exists) {
+        files += File(javaHome / "lib")
+      }
+
+      if (!targetFile.exists) {
+        val sourceFile = javaHome / "lib" / "libjli.dylib"
+        if (sourceFile.exists) {
+          sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
+          files += File(targetFile)
+        } else {
+          throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
+        }
+      }
+    }
+
+    files
+  }
+
+  def getJavaHomeVersion(javaHome: File): String = {
+    val releaseFile = javaHome / "release"
+    if (releaseFile.exists) {
+      val content = sbt.IO.read(releaseFile.jfile)
+      val version = "JAVA_VERSION=\"(.*?)\"".r.findFirstIn(content).getOrElse("").replace("JAVA_VERSION=\"", "").replace("\"", "")
+      version
+    } else {
+      ""
+    }
   }
 
 }

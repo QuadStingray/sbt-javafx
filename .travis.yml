@@ -27,14 +27,14 @@ before_cache:
 jobs:
   include:
   - stage: Tests
-    name: "Test on Mac with Zulu OpenJdk 8"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install zulu@1.8.212
-    - brew install sbt
+    name: "Test on Mac with Oracle JDK 8"
+#    before_install:
+#    - sudo rm -rf /Library/Java/JavaVirtualMachines
+#    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+#    - jabba install zulu@1.8.212
+#    - brew install sbt
     os: osx
-    osx_image: xcode10
+    osx_image: xcode9.3
     script: sbt ^publishLocal ^scripted
   - stage: Tests
     name: "Test on Mac with OpenJDK 9"
@@ -75,7 +75,7 @@ jobs:
     - brew install sbt
     os: osx
     osx_image: xcode10
-    script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
+    script: sbt coverage ^publishLocal ^scripted
   - stage: Tests
     name: "Test on Mac with OpenJDK 12"
     before_install:
@@ -86,6 +86,16 @@ jobs:
     os: osx
     osx_image: xcode10
     script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
+  - stage: Tests
+    name: "Test on Mac with OpenJDK 13"
+    before_install:
+      - sudo rm -rf /Library/Java/JavaVirtualMachines
+      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+      - jabba install openjdk@1.13.0-19
+      - brew install sbt
+    os: osx
+    osx_image: xcode10
+    script: sbt coverage ^publishLocal ^scripted
   - stage: Publish
     language: scala
     scala:
