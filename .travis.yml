@@ -28,11 +28,11 @@ jobs:
   include:
   - stage: Tests
     name: "Test on Mac with Oracle JDK 8"
-#    before_install:
+    before_install:
 #    - sudo rm -rf /Library/Java/JavaVirtualMachines
 #    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
 #    - jabba install zulu@1.8.212
-#    - brew install sbt
+    - brew install sbt
     os: osx
     osx_image: xcode9.3
     script: sbt ^publishLocal ^scripted
