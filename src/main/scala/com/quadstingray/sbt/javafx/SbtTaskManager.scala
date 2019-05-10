@@ -105,8 +105,8 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   private def workaroundForJavaWithMovedJli(javaHome: File): ArrayBuffer[File] = {
     val files: ArrayBuffer[File] = ArrayBuffer()
 
-    val version = getJavaHomeVersion(javaHome)
-    if (version.startsWith("12.") || version.startsWith("13.")) {
+    // val version = getJavaHomeVersion(javaHome)
+    // if (version.startsWith("12.") || version.startsWith("13.")) {
       val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"
 
       if (!(javaHome / "lib").exists) {
@@ -122,7 +122,7 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
           throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
         }
       }
-    }
+    // }
 
     files
   }
