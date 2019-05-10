@@ -49,7 +49,7 @@ jobs:
         - jabba install openjdk@1.9.0-4
         - brew install sbt
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 10"
@@ -59,7 +59,7 @@ jobs:
         - jabba install openjdk@1.10.0-2
         - brew install sbt
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with Oracle JDK 11"
@@ -76,8 +76,8 @@ jobs:
         - jabba install openjdk@1.11.0-2
         - brew install sbt
       os: osx
-      osx_image: xcode10
-      script: sbt coverage ^publishLocal ^scripted
+      osx_image: xcode10.2
+      script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 12"
       before_install:
@@ -86,7 +86,7 @@ jobs:
         - jabba install openjdk@1.12.0-1
         - brew install sbt
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       script: sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
     - stage: Tests
       name: "Test on Mac with OpenJDK 13"
@@ -96,8 +96,8 @@ jobs:
         - jabba install openjdk@1.13.0-19
         - brew install sbt
       os: osx
-      osx_image: xcode10
-      script: sbt coverage ^publishLocal ^scripted
+      osx_image: xcode10.2
+      script: sbt ^scripted
     - stage: Publish
       language: scala
       if: branch = master
