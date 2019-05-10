@@ -19,21 +19,28 @@ script:
 os: linux
 cache:
   directories:
-    - $HOME/.ivy2/cache
+    - $HOME/.ivy2
     - $HOME/.sbt
 before_cache:
   - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
   - find $HOME/.sbt        -name "*.lock"               -print -delete
 jobs:
   include:
+    - stage: LocalBuild
+      language: scala
+      if: branch = master
+      scala:
+        - 2.12.8
+      os: linux
+      jdk: openjdk11
+      script: rm -rf /Users/travis/.ivy2/local; sbt ^publishLocal
     - stage: Tests
       name: "Test on Mac with Oracle JDK 8"
       before_install:
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode9.3
-      script: sbt ^publishLocal ^scripted
+      script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 9"
       before_install:
@@ -41,10 +48,9 @@ jobs:
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
         - jabba install openjdk@1.9.0-4
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode10
-      script: sbt ^publishLocal ^scripted
+      script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 10"
       before_install:
@@ -54,15 +60,14 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode10
-      script: sbt ^publishLocal ^scripted
+      script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with Oracle JDK 11"
       before_install:
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode10.1
-      script: sbt ^publishLocal ^scripted
+      script: sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 11"
       before_install:
@@ -70,7 +75,6 @@ jobs:
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
         - jabba install openjdk@1.11.0-2
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode10
       script: sbt coverage ^publishLocal ^scripted
@@ -81,10 +85,9 @@ jobs:
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
         - jabba install openjdk@1.12.0-1
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode10
-      script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
+      script: sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
     - stage: Tests
       name: "Test on Mac with OpenJDK 13"
       before_install:
@@ -92,7 +95,6 @@ jobs:
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
         - jabba install openjdk@1.13.0-19
         - brew install sbt
-        - rm -rf /Users/travis/.ivy2/local
       os: osx
       osx_image: xcode10
       script: sbt coverage ^publishLocal ^scripted
