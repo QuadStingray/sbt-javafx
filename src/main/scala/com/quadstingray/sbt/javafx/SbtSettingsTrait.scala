@@ -117,7 +117,7 @@ trait SbtSettingsTrait {
         Seq(f, f.getParentFile / ("jdk" + f.getName.drop(3)))
       }
       else {
-       Seq(f) 
+       Seq(f)
       }
     }.headOption.getOrElse(throw new Exception("JAVA_HOME not found")).getAbsolutePath
 
