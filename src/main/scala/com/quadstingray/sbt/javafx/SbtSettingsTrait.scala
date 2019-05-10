@@ -11,7 +11,6 @@ import org.apache.tools.ant.{BuildEvent, BuildListener, ProjectHelper}
 import sbt.Keys._
 import sbt._
 
-import scala.util.Try
 import scala.xml.Elem
 
 
@@ -114,10 +113,12 @@ trait SbtSettingsTrait {
     // On Windows we're often running in the JRE and not the JDK. If JDK is installed,
     // it's likely to be in a parallel directory, with the "jre" prefix changed to "jdk"
     entryPoints.flatMap { f ⇒
-      if (f.getName.startsWith("jre"))
+      if (f.getName.startsWith("jre")) {
         Seq(f, f.getParentFile / ("jdk" + f.getName.drop(3)))
-      else
-        Seq(f)
+      }
+      else {
+       Seq(f) 
+      }
     }.headOption.getOrElse(throw new Exception("JAVA_HOME not found")).getAbsolutePath
 
   }
