@@ -1,8 +1,12 @@
 #!/bin/bash
 
-if grep -q "SNAPSHOT" version.sbt
-then
-    echo ""
+if [[ "$BRANCH" != "MASTER" ]]; then
+  echo 'Nothing to do';
 else
-    sbt -Dbintray.user=$BINTRAY_USER -Dbintray.pass=$BINTRAY_PASSWORD ^publish
+  if grep -q "SNAPSHOT" version.sbt
+  then
+      echo 'Nothing to do';
+  else
+      sbt -Dbintray.user=$BINTRAY_USER -Dbintray.pass=$BINTRAY_PASSWORD ^publish
+  fi
 fi
