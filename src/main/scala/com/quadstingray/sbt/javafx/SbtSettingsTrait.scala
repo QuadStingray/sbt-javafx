@@ -6,6 +6,13 @@ import sbt.Keys._
 import sbt.{Def, _}
 
 import scala.reflect.io.File
+import scala.util.Try
+import org.apache.tools.ant.{BuildEvent, BuildListener, ProjectHelper}
+import sbt.Keys._
+import sbt._
+
+import scala.xml.Elem
+
 
 trait SbtSettingsTrait {
 
@@ -87,14 +94,38 @@ trait SbtSettingsTrait {
 
   val javaFxFileAssociations = settingKey[Seq[FileAssociation]]("seq of file associations")
 
+  protected def findJavaHome() : String = {
+    val searchPoints = Seq(
+      // Build-defined
+//      Some(javaHome).map(file),
+      // Environment override
+      sys.env.get("JDK_HOME").map(file),
+      sys.env.get("JAVA_HOME").map(file),
+      // MacOS X
+      Try(sys.process.Process("/usr/libexec/java_home").!!.trim).toOption.map(file),
+      // From system properties
+      sys.props.get("java.home").map(file)
+    )
+
+    // Unlift searchPoint `Option`-s, and for each base directory, add the parent variant to cover nested JREs on Unix.
+    val entryPoints = searchPoints.flatten.flatMap(f ⇒ Seq(f, f.getAbsoluteFile))
+
+    // On Windows we're often running in the JRE and not the JDK. If JDK is installed,
+    // it's likely to be in a parallel directory, with the "jre" prefix changed to "jdk"
+    entryPoints.flatMap { f ⇒
+      if (f.getName.startsWith("jre")) {
+        Seq(f, f.getParentFile / ("jdk" + f.getName.drop(3)))
+      }
+      else {
+       Seq(f)
+      }
+    }.headOption.getOrElse(throw new Exception("JAVA_HOME not found")).getAbsolutePath
+
+  }
+
   lazy val javaFxPluginSettings: Seq[Def.Setting[_]] = {
 
-    val javaHome = if (SystemTools.getJavaHome.endsWith(SystemTools.getFileSeparator)) {
-      SystemTools.getJavaHome.split(SystemTools.getFileSeparator).mkString(SystemTools.getFileSeparator)
-    }
-    else {
-      SystemTools.getJavaHome
-    }
+    var javaHome = findJavaHome()
 
     val baseAntPath = javaHome + SystemTools.getFileSeparator + ".." + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
 
@@ -107,7 +138,7 @@ trait SbtSettingsTrait {
       }
 
     Seq(
-      javaFxJavaHome := javaHome,
+      javaFxJavaHome := "",
       javaFxAntPath := defaultAntPath,
       javaFxPkgResourcesPath := (baseDirectory.value / ("src" + SystemTools.getFileSeparator + "deploy")).getAbsolutePath,
       javaFxJavaOnly := false,

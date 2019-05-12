@@ -1,92 +1,109 @@
 branches:
   only:
-  - master
+    - master
 before_install:
-- git config --global user.name "$USER"
-- git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
-# Decrypt the secret deploy key using instructions from `travis encrypt-file`
-- openssl aes-256-cbc -K $encrypted_4308745bc0f5_key -iv $encrypted_4308745bc0f5_iv -in project/travis-deploy-key.enc -out project/travis-deploy-key -d
-- chmod 600 project/travis-deploy-key
-# Start ssh-agent in the background and load the deploy key
-- eval "$(ssh-agent -s)"
-- ssh-add project/travis-deploy-key
+  - git config --global user.name "$USER"
+  - git config --global user.email "$TRAVIS_BUILD_NUMBER@$TRAVIS_COMMIT"
+  # Decrypt the secret deploy key using instructions from `travis encrypt-file`
+  - openssl aes-256-cbc -K $encrypted_4308745bc0f5_key -iv $encrypted_4308745bc0f5_iv -in project/travis-deploy-key.enc -out project/travis-deploy-key -d
+  - chmod 600 project/travis-deploy-key
+  # Start ssh-agent in the background and load the deploy key
+  - eval "$(ssh-agent -s)"
+  - ssh-add project/travis-deploy-key
 notifications:
   email:
     recipients:
-    - github@quadstingray.com
+      - github@quadstingray.com
 script:
-- echo ''
+  - echo ''
 os: linux
 cache:
   directories:
-  - $HOME/.ivy2/cache
-  - $HOME/.sbt
+    - $HOME/.ivy2
+    - $HOME/.sbt
 before_cache:
-- find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
-- find $HOME/.sbt        -name "*.lock"               -print -delete
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
 jobs:
   include:
-  - stage: Tests
-    name: "Test on Mac with Oracle JDK 8"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.8.202
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt ^publishLocal ^scripted
-  - stage: Tests
-    name: "Test on Mac with Oracle JDK 11"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install 1.11.0-2
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt ^publishLocal ^scripted
-  - stage: Tests
-    name: "Test on Mac with OpenJDK 9"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install openjdk@1.9.0-4
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt ^publishLocal ^scripted
-  - stage: Tests
-    name: "Test on Mac with OpenJDK 10"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install openjdk@1.10.0-2
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt ^publishLocal ^scripted
-  - stage: Tests
-    name: "Test on Mac with OpenJDK 11"
-    before_install:
-    - sudo rm -rf /Library/Java/JavaVirtualMachines
-    - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-    - jabba install openjdk@1.11.0-2
-    - brew install sbt
-    os: osx
-    osx_image: xcode10
-    script: sbt coverage ^publishLocal ^scripted coverageReport coverageAggregate codacyCoverage
-  - stage: Publish
-    language: scala
-    scala:
-      - 2.12.8
-    os: linux
-    jdk: openjdk11
-    script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
-  - stage: Release and Build Docu
-    language: scala
-    scala:
-      - 2.12.8
-    os: linux
-    jdk: openjdk11
-    script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'
+    - stage: Tests
+      name: "Test on Mac with Oracle JDK 8"
+      before_install:
+        - brew install sbt
+      os: osx
+      osx_image: xcode9.3
+      script: sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 9"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.9.0-4
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 10"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.10.0
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with Oracle JDK 11"
+      before_install:
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.1
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 11"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.11.0
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      # script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 12"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.12.0
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 13"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.13.0
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      script: rm -rf $HOME/.ivy2/local;  sbt ^scripted
+    - stage: Publish
+      language: scala
+      if: branch = master
+      scala:
+        - 2.12.8
+      os: linux
+      jdk: openjdk11
+      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.publish.sh"'
+    - stage: Release and Build Docu
+      language: scala
+      if: branch = master
+      scala:
+        - 2.12.8
+      os: linux
+      jdk: openjdk11
+      script: '/bin/bash "$TRAVIS_BUILD_DIR/.travis.release.sh"'

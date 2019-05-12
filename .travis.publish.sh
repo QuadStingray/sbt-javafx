@@ -1,8 +1,14 @@
 #!/bin/bash
 
-if grep -q "SNAPSHOT" version.sbt
-then
-    echo ""
+rm -rf /Users/travis/.ivy2/local
+
+if [[ "$BRANCH" != "master" ]]; then
+  echo 'Nothing to do';
 else
-    sbt -Dbintray.user=$BINTRAY_USER -Dbintray.pass=$BINTRAY_PASSWORD ^publish
+  if grep -q "SNAPSHOT" version.sbt
+  then
+      echo 'Nothing to do';
+  else
+      sbt -Dbintray.user=$BINTRAY_USER -Dbintray.pass=$BINTRAY_PASSWORD ^publish
+  fi
 fi
