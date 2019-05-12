@@ -33,7 +33,7 @@ jobs:
         - 2.12.8
       os: linux
       jdk: openjdk11
-      script: rm -rf /Users/travis/.ivy2/local; sbt ^publishLocal
+      script: rm -rf $HOME/.ivy2/local; sbt ^publishLocal
     - stage: Tests
       name: "Test on Mac with Oracle JDK 8"
       before_install:
@@ -46,58 +46,58 @@ jobs:
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.9.0-4
+        - jabba install openjdk@1.9.0
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 10"
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.10.0-2
+        - jabba install openjdk@1.10.0
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
     - stage: Tests
       name: "Test on Mac with Oracle JDK 11"
       before_install:
         - brew install sbt
       os: osx
       osx_image: xcode10.1
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 11"
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.11.0-2
+        - jabba install openjdk@1.11.0
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
     - stage: Tests
       name: "Test on Mac with OpenJDK 12"
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.12.0-1
+        - jabba install openjdk@1.12.0
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 13"
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
         - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.13.0-19
+        - jabba install openjdk@1.13.0
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local;  sbt ^scripted
     - stage: Publish
       language: scala
       if: branch = master

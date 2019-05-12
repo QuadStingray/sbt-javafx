@@ -79,7 +79,12 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   def runBuild(settings: AppSettings, buildFile: File): Unit = {
     logger.info("build started")
 
-    val javaHome = File(settings.buildPaths.javaHome)
+    val javaHome: File = if (!settings.buildPaths.javaHome.trim.equalsIgnoreCase("")){
+      File(settings.buildPaths.javaHome)
+    } else {
+      File(SystemTools.getJavaHome)
+    }
+
     val files: ArrayBuffer[File] = workaroundForJavaWithMovedJli(javaHome)
 
     val antProject = new ant.Project
@@ -105,8 +110,9 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   private def workaroundForJavaWithMovedJli(javaHome: File): ArrayBuffer[File] = {
     val files: ArrayBuffer[File] = ArrayBuffer()
 
-    // val version = getJavaHomeVersion(javaHome)
-    // if (version.startsWith("12.") || version.startsWith("13.")) {
+    if (javaHome.exists) {
+      // val version = getJavaHomeVersion(javaHome)
+      // if (version.startsWith("12.") || version.startsWith("13.")) {
       val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"
 
       if (!(javaHome / "lib").exists) {
@@ -122,7 +128,11 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
           throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
         }
       }
-    // }
+      // }
+    } else {
+      throw new Exception("JavaHome Directory <%s> doesn't exists".format(javaHome))
+    }
+
 
     files
   }
