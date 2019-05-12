@@ -69,7 +69,8 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
+      # script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
+      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
     - stage: Tests
       name: "Test on Mac with OpenJDK 12"
       before_install:
