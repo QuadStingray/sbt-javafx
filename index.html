@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
-<meta name="generator" content="Paradox, paradox-material-theme=1.4.0, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=1.5.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -152,10 +152,11 @@ QuadStingray/sbt-javafx
     <li><a href="examples/licence.html" class="page">Licence Example</a></li>
     <li><a href="examples/file-association.html" class="page">File Association</a></li>
     <li><a href="examples/javafx-ant-jar.html" class="page">JavaFx Ant Jar</a></li>
-    <li><a href="examples/java11.html" class="page">Java 11 Support</a></li>
+    <li><a href="java/java11.html" class="page">Java 11 Support</a></li>
   </ul></li>
   <li><a href="versions/index.html" class="page">Version History</a>
   <ul>
+    <li><a href="versions/1_4_1.html" class="page">Version 1.4.1</a></li>
     <li><a href="versions/1_4_0.html" class="page">Version 1.4.0</a></li>
     <li><a href="versions/1_3_1.html" class="page">Version 1.3.1</a></li>
     <li><a href="versions/1_3_0.html" class="page">Version 1.3.0</a></li>
@@ -168,6 +169,8 @@ QuadStingray/sbt-javafx
   <ul>
     <li><a href="index.html#build-informations" class="header">Build Informations</a></li>
     <li><a href="index.html#how-to-use-plugin-with-java-11" class="header">How to use Plugin with Java 11</a></li>
+    <li><a href="index.html#how-to-use-plugin-with-java-12" class="header">How to use Plugin with Java 12</a></li>
+    <li><a href="index.html#how-to-use-plugin-with-java-13" class="header">How to use Plugin with Java 13</a></li>
     <li><a href="index.html#maven" class="header">maven</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
     <li><a href="index.html#todos-" class="header">Todos:</a></li>
@@ -179,7 +182,7 @@ QuadStingray/sbt-javafx
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.4.0
+<i class="md-icon" title="Version">label_outline</i> 1.5.0
 </label>
 </li>
 </ul>
@@ -196,6 +199,8 @@ QuadStingray/sbt-javafx
   <ul>
     <li><a href="index.html#build-informations" class="header">Build Informations</a></li>
     <li><a href="index.html#how-to-use-plugin-with-java-11" class="header">How to use Plugin with Java 11</a></li>
+    <li><a href="index.html#how-to-use-plugin-with-java-12" class="header">How to use Plugin with Java 12</a></li>
+    <li><a href="index.html#how-to-use-plugin-with-java-13" class="header">How to use Plugin with Java 13</a></li>
     <li><a href="index.html#maven" class="header">maven</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
     <li><a href="index.html#todos-" class="header">Todos:</a></li>
@@ -211,9 +216,14 @@ QuadStingray/sbt-javafx
 <div class="md-content__searchable">
 <h1><a href="#sbt-javafx" name="sbt-javafx" class="anchor"><span class="anchor-link"></span></a>sbt-javafx</h1>
 <h2><a href="#build-informations" name="build-informations" class="anchor"><span class="anchor-link"></span></a>Build Informations</h2>
-<p><a href="https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/_latestVersion"> <img src="https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg" alt="Download" /> </a>  <a href="https://travis-ci.org/QuadStingray/sbt-javafx"><img src="https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master" alt="Build Status" /></a></p>
+<p><a href="https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/_latestVersion"> <img src="https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg" alt="Download" /> </a>  <a href="https://travis-ci.org/QuadStingray/sbt-javafx"><img src="https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master" alt="Build Status" /></a> <a href="https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7" alt="Codacy Badge" /></a></p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.</p></div>
 <h2><a href="#how-to-use-plugin-with-java-11" name="how-to-use-plugin-with-java-11" class="anchor"><span class="anchor-link"></span></a>How to use Plugin with Java 11</h2>
-<p><a href="examples/java11.html">Java 11 Example</a></p>
+<p><a href="java/java11.html">Java 11 Example</a></p>
+<h2><a href="#how-to-use-plugin-with-java-12" name="how-to-use-plugin-with-java-12" class="anchor"><span class="anchor-link"></span></a>How to use Plugin with Java 12</h2>
+<p><a href="java/java12.html">Java 12</a></p>
+<h2><a href="#how-to-use-plugin-with-java-13" name="how-to-use-plugin-with-java-13" class="anchor"><span class="anchor-link"></span></a>How to use Plugin with Java 13</h2>
+<p><a href="java/java13.html">Java 13</a></p>
 <h2><a href="#maven" name="maven" class="anchor"><span class="anchor-link"></span></a>maven</h2>
 <p>sbt-javafx is deployed on bintray (jcenter).</p>
 <h2><a href="#licence" name="licence" class="anchor"><span class="anchor-link"></span></a>Licence</h2>
@@ -225,13 +235,13 @@ QuadStingray/sbt-javafx
 </ul>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.5.0/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.4.0
+1.5.0
 </span>
 </div>
 </article>

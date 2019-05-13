@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
-<meta name="generator" content="Paradox, paradox-material-theme=1.4.0, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=1.5.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -157,10 +157,11 @@ QuadStingray/sbt-javafx
     <li><a href="examples/licence.html" class="page">Licence Example</a></li>
     <li><a href="examples/file-association.html" class="page">File Association</a></li>
     <li><a href="examples/javafx-ant-jar.html" class="page">JavaFx Ant Jar</a></li>
-    <li><a href="examples/java11.html" class="page">Java 11 Support</a></li>
+    <li><a href="java/java11.html" class="page">Java 11 Support</a></li>
   </ul></li>
   <li><a href="versions/index.html" class="page">Version History</a>
   <ul>
+    <li><a href="versions/1_4_1.html" class="page">Version 1.4.1</a></li>
     <li><a href="versions/1_4_0.html" class="page">Version 1.4.0</a></li>
     <li><a href="versions/1_3_1.html" class="page">Version 1.3.1</a></li>
     <li><a href="versions/1_3_0.html" class="page">Version 1.3.0</a></li>
@@ -182,7 +183,7 @@ QuadStingray/sbt-javafx
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.4.0
+<i class="md-icon" title="Version">label_outline</i> 1.5.0
 </label>
 </li>
 </ul>
@@ -212,7 +213,7 @@ QuadStingray/sbt-javafx
 <div class="md-content__searchable">
 <h1><a href="#sbt-tasks" name="sbt-tasks" class="anchor"><span class="anchor-link"></span></a>SBT Tasks</h1>
 <h2><a href="#javafxpackage" name="javafxpackage" class="anchor"><span class="anchor-link"></span></a>javaFxPackage</h2>
-<p>This is the main task you use to build your application and build it into the desired native packages. The task uses the two tasks listed below to build the application. The packaged application you can find inside <code>target/&lt;scala-version&gt;/&lt;artifact-name&gt;/</code>, e.g. <code>target/scala-2.12/my_javafx_application_2.12.7-1.0.2/</code>. (It is possible to customize the name of the directory.)</p>
+<p>This is the main task you use to build your application and build it into the desired native packages. The task uses the two tasks listed below to build the application. The packaged application you can find inside <code>target/&lt;scala-version&gt;/&lt;artifact-name&gt;/</code>, e.g. <code>target/scala-2.12/my_javafx_application_2.12.8-1.0.2/</code>. (It is possible to customize the name of the directory.)</p>
 <pre class="prettyprint"><code class="language-shell">sbt javaFxPackage
 </code></pre>
 <h2><a href="#javafxpreparebuild" name="javafxpreparebuild" class="anchor"><span class="anchor-link"></span></a>javaFxPrepareBuild</h2>
@@ -226,13 +227,13 @@ QuadStingray/sbt-javafx
 <p>To experiment with JavaFX packaging options that are not (yet) supported by the plugin, you can manually edit the intermediate version of the <code>build.xml</code> file. When you need any not implemented packaging options, you can contribute and implement it yourself, or open an <a href="https://github.com/QuadStingray/sbt-javafx/issues">issue</a>.</p></div>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/sbt_tasks.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.5.0/src/main/paradox/sbt_tasks.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.4.0
+1.5.0
 </span>
 </div>
 </article>

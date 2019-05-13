@@ -20,7 +20,7 @@
 
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Signing Settings · sbt-javafx</title>
+<title>Version 1.4.1 · sbt-javafx</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
 <meta name="theme-color" content="#009688" />
@@ -60,7 +60,7 @@ data-md-color-accent="indigo"
 sbt-javafx
 </span>
 <span class="md-header-nav__topic">
-Signing Settings
+Version 1.4.1
 </span>
 </div>
 </div>
@@ -148,7 +148,7 @@ QuadStingray/sbt-javafx
     <li><a href="../settings/native_bundles.html" class="page">Native Bundles</a></li>
     <li><a href="../settings/drop-in_resources.html" class="page">Drop-in Resources</a></li>
     <li><a href="../settings/platform_settings.html" class="page">Platform Settings</a></li>
-    <li><a href="../settings/signing_settings.html" class="active page">Signing Settings</a></li>
+    <li><a href="../settings/signing_settings.html" class="page">Signing Settings</a></li>
   </ul></li>
   <li><a href="../examples/index.html" class="page">Examples</a>
   <ul>
@@ -161,7 +161,7 @@ QuadStingray/sbt-javafx
   </ul></li>
   <li><a href="../versions/index.html" class="page">Version History</a>
   <ul>
-    <li><a href="../versions/1_4_1.html" class="page">Version 1.4.1</a></li>
+    <li><a href="../versions/1_4_1.html" class="active page">Version 1.4.1</a></li>
     <li><a href="../versions/1_4_0.html" class="page">Version 1.4.0</a></li>
     <li><a href="../versions/1_3_1.html" class="page">Version 1.3.1</a></li>
     <li><a href="../versions/1_3_0.html" class="page">Version 1.3.0</a></li>
@@ -170,14 +170,11 @@ QuadStingray/sbt-javafx
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../settings/signing_settings.html#signing-settings" class="header">Signing Settings</a>
+  <li><a href="../versions/1_4_1.html#version-1-4-1" class="header">Version 1.4.1</a>
   <ul>
-    <li><a href="../settings/signing_settings.html#javafxpermissions" class="header">javaFxPermissions</a></li>
-    <li><a href="../settings/signing_settings.html#keystore" class="header">KeyStore</a></li>
-    <li><a href="../settings/signing_settings.html#store-password" class="header">Store Password</a></li>
-    <li><a href="../settings/signing_settings.html#signing-alias" class="header">Signing Alias</a></li>
-    <li><a href="../settings/signing_settings.html#keypass" class="header">KeyPass</a></li>
-    <li><a href="../settings/signing_settings.html#keystore-type" class="header">Keystore type</a></li>
+    <li><a href="../versions/1_4_1.html#changes" class="header">Changes</a></li>
+    <li><a href="../versions/1_4_1.html#download" class="header">Download</a></li>
+    <li><a href="../versions/1_4_1.html#sbt" class="header">SBT</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -199,14 +196,11 @@ QuadStingray/sbt-javafx
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../settings/signing_settings.html#signing-settings" class="header">Signing Settings</a>
+  <li><a href="../versions/1_4_1.html#version-1-4-1" class="header">Version 1.4.1</a>
   <ul>
-    <li><a href="../settings/signing_settings.html#javafxpermissions" class="header">javaFxPermissions</a></li>
-    <li><a href="../settings/signing_settings.html#keystore" class="header">KeyStore</a></li>
-    <li><a href="../settings/signing_settings.html#store-password" class="header">Store Password</a></li>
-    <li><a href="../settings/signing_settings.html#signing-alias" class="header">Signing Alias</a></li>
-    <li><a href="../settings/signing_settings.html#keypass" class="header">KeyPass</a></li>
-    <li><a href="../settings/signing_settings.html#keystore-type" class="header">Keystore type</a></li>
+    <li><a href="../versions/1_4_1.html#changes" class="header">Changes</a></li>
+    <li><a href="../versions/1_4_1.html#download" class="header">Download</a></li>
+    <li><a href="../versions/1_4_1.html#sbt" class="header">SBT</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -217,36 +211,22 @@ QuadStingray/sbt-javafx
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#signing-settings" name="signing-settings" class="anchor"><span class="anchor-link"></span></a>Signing Settings</h1>
-<p>Digitally signs an application JAR file with a certificate.</p>
-<p>Signs the JAR file as BLOB. In other words, instead of every entry being signed separately, the JAR file is signed as a single binary object.</p>
-<p>This is a new signing method in JavaFX. For traditional signing, the standard Ant signjar task should be used. See: <a href="https://docs.oracle.com/javafx/2/deployment/javafx_ant_task_reference.htm#CIADDAEE">Oracle JavaFX documentation</a></p>
-<h2><a href="#javafxpermissions" name="javafxpermissions" class="anchor"><span class="anchor-link"></span></a>javaFxPermissions</h2>
-<pre class="prettyprint"><code class="language-scala">import com.quadstingray.sbt.javafx.model.Permissions
-javaFxPermissions := Permissions(elevated = true, cacheCertificates = false)
-</code></pre>
-<h2><a href="#keystore" name="keystore" class="anchor"><span class="anchor-link"></span></a>KeyStore</h2>
-<p>Keystore file name</p>
-<pre class="prettyprint"><code class="language-scala">javaFxKeyStore := Some(&quot;path/to/keystore&quot;)
-</code></pre>
-<h2><a href="#store-password" name="store-password" class="anchor"><span class="anchor-link"></span></a>Store Password</h2>
-<p>Password to check integrity of the keystore or unlock the keystore</p>
-<pre class="prettyprint"><code class="language-scala">javaFxStorePass := Some(&quot;somepassword&quot;)
-</code></pre>
-<h2><a href="#signing-alias" name="signing-alias" class="anchor"><span class="anchor-link"></span></a>Signing Alias</h2>
-<p>The alias for the key</p>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningAlias := Some(&quot;alias&quot;)
-</code></pre>
-<h2><a href="#keypass" name="keypass" class="anchor"><span class="anchor-link"></span></a>KeyPass</h2>
-<p>Password for the private key</p>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningKeyPass := Some(&quot;somekeypass&quot;)
-</code></pre>
-<h2><a href="#keystore-type" name="keystore-type" class="anchor"><span class="anchor-link"></span></a>Keystore type</h2>
-<pre class="prettyprint"><code class="language-scala">javaFxSigningKeyStoreType := Some(&quot;jks&quot;)
+<h1><a href="#version-1-4-1" name="version-1-4-1" class="anchor"><span class="anchor-link"></span></a>Version 1.4.1</h1>
+<h2><a href="#changes" name="changes" class="anchor"><span class="anchor-link"></span></a>Changes</h2>
+<ul>
+  <li>Java 12 Support</li>
+  <li>Java 13 Support</li>
+  <li>Update SBT 1.2.8</li>
+  <li>Scala 2.12.8</li>
+</ul>
+<h2><a href="#download" name="download" class="anchor"><span class="anchor-link"></span></a>Download</h2>
+<p><a href="https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/1.4.1/link"> <img src="https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg?version=1.4.1" alt="Download" /> </a></p>
+<h2><a href="#sbt" name="sbt" class="anchor"><span class="anchor-link"></span></a>SBT</h2>
+<pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.quadstingray&quot; % &quot;sbt-javafx&quot; % &quot;1.4.1&quot;)
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.5.0/src/main/paradox/settings/signing_settings.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.5.0/src/main/paradox/versions/1_4_1.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -262,7 +242,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../settings/platform_settings.html" title="Platform Settings" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../versions/index.html" title="Version History" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -271,17 +251,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Platform Settings
+Version History
 </span>
 </div>
 </a>
-<a href="../examples/index.html" title="Examples" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../versions/1_4_0.html" title="Version 1.4.0" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Examples
+Version 1.4.0
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">

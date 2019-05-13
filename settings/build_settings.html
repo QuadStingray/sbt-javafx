@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="Sbt plugin for building JavaFx Applications">
-<meta name="generator" content="Paradox, paradox-material-theme=1.4.0, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=1.5.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -157,10 +157,11 @@ QuadStingray/sbt-javafx
     <li><a href="../examples/licence.html" class="page">Licence Example</a></li>
     <li><a href="../examples/file-association.html" class="page">File Association</a></li>
     <li><a href="../examples/javafx-ant-jar.html" class="page">JavaFx Ant Jar</a></li>
-    <li><a href="../examples/java11.html" class="page">Java 11 Support</a></li>
+    <li><a href="../java/java11.html" class="page">Java 11 Support</a></li>
   </ul></li>
   <li><a href="../versions/index.html" class="page">Version History</a>
   <ul>
+    <li><a href="../versions/1_4_1.html" class="page">Version 1.4.1</a></li>
     <li><a href="../versions/1_4_0.html" class="page">Version 1.4.0</a></li>
     <li><a href="../versions/1_3_1.html" class="page">Version 1.3.1</a></li>
     <li><a href="../versions/1_3_0.html" class="page">Version 1.3.0</a></li>
@@ -181,7 +182,7 @@ QuadStingray/sbt-javafx
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.4.0
+<i class="md-icon" title="Version">label_outline</i> 1.5.0
 </label>
 </li>
 </ul>
@@ -225,7 +226,7 @@ QuadStingray/sbt-javafx
 <h2><a href="#java-only-application" name="java-only-application" class="anchor"><span class="anchor-link"></span></a>Java-only application</h2>
 <p>If the JavaFx application does not use Scala classes then the option <code>javaFxJavaOnly := true</code> can be set. This option excludes the Scala Standard Jars and the package will be slightly smaller at the end.</p>
 <h2><a href="#artifact-name" name="artifact-name" class="anchor"><span class="anchor-link"></span></a>Artifact Name</h2>
-<p>Pattern: artifact.value.name_scalaVersion.value-projectID.value.revision Default: my_javafx_application_2.12.7-1.0.2</p>
+<p>Pattern: artifact.value.name_scalaVersion.value-projectID.value.revision Default: my_javafx_application_2.12.8-1.0.2</p>
 <pre class="prettyprint"><code class="language-scala">javaFxArtifactName := List(Some(artifact.value.name), Some(&quot;_&quot; + scalaVersion.value), Some(&quot;-&quot; + projectID.value.revision)).flatten.mkString
 </code></pre>
 <h2><a href="#convert-css-to-binary" name="convert-css-to-binary" class="anchor"><span class="anchor-link"></span></a>Convert CSS to binary</h2>
@@ -248,13 +249,13 @@ javaFxPostProcess := postProcess
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/QuadStingray/sbt-javafx/tree/master/src/main/paradox/settings/build_settings.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/QuadStingray/sbt-javafx/tree/v1.5.0/src/main/paradox/settings/build_settings.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.4.0
+1.5.0
 </span>
 </div>
 </article>
