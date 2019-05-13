@@ -110,7 +110,8 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   private def workaroundForJavaWithMovedJli(javaHome: File): ArrayBuffer[File] = {
     val files: ArrayBuffer[File] = ArrayBuffer()
 
-    if (javaHome.exists) {
+    // Workaround current just on Mac
+    if (javaHome.exists && SystemTools.isMacOS) {
       // val version = getJavaHomeVersion(javaHome)
       // if (version.startsWith("12.") || version.startsWith("13.")) {
       val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"

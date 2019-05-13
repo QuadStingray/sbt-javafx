@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$BRANCH" != "master" ]]; then
+if [[ "$TRAVIS_BRANCH" != "master" ]]; then
   echo 'Nothing to do';
 else
   if grep -q "SNAPSHOT" version.sbt
