@@ -110,30 +110,31 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
   private def workaroundForJavaWithMovedJli(javaHome: File): ArrayBuffer[File] = {
     val files: ArrayBuffer[File] = ArrayBuffer()
 
-    // Workaround current just on Mac
-    if (javaHome.exists && SystemTools.isMacOS) {
-      // val version = getJavaHomeVersion(javaHome)
-      // if (version.startsWith("12.") || version.startsWith("13.")) {
-      val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"
+    if (javaHome.exists) {
+      // Workaround current just on Mac
+      if (SystemTools.isMacOS) {
+        // val version = getJavaHomeVersion(javaHome)
+        // if (version.startsWith("12.") || version.startsWith("13.")) {
+        val targetFile = javaHome / "lib" / "jli" / "libjli.dylib"
 
-      if (!(javaHome / "lib").exists) {
-        files += File(javaHome / "lib")
-      }
+        if (!(javaHome / "lib").exists) {
+          files += File(javaHome / "lib")
+        }
 
-      if (!targetFile.exists) {
-        val sourceFile = javaHome / "lib" / "libjli.dylib"
-        if (sourceFile.exists) {
-          sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
-          files += File(targetFile)
-        } else {
-          throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
+        if (!targetFile.exists) {
+          val sourceFile = javaHome / "lib" / "libjli.dylib"
+          if (sourceFile.exists) {
+            sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
+            files += File(targetFile)
+          } else {
+            throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
+          }
         }
       }
       // }
     } else {
-      throw new Exception("JavaHome Directory <%s> doesn't exists".format(javaHome))
+      throw new Exception("Java Home Directory <%s> doesn't exists".format(javaHome))
     }
-
 
     files
   }
