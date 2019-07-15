@@ -22,7 +22,7 @@ javaFxFileAssociations += FileAssociation("mov", "video/quicktime", "Mov Files")
 javaFxVerbose := true
 //#for-debug-activate
 
-javaFxNativeBundles := "image"
+javaFxNativeBundles := "all"
 
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
