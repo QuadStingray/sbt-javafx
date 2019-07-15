@@ -32,7 +32,13 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode9.3
-      script: sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
+    - stage: Tests
+      name: "Test on Linux with OpenJDK 8"
+      language: scala
+      os: linux
+      jdk: openjdk8
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
     - stage: Tests
       name: "Test on Mac with OpenJDK 9"
       before_install:
@@ -42,7 +48,7 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
     - stage: Tests
       name: "Test on Mac with OpenJDK 10"
       before_install:
@@ -52,14 +58,14 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
     - stage: Tests
       name: "Test on Mac with Oracle JDK 11"
       before_install:
         - brew install sbt
       os: osx
       osx_image: xcode10.1
-      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
     - stage: Tests
       name: "Test on Mac with OpenJDK 11"
       before_install:
@@ -70,7 +76,13 @@ jobs:
       os: osx
       osx_image: xcode10.2
       # script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
-      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
+    - stage: Tests
+      name: "Test on Linux with OpenJDK 11"
+      language: scala
+      os: linux
+      jdk: openjdk11
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
     - stage: Tests
       name: "Test on Mac with OpenJDK 12"
       before_install:
@@ -80,17 +92,8 @@ jobs:
         - brew install sbt
       os: osx
       osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local; sbt ^scripted
-    - stage: Tests
-      name: "Test on Mac with OpenJDK 13"
-      before_install:
-        - sudo rm -rf /Library/Java/JavaVirtualMachines
-        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.13.0
-        - brew install sbt
-      os: osx
-      osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local;  sbt ^scripted
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
+      script: rm -rf $HOME/.ivy2/local;  sbt "^scripted mac/*"
     - stage: Publish
       language: scala
       if: branch = master

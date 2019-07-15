@@ -3,7 +3,7 @@ At Java 11 the Jar `ant-javafx.jar` is not included any more. So when you are us
 The plugin checks if the file exists. If the file is not available at the specified location, then the plugin downloads the ant-javafx.jar from our Github repository.
 
 ## build.sbt
-@@snip [build.sbt](../../../sbt-test/sbt-javafx/antjar-change/build.sbt) { #alternativ-ant-path }
+@@snip [build.sbt](../../../sbt-test/mac/antjar-change/build.sbt) { #alternativ-ant-path }
 
 ## /project/plugin.sbt
 @@@ vars
