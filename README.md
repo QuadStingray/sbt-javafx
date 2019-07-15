@@ -12,6 +12,8 @@
 ## Information
 This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.
 
+**Java 13 Test not running! Looks like SBT on Java 13 Problem**
+
 ## Quick start
 Add an `plugins.sbt` to the project's `project` directory, with the following content:
 

@@ -4,6 +4,10 @@
  [![Build Status](https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master)](https://travis-ci.org/QuadStingray/sbt-javafx)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7)](https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade)
 
+@@@ error
+Test on Mac with Java 13 currently not working! Looks like a problem from SBT on Java 13.
+@@@
+
 @@@ warning
 This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.
 @@@
@@ -15,6 +19,9 @@ This plugin, specifically the Java 12 and 13 support, is currently only tested o
 @ref[Java 12](java/java12.md)
 
 ## How to use Plugin with Java 13
+@@@ error
+Test on Mac with Java 13 currently not working! Looks like a problem from SBT on Java 13.
+@@@
 @ref[Java 13](java/java13.md)
 
 ## maven

@@ -93,7 +93,19 @@ jobs:
       os: osx
       osx_image: xcode10.2
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
-      script: rm -rf $HOME/.ivy2/local;  sbt "^scripted mac/*"
+    - stage: Tests
+      name: "Test on Mac with OpenJDK 13"
+      before_install:
+        - sudo rm -rf /Library/Java/JavaVirtualMachines
+        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+        - jabba install openjdk@1.13.0
+        - brew install sbt
+      os: osx
+      osx_image: xcode10.2
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
+      branches:
+        only:
+          - pendingUntilFixed
     - stage: Publish
       language: scala
       if: branch = master
