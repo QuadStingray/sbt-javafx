@@ -1,5 +1,4 @@
 # check if the file gets created
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
-$ exists target/scala-2.12/sbt-antjar-change_2.12.8-0.1.jar
-> check
+$ exists target/scala-2.12/file-association-javafx-simple_2.12.8-0.1.jar
