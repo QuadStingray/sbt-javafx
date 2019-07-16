@@ -2,4 +2,5 @@
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
 $ exists target/scala-2.12/file-association-javafx-simple_2.12.8-0.1.jar
-$ exists target/scala-2.12/file-association-javafx-simple_2.12.8-0.1/bundles/file-association-javafx-simple.app
+$ exists target/scala-2.12/file-association-javafx-simple_2.12.8-0.1/bundles/file-association-javafx-simple/file-association-javafx-simple.exe
+$ exists target/scala-2.12/file-association-javafx-simple_2.12.8-0.1/bundles/file-association-javafx-simple/file-association-javafx-simple.ico
