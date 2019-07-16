@@ -19,7 +19,7 @@ licenses += ("Apache-2.0", url("https://github.com/QuadStingray/sbt-javafx/blob/
 javaFxVerbose := true
 //#for-debug-activate
 
-javaFxNativeBundles := "image"
+javaFxNativeBundles := "all"
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
 

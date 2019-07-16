@@ -17,7 +17,7 @@ javaFxMainClass := "com.quadstingray.javafx.sample.HelloApp"
 javaFxVerbose := true
 //#for-debug-activate
 
-javaFxNativeBundles := "image"
+javaFxNativeBundles := "all"
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
 

@@ -20,7 +20,7 @@ javaFxVerbose := true
 //#for-debug-activate
 
 //#sample-native-bundles
-javaFxNativeBundles := "image"
+javaFxNativeBundles := "all"
 //#sample-native-bundles
 
 
