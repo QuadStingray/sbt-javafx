@@ -46,7 +46,7 @@ jobs:
       name: "Test on Linux with JDK 10"
       language: scala
       os: linux
-      jdk: oraclejdk10
+      jdk: openjdk10
       before_script:
         - sudo apt-get install fakeroot
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
@@ -62,6 +62,7 @@ jobs:
       before_script:
         - choco install jdk8
         - choco install sbt
+        - refreshenv
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -70,6 +71,7 @@ jobs:
       before_script:
         - choco install jdk8
         - choco install sbt
+        - refreshenv
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -78,6 +80,7 @@ jobs:
       before_script:
         - choco install zulu10
         - choco install sbt
+        - refreshenv
       name: "Test on Window with Zulu JDK 10"
       os: windows
       language: bash
@@ -86,6 +89,7 @@ jobs:
       before_script:
         - choco install openjdk11
         - choco install sbt
+        - refreshenv
       name: "Test on Window with OpenJdk JDK 11"
       os: windows
       language: bash
