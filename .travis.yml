@@ -43,7 +43,7 @@ jobs:
       before_script:
         - choco install jre8
         - choco install sbt
-      name: "Test on Linux with OpenJDK 8"
+      name: "Test on Window with OpenJDK 8"
       language: scala
       os: linux
       jdk: openjdk8
