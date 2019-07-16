@@ -27,26 +27,76 @@ before_cache:
 jobs:
   include:
     - stage: Tests
+      name: "Test on Linux with OpenJDK 8"
+      language: scala
+      os: linux
+      jdk: openjdk8
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with OpenJDK 9"
+      language: scala
+      os: linux
+      jdk: openjdk9
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with OpenJDK 10"
+      language: scala
+      os: linux
+      jdk: openjdk10
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with OpenJDK 11"
+      language: scala
+      os: linux
+      jdk: openjdk11
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      before_script:
+        - choco install jdk8
+        - choco install sbt
+      name: "Test on Window with JDK 8"
+      os: windows
+      language: bash
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
+      before_script:
+        - choco install jdk8
+        - choco install sbt
+      name: "Test on Window with JDK 8"
+      os: windows
+      language: bash
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
+      before_script:
+        - choco install zulu10
+        - choco install sbt
+      name: "Test on Window with Zulu JDK 10"
+      os: windows
+      language: bash
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
+      before_script:
+        - choco install openjdk11
+        - choco install sbt
+      name: "Test on Window with OpenJdk JDK 11"
+      os: windows
+      language: bash
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
       name: "Test on Mac with Oracle JDK 8"
       before_install:
         - brew install sbt
       os: osx
       osx_image: xcode9.3
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
-    - stage: Tests
-      name: "Test on Linux with OpenJDK 8"
-      language: scala
-      os: linux
-      jdk: openjdk8
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
-      before_script:
-        - choco install jre8
-        - choco install sbt
-      name: "Test on Window with OpenJDK 8"
-      os: windows
-      jdk: openjdk8
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
     - stage: Tests
       name: "Test on Mac with OpenJDK 9"
       before_install:
@@ -86,12 +136,6 @@ jobs:
       # script: rm -rf $HOME/.ivy2/local; sbt coverage ^scripted coverageReport coverageAggregate codacyCoverage
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
     - stage: Tests
-      name: "Test on Linux with OpenJDK 11"
-      language: scala
-      os: linux
-      jdk: openjdk11
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
       name: "Test on Mac with OpenJDK 12"
       before_install:
         - sudo rm -rf /Library/Java/JavaVirtualMachines
@@ -101,19 +145,16 @@ jobs:
       os: osx
       osx_image: xcode10.2
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
-    - stage: Tests
-      name: "Test on Mac with OpenJDK 13"
-      before_install:
-        - sudo rm -rf /Library/Java/JavaVirtualMachines
-        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-        - jabba install openjdk@1.13.0
-        - brew install sbt
-      os: osx
-      osx_image: xcode10.2
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
-      branches:
-        only:
-          - pendingUntilFixed
+#    - stage: Tests
+#      name: "Test on Mac with OpenJDK 13"
+#      before_install:
+#        - sudo rm -rf /Library/Java/JavaVirtualMachines
+#        - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+#        - jabba install openjdk@1.13.0
+#        - brew install sbt
+#      os: osx
+#      osx_image: xcode10.2
+#      script: rm -rf $HOME/.ivy2/local; sbt "^scripted mac/*"
     - stage: Publish
       language: scala
       if: branch = master
