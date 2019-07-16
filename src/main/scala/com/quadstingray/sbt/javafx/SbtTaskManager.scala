@@ -129,24 +129,23 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
           }
         }
       }
-      if (SystemTools.isLinuxOS) {
-        val targetFile = javaHome / "lib" / "jli" / "libjli.so"
-
-        if (!(javaHome / "lib").exists) {
-          files += File(javaHome / "lib")
-        }
-
-        if (!targetFile.exists) {
-          val sourceFile = javaHome / "lib" / "libjli.so"
-          if (sourceFile.exists) {
-            sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
-            files += File(targetFile)
-          } else {
-            throw new Exception("libjli.so not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
-          }
-        }
-      }
-      // }
+//      if (SystemTools.isLinuxOS) {
+//        val targetFile = javaHome / "lib" / "jli" / "libjli.so"
+//
+//        if (!(javaHome / "lib").exists) {
+//          files += File(javaHome / "lib")
+//        }
+//
+//        if (!targetFile.exists) {
+//          val sourceFile = javaHome / "lib" / "libjli.so"
+//          if (sourceFile.exists) {
+//            sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
+//            files += File(targetFile)
+//          } else {
+//            throw new Exception("libjli.so not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
+//          }
+//        }
+//      }
     } else {
       throw new Exception("Java Home Directory <%s> doesn't exists".format(javaHome))
     }
