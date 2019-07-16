@@ -12,7 +12,7 @@ enablePlugins(JavaFxPlugin)
 
 mainClass := Option("com.quadstingray.javafx.sample.HelloApp")
 
-javaFxNativeBundles := "all"
+javaFxNativeBundles := "deb"
 
 //#alternativ-ant-path
 javaFxAntPath := "alternativ/path/ant-javafx.jar"

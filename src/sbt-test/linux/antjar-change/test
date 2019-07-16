@@ -2,4 +2,5 @@
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
 $ exists target/scala-2.12/sbt-antjar-change_2.12.8-0.1.jar
+$ exists target/scala-2.12/sbt-antjar-change_2.12.8-0.1/bundles/sbt-antjar-change-0.1.deb
 > check

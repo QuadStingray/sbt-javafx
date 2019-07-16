@@ -19,7 +19,7 @@ javaFxLicense := "Apache-2.0"
 javaFxVerbose := true
 //#for-debug-activate
 
-javaFxNativeBundles := "all"
+javaFxNativeBundles := "deb"
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
 

@@ -18,7 +18,7 @@ javaFxVerbose := true
 //#for-debug-activate
 
 //#sample-native-bundles
-javaFxNativeBundles := "all"
+javaFxNativeBundles := "deb"
 //#sample-native-bundles
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
