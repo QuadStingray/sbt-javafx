@@ -19,6 +19,8 @@ object SystemTools {
 
   def isWindowsOS: Boolean = getOSName.toLowerCase().contains("windows")
 
+  def isLinuxOS: Boolean = getOSName.toLowerCase().contains("linux")
+
   def getFileSeparator: String = System.getProperty("file.separator")
 
   def getPathSeparator: String = System.getProperty("path.separator")

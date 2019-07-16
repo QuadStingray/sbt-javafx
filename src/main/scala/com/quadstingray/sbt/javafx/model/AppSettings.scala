@@ -13,9 +13,22 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
 
   def prepare(logger: Logger): Unit = {
 
+    // Todo: Cache File at Disk?!
 
     val antJarFile = if (buildPaths.javafxAntPath.equalsIgnoreCase("") || !File(buildPaths.javafxAntPath).exists) {
-      DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJar, logger)
+      if (SystemTools.isMacOS) {
+        DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJarMac, logger)
+      }
+      else if (SystemTools.isWindowsOS) {
+        DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJarWindows, logger)
+      }
+      else if (SystemTools.isLinuxOS) {
+        DownloadTools.downloadToTempFile(DownloadTools.DownloadUrlAntJavaFxJarLinux, logger)
+      }
+      else {
+        throw new Exception("Unknown platform!")
+      }
+
     } else {
       File(buildPaths.javafxAntPath)
     }
@@ -41,14 +54,10 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
     val antBuildXml: Elem =
       <project name={appInfo.title} default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
 
-        {
-         if (buildPaths.javaHome.trim != "") {
-             <property name="JAVA_HOME" value={buildPaths.javaHome}/>
-         }
-        }
-
-        <target name="default">
-          <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesPath + ":" + buildPaths.javafxAntPath}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
+        {if (buildPaths.javaHome.trim != "") {
+          <property name="JAVA_HOME" value={buildPaths.javaHome}/>
+      }}<target name="default">
+        <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath={buildPaths.pkgResourcesPath + ":" + buildPaths.javafxAntPath}/>{javaFxBuildSettings.getCssToBinXML.getOrElse("")}{appInfo.getApplicationXML}{platformSettings.getXML}{javaFxBuildSettings.getJarXML(appInfo.title, javaFxBuildSettings.jarFile)}{if (permissions.elevated) {
           signing.getSigningXml(javaFxBuildSettings.distDir)
           if (javaFxBuildSettings.libJars.nonEmpty) {
             signing.getSigningXml(javaFxBuildSettings.libDir)
@@ -73,7 +82,7 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
             })
           }}
         </fx:deploy>
-        </target>
+      </target>
       </project>
 
     antBuildXml.toString()

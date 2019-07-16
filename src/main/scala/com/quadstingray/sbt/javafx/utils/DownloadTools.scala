@@ -37,5 +37,7 @@ object DownloadTools {
     downloadFile
   }
 
-  val DownloadUrlAntJavaFxJar = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/sbt-javafx/antjar-change/alternativ/path/ant-javafx.jar"
+  val DownloadUrlAntJavaFxJarMac = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/mac/antjar-change/alternativ/path/ant-javafx.jar"
+  val DownloadUrlAntJavaFxJarWindows = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/windows/antjar-change/alternativ/path/ant-javafx.jar"
+  val DownloadUrlAntJavaFxJarLinux = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/linux/antjar-change/alternativ/path/ant-javafx.jar"
 }
