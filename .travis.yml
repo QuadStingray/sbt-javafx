@@ -60,7 +60,7 @@ jobs:
       before_script:
         - choco install jdk8
         - choco install sbt
-        - & RefreshEnv.cmd
+        - RefreshEnv.cmd
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -69,7 +69,7 @@ jobs:
       before_script:
         - choco install jdk8
         - choco install sbt
-        - & RefreshEnv.cmd
+        - RefreshEnv.cmd
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -78,7 +78,7 @@ jobs:
       before_script:
         - choco install zulu10
         - choco install sbt
-        - & RefreshEnv.cmd
+        - RefreshEnv.cmd
       name: "Test on Window with Zulu JDK 10"
       os: windows
       language: bash
@@ -87,7 +87,7 @@ jobs:
       before_script:
         - choco install openjdk11
         - choco install sbt
-        - & RefreshEnv.cmd
+        - RefreshEnv.cmd
       name: "Test on Window with OpenJdk JDK 11"
       os: windows
       language: bash
