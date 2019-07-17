@@ -24,46 +24,46 @@ before_cache:
   - find $HOME/.sbt        -name "*.lock"               -print -delete
 jobs:
   include:
-#    - stage: Tests
-#      name: "Test on Window with JDK 8"
-#      before_script:
-#        - choco install jdk8
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      name: "Test on Window with JDK 8"
-#      before_script:
-#        - choco install jdk8
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      name: "Test on Window with Zulu JDK 10"
-#      before_script:
-#        - choco install zulu10
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      before_script:
-#        - choco install openjdk11
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      name: "Test on Window with OpenJdk JDK 11"
-#      os: windows
-#      language: bash
-#      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
+      name: "Test on Window with JDK 8"
+      before_script:
+        - choco install jdk8
+        - choco install sbt
+        - .travis.win.refreshenv.sh
+        - RefreshEnv
+      os: windows
+      language: bash
+      script: sbt "^scripted windows/*"
+    - stage: Tests
+      name: "Test on Window with JDK 8"
+      before_script:
+        - choco install jdk8
+        - choco install sbt
+        - .travis.win.refreshenv.sh
+        - RefreshEnv
+      os: windows
+      language: bash
+      script: sbt "^scripted windows/*"
+    - stage: Tests
+      name: "Test on Window with Zulu JDK 10"
+      before_script:
+        - choco install zulu10
+        - choco install sbt
+        - .travis.win.refreshenv.sh
+        - RefreshEnv
+      os: windows
+      language: bash
+      script: sbt "^scripted windows/*"
+    - stage: Tests
+      before_script:
+        - choco install openjdk11
+        - choco install sbt
+        - .travis.win.refreshenv.sh
+        - RefreshEnv
+      name: "Test on Window with OpenJdk JDK 11"
+      os: windows
+      language: bash
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
     - stage: Tests
       name: "Test on Linux with JDK 8"
       language: scala
