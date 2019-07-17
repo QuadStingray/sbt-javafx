@@ -61,9 +61,8 @@ jobs:
     - stage: Tests
       before_script:
         - choco install jdk8
-        - choco install sbt -ia "INSTALLDIR=""C:\sbt"""
-        - SET PATH=C:\sbt\bin;%JAVA_HOME%\bin;%PATH%
-        - SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4
+        - choco install sbt
+        - call RefreshEnv.cmd
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -71,9 +70,8 @@ jobs:
     - stage: Tests
       before_script:
         - choco install jdk8
-        - choco install sbt -ia "INSTALLDIR=""C:\sbt"""
-        - SET PATH=C:\sbt\bin;%JAVA_HOME%\bin;%PATH%
-        - SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4
+        - choco install sbt
+        - call RefreshEnv.cmd
       name: "Test on Window with JDK 8"
       os: windows
       language: bash
@@ -81,9 +79,8 @@ jobs:
     - stage: Tests
       before_script:
         - choco install zulu10
-        - choco install sbt -ia "INSTALLDIR=""C:\sbt"""
-        - SET PATH=C:\sbt\bin;%JAVA_HOME%\bin;%PATH%
-        - SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4
+        - choco install sbt
+        - call RefreshEnv.cmd
       name: "Test on Window with Zulu JDK 10"
       os: windows
       language: bash
@@ -91,9 +88,8 @@ jobs:
     - stage: Tests
       before_script:
         - choco install openjdk11
-        - choco install sbt -ia "INSTALLDIR=""C:\sbt"""
-        - SET PATH=C:\sbt\bin;%JAVA_HOME%\bin;%PATH%
-        - SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4
+        - choco install sbt
+        - call RefreshEnv.cmd
       name: "Test on Window with OpenJdk JDK 11"
       os: windows
       language: bash
