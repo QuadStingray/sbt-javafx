@@ -1,5 +1,5 @@
 # check if the file gets created
 > javaFxPackage
+> checkFilePackaged
 $ exists target/scala-2.12/build.xml
 $ exists target/scala-2.12/sbt-licences-simple_2.12.8-0.1.jar
-> checkFilePackaged
