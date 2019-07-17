@@ -2,4 +2,4 @@
 > javaFxPackage
 $ exists target/scala-2.12/build.xml
 $ exists target/scala-2.12/javafx-licences-simple_2.12.8-0.1.jar
-$ exists target/scala-2.12/javafx-licences-simple_2.12.8-0.1/javafx-licences-simple-0.1.deb
+> checkFilePackaged
