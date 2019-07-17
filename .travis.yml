@@ -25,38 +25,6 @@ before_cache:
 jobs:
   include:
     - stage: Tests
-      name: "Test on Linux with JDK 8"
-      language: scala
-      os: linux
-      jdk: oraclejdk8
-      before_script:
-        - sudo apt-get install fakeroot
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
-      name: "Test on Linux with JDK 9"
-      language: scala
-      os: linux
-      jdk: oraclejdk9
-      before_script:
-        - sudo apt-get install fakeroot
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
-      name: "Test on Linux with JDK 10"
-      language: scala
-      os: linux
-      jdk: openjdk10
-      before_script:
-        - sudo apt-get install fakeroot
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
-      name: "Test on Linux with JDK 11"
-      language: scala
-      os: linux
-      jdk: oraclejdk11
-      before_script:
-        - sudo apt-get install fakeroot
-      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
-    - stage: Tests
       before_script:
         - choco install jdk8
         - choco install sbt
@@ -92,6 +60,38 @@ jobs:
       os: windows
       language: bash
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
+    - stage: Tests
+      name: "Test on Linux with JDK 8"
+      language: scala
+      os: linux
+      jdk: oraclejdk8
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with JDK 9"
+      language: scala
+      os: linux
+      jdk: oraclejdk9
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with JDK 10"
+      language: scala
+      os: linux
+      jdk: openjdk10
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
+    - stage: Tests
+      name: "Test on Linux with JDK 11"
+      language: scala
+      os: linux
+      jdk: oraclejdk11
+      before_script:
+        - sudo apt-get install fakeroot
+      script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
     - stage: Tests
       name: "Test on Mac with Oracle JDK 8"
       before_install:
