@@ -1,6 +1,8 @@
 //#sample-build-sbt
 import com.quadstingray.sbt.javafx.model.FileAssociation
 
+import scala.reflect.io.File
+
 name := "file-association-javafx-simple"
 
 organization := "com.quadstingray"
@@ -24,6 +26,15 @@ javaFxVerbose := true
 
 javaFxNativeBundles := "deb"
 
+TaskKey[Unit]("checkFilePackaged") := {
+  val bundledFile1 = File((crossTarget.value / "%s_%s-%s".format(name.value, scalaVersion.value, version.value) / "%s-%s.deb".format(name.value, version.value)).toString)
+  val bundledFile2 = File((crossTarget.value / "%s_%s-%s".format(name.value, scalaVersion.value, version.value) / "bundles" / "%s-%s.deb".format(name.value, version.value)).toString)
+
+  if (!(bundledFile1.exists || bundledFile2.exists))
+    throw new Exception("Bundled File " + bundledFile1.toString + "or Bundle File" + bundledFile2.toString + " not found!")
+
+  ()
+}
 
 val osName: SettingKey[String] = SettingKey[String]("osName")
 
