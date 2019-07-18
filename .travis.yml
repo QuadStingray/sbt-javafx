@@ -24,51 +24,11 @@ before_cache:
   - find $HOME/.sbt        -name "*.lock"               -print -delete
 jobs:
   include:
-#    - stage: Tests
-#      name: "Test on Window with JDK 8"
-#      before_script:
-#        - choco install jdk8
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      name: "Test on Window with JDK 8"
-#      before_script:
-#        - choco install jdk8
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      name: "Test on Window with Zulu JDK 10"
-#      before_script:
-#        - choco install zulu10
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      os: windows
-#      language: bash
-#      script: sbt "^scripted windows/*"
-#    - stage: Tests
-#      before_script:
-#        - choco install openjdk11
-#        - choco install sbt
-#        - .travis.win.refreshenv.sh
-#        - RefreshEnv
-#      name: "Test on Window with OpenJdk JDK 11"
-#      os: windows
-#      language: bash
-#      script: rm -rf $HOME/.ivy2/local; sbt "^scripted windows/*"
     - stage: Tests
       name: "Test on Linux with JDK 8"
       language: scala
       os: linux
-      jdk: oraclejdk8
+      jdk: openjdk8
       before_script:
         - sudo apt-get install fakeroot
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
@@ -76,7 +36,7 @@ jobs:
       name: "Test on Linux with JDK 9"
       language: scala
       os: linux
-      jdk: oraclejdk9
+      jdk: openjdk9
       before_script:
         - sudo apt-get install fakeroot
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
@@ -92,9 +52,11 @@ jobs:
       name: "Test on Linux with JDK 11"
       language: scala
       os: linux
-      jdk: oraclejdk11
+      jdk: openjdk11
       before_script:
         - sudo apt-get install fakeroot
+        - ls -la $JAVA_HOME
+        - ls -la $JAVA_HOME/lib
       script: rm -rf $HOME/.ivy2/local; sbt "^scripted linux/*"
     - stage: Tests
       name: "Test on Mac with Oracle JDK 8"
