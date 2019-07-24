@@ -13,7 +13,8 @@
 This plugin, specifically the Java 12 and 13 support, is currently only tested on Mac. Further tests under Windows and Linux are to follow. If you have a problem with Java 12/13, please open an issue on Github.
 
 **Java 13 Test not running! Looks like SBT on Java 13 Problem**
-**Linux Java Version > 9 Issue see [Java 13 Support](https://quadstingray.github.io/sbt-javafx/java/linux.html)**
+
+**Linux Java Version > 9 Issue see [Linux Infos](https://quadstingray.github.io/sbt-javafx/java/linux.html)**
 
 ## Quick start
 Add an `plugins.sbt` to the project's `project` directory, with the following content:
