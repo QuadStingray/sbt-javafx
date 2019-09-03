@@ -17,11 +17,13 @@ publishMavenStyle := false
 
 bintrayReleaseOnPublish in ThisBuild := true
 
-scalaVersion := "2.12.8"
+scalaVersion := crossScalaVersions.value.last
+
+crossScalaVersions := List("2.13.0")
+
+scalacOptions := Seq("-unchecked", "-feature", "-deprecation", "-Ywarn-unused", "-Yrangepos")
 
 crossSbtVersions := Vector("1.2.8")
-
-scalacOptions ++= Seq("-deprecation", "-feature")
 
 initialCommands in console := "import com.quadstingray.sbt.javafx._"
 
