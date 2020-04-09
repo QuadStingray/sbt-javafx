@@ -50,3 +50,6 @@ https://quadstingray.github.io/sbt-javafx/versions/index.html
 
 ## Licence
 [Apache 2 License.](https://github.com/QuadStingray/sbt-javafx/blob/master/LICENSE)
+
+## Thanks
+Thanks to [JetBrains](https://www.jetbrains.com/) for a IntelliJ IDEA license to use on this project.
