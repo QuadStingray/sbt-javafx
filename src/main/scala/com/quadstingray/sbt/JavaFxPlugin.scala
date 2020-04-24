@@ -19,12 +19,12 @@ object JavaFxPlugin extends AutoPlugin {
         sbtTaskManager.prepareBuild(javaFxGetAppSettings.value)
       },
       javaFxRunBuild := {
-        val buildFile = File(javaFxGetAppSettings.value.javaFxBuildSettings.jarDir + SystemTools.getFileSeparator + "build.xml")
+        val buildFile      = File(javaFxGetAppSettings.value.javaFxBuildSettings.jarDir + SystemTools.getFileSeparator + "build.xml")
         val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.runBuild(javaFxGetAppSettings.value, buildFile)
       },
       javaFxPackage := {
-        val buildFile = javaFxPrepareBuild.value
+        val buildFile      = javaFxPrepareBuild.value
         val sbtTaskManager = new SbtTaskManager(streams.value.log, javaFxVerbose.value)
         sbtTaskManager.runBuild(javaFxGetAppSettings.value, buildFile)
       },
@@ -45,7 +45,16 @@ object JavaFxPlugin extends AutoPlugin {
           javaFxTemplate.value,
           AppDimensions(javaFxWidth.value, javaFxHeight.value, javaFxEmbeddedWidth.value, javaFxEmbeddedHeight.value),
           javaFxPermissions.value,
-          AppInfo(javaFxMainClass.value, javaFxVendor.value, javaFxTitle.value, javaFxAppVersion.value, javaFxCategory.value, javaFxCopyright.value, javaFxDescription.value, javaFxLicense.value),
+          AppInfo(
+            javaFxMainClass.value,
+            javaFxVendor.value,
+            javaFxTitle.value,
+            javaFxAppVersion.value,
+            javaFxCategory.value,
+            javaFxCopyright.value,
+            javaFxDescription.value,
+            javaFxLicense.value
+          ),
           SigningSettings(javaFxKeyStore.value, javaFxStorePass.value, javaFxSigningAlias.value, javaFxSigningKeyPass.value, javaFxSigningKeyStoreType.value),
           JavaPlatformSettings(javaFxJavafx.value, javaFxJ2se.value, javaFxJvmargs.value, javaFxJvmuserargs.value, javaFxProperties.value),
           javaFxFileAssociations.value

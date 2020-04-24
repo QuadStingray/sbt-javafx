@@ -9,7 +9,6 @@ import sbt._
 import scala.collection.mutable.ArrayBuffer
 import scala.reflect.io.File
 
-
 class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
   def prepareBuild(settings: AppSettings): File = {
@@ -32,56 +31,49 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 
   private val buildListener = new BuildListener {
 
-    override def taskStarted(buildEvent: BuildEvent): Unit = {
+    override def taskStarted(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
       }
-    }
 
-    override def taskFinished(buildEvent: BuildEvent): Unit = {
+    override def taskFinished(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.taskStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTask.getTaskName)
       }
-    }
 
-    override def buildStarted(buildEvent: BuildEvent): Unit = {
+    override def buildStarted(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.buildStarted: " + buildEvent.getProject.getName)
       }
-    }
 
-    override def buildFinished(buildEvent: BuildEvent): Unit = {
+    override def buildFinished(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.buildFinished: " + buildEvent.getProject.getName)
       }
-    }
 
-
-    override def targetStarted(buildEvent: BuildEvent): Unit = {
+    override def targetStarted(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.targetStarted: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
       }
-    }
 
-    override def targetFinished(buildEvent: BuildEvent): Unit = {
+    override def targetFinished(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.targetFinished: " + buildEvent.getProject.getName + " - " + buildEvent.getTarget.getName)
       }
-    }
 
-    override def messageLogged(buildEvent: BuildEvent): Unit = {
+    override def messageLogged(buildEvent: BuildEvent): Unit =
       if (logAntInformations) {
         logger.info("antProject.message: " + buildEvent.getMessage)
       }
-    }
   }
 
   def runBuild(settings: AppSettings, buildFile: File): Unit = {
     logger.info("build started")
 
-    val javaHome: File = if (!settings.buildPaths.javaHome.trim.equalsIgnoreCase("")){
+    val javaHome: File = if (!settings.buildPaths.javaHome.trim.equalsIgnoreCase("")) {
       File(settings.buildPaths.javaHome)
-    } else {
+    }
+    else {
       File(SystemTools.getJavaHome)
     }
 
@@ -124,7 +116,8 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
           if (sourceFile.exists) {
             sbt.IO.copyFile(sourceFile.jfile, targetFile.jfile)
             files += File(targetFile)
-          } else {
+          }
+          else {
             throw new Exception("libjli.dylib not found on expected location for Java 12 or 13 <%s>".format(sourceFile))
           }
         }
@@ -146,7 +139,8 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
 //          }
 //        }
 //      }
-    } else {
+    }
+    else {
       throw new Exception("Java Home Directory <%s> doesn't exists".format(javaHome))
     }
 
@@ -159,7 +153,8 @@ class SbtTaskManager(logger: Logger, logAntInformations: Boolean) {
       val content = sbt.IO.read(releaseFile.jfile)
       val version = "JAVA_VERSION=\"(.*?)\"".r.findFirstIn(content).getOrElse("").replace("JAVA_VERSION=\"", "").replace("\"", "")
       version
-    } else {
+    }
+    else {
       ""
     }
   }

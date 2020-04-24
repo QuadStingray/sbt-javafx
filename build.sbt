@@ -19,15 +19,15 @@ bintrayReleaseOnPublish in ThisBuild := true
 
 scalaVersion := crossScalaVersions.value.last
 
-crossScalaVersions := List("2.13.0")
+crossScalaVersions := List("2.12.1")
 
 scalacOptions := Seq("-unchecked", "-feature", "-deprecation", "-Ywarn-unused", "-Yrangepos")
 
-crossSbtVersions := Vector("1.2.8")
+crossSbtVersions := Vector("1.3.10")
 
 initialCommands in console := "import com.quadstingray.sbt.javafx._"
 
-libraryDependencies += "org.apache.ant" % "ant" % "1.10.6"
+libraryDependencies += "org.apache.ant" % "ant" % "1.10.7"
 
 resolvers += Resolver.sonatypeRepo("releases")
 

@@ -7,7 +7,15 @@ import sbt.{File, PackageOption, _}
 import scala.collection.JavaConverters._
 import scala.xml.{Elem, NodeBuffer}
 
-case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, packOptions: Seq[PackageOption], classDir: sbt.File, jarDir: sbt.File, libJars: Seq[sbt.File], cssToBin: Boolean, verbose: Boolean, postProcess: () => Unit) {
+case class JavaFxBuildSettings(nativeBundles: String,
+                               artifactName: String,
+                               packOptions: Seq[PackageOption],
+                               classDir: sbt.File,
+                               jarDir: sbt.File,
+                               libJars: Seq[sbt.File],
+                               cssToBin: Boolean,
+                               verbose: Boolean,
+                               postProcess: () => Unit) {
 
   def libDir: File = jarDir / "lib"
 
@@ -15,7 +23,7 @@ case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, pack
 
   def jarFile: File = jarDir / (artifactName + ".jar")
 
-  def getCssToBinXML: Option[NodeBuffer] = {
+  def getCssToBinXML: Option[NodeBuffer] =
     if (cssToBin) {
       Some(
         <delete>
@@ -25,15 +33,15 @@ case class JavaFxBuildSettings(nativeBundles: String, artifactName: String, pack
             <fileset dir={classDir.getAbsolutePath} includes={"**" + SystemTools.getFileSeparator + "*.css"}/>
           </fx:csstobin>
       )
-    } else {
+    }
+    else {
       None
     }
-  }
 
   def getJarXML(appRefId: String, jarFile: File): Elem = {
     val manifestAttributes = packOptions.collect {
       case attributes: ManifestAttributes => attributes.attributes.map { case (key, value) => (key.toString, value) }
-      case JarManifest(manifest) => manifest.getMainAttributes.entrySet.asScala.map(entry => (entry.getKey.toString, entry.getValue.toString)).toList
+      case JarManifest(manifest)          => manifest.getMainAttributes.entrySet.asScala.map(entry => (entry.getKey.toString, entry.getValue.toString)).toList
     }.flatten
 
     val manifestXMLAttributes = manifestAttributes map { case (key, value) => <attribute name={key} value={value}/> }

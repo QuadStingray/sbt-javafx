@@ -7,12 +7,6 @@ import sbt.{Def, _}
 
 import scala.reflect.io.File
 import scala.util.Try
-import org.apache.tools.ant.{BuildEvent, BuildListener, ProjectHelper}
-import sbt.Keys._
-import sbt._
-
-import scala.xml.Elem
-
 
 trait SbtSettingsTrait {
 
@@ -32,7 +26,9 @@ trait SbtSettingsTrait {
 
   val javaFxAntPath = settingKey[String]("Path to JavaFx Ant jar ")
 
-  val javaFxPkgResourcesPath = settingKey[String]("Path containing the `package/{windows,macosx,linux}` directory for drop-in resources. See https://blogs.oracle.com/talkingjavadeployment/entry/native_packaging_cookbook_using_drop for details.")
+  val javaFxPkgResourcesPath = settingKey[String](
+    "Path containing the `package/{windows,macosx,linux}` directory for drop-in resources. See https://blogs.oracle.com/talkingjavadeployment/entry/native_packaging_cookbook_using_drop for details."
+  )
 
   val javaFxJavaOnly = settingKey[Boolean]("Setting for JavaFX applications in pure Java, sets some other settings to usable defaults for this scenario.")
 
@@ -94,7 +90,7 @@ trait SbtSettingsTrait {
 
   val javaFxFileAssociations = settingKey[Seq[FileAssociation]]("seq of file associations")
 
-  protected def findJavaHome() : String = {
+  protected def findJavaHome(): String = {
     val searchPoints = Seq(
       // Build-defined
 //      Some(javaHome).map(file),
@@ -112,14 +108,18 @@ trait SbtSettingsTrait {
 
     // On Windows we're often running in the JRE and not the JDK. If JDK is installed,
     // it's likely to be in a parallel directory, with the "jre" prefix changed to "jdk"
-    entryPoints.flatMap { f ⇒
-      if (f.getName.startsWith("jre")) {
-        Seq(f, f.getParentFile / ("jdk" + f.getName.drop(3)))
+    entryPoints
+      .flatMap { f ⇒
+        if (f.getName.startsWith("jre")) {
+          Seq(f, f.getParentFile / ("jdk" + f.getName.drop(3)))
+        }
+        else {
+          Seq(f)
+        }
       }
-      else {
-       Seq(f)
-      }
-    }.headOption.getOrElse(throw new Exception("JAVA_HOME not found")).getAbsolutePath
+      .headOption
+      .getOrElse(throw new Exception("JAVA_HOME not found"))
+      .getAbsolutePath
 
   }
 
@@ -129,11 +129,11 @@ trait SbtSettingsTrait {
 
     val baseAntPath = javaHome + SystemTools.getFileSeparator + ".." + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
 
-
     val defaultAntPath =
       if (File(baseAntPath).exists) {
         baseAntPath
-      } else {
+      }
+      else {
         javaHome + SystemTools.getFileSeparator + "lib" + SystemTools.getFileSeparator + "ant-javafx.jar"
       }
 
@@ -169,7 +169,8 @@ trait SbtSettingsTrait {
       javaFxProperties := Seq(),
       javaFxCssToBin := false,
       javaFxVerbose := false,
-      javaFxPostProcess := { () => },
+      javaFxPostProcess := { () =>
+        },
       javaFxFileAssociations := Seq(),
       javaFxMainClass := (mainClass in Compile).value.getOrElse("")
     )

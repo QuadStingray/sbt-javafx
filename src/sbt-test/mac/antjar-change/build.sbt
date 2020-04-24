@@ -20,7 +20,7 @@ javaFxAntPath := "alternativ/path/ant-javafx.jar"
 
 TaskKey[Unit]("check") := {
   val outputFile = File((crossTarget.value / "build.xml").toString)
-  val content = scala.io.Source.fromFile(outputFile.toAbsolute.toString()).mkString
+  val content    = scala.io.Source.fromFile(outputFile.toAbsolute.toString()).mkString
   if (!content.contains("alternativ/path/ant-javafx.jar"))
     throw new Exception("alternativ ant path not in " + outputFile.toString)
   ()
@@ -29,10 +29,10 @@ TaskKey[Unit]("check") := {
 val osName: SettingKey[String] = SettingKey[String]("osName")
 
 osName := (System.getProperty("os.name") match {
-  case name if name.startsWith("Linux") => "linux"
-  case name if name.startsWith("Mac") => "mac"
+  case name if name.startsWith("Linux")   => "linux"
+  case name if name.startsWith("Mac")     => "mac"
   case name if name.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
+  case _                                  => throw new Exception("Unknown platform!")
 })
 
 libraryDependencies += "org.openjfx" % "javafx-base" % "11" classifier osName.value

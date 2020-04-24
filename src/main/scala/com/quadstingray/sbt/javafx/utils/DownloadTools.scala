@@ -1,12 +1,11 @@
 package com.quadstingray.sbt.javafx.utils
 
-import java.net.HttpURLConnection
+import java.net.{HttpURLConnection, URL}
 
 import sbt.Logger
 
 import scala.reflect.io.File
-import sys.process._
-import java.net.URL
+import scala.sys.process._
 
 object DownloadTools {
   def downloadToTempFile(urlString: String, logger: Logger): File = {
@@ -37,7 +36,7 @@ object DownloadTools {
     downloadFile
   }
 
-  val DownloadUrlAntJavaFxJarMac = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/mac/antjar-change/alternativ/path/ant-javafx.jar"
+  val DownloadUrlAntJavaFxJarMac     = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/mac/antjar-change/alternativ/path/ant-javafx.jar"
   val DownloadUrlAntJavaFxJarWindows = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/windows/antjar-change/alternativ/path/ant-javafx.jar"
-  val DownloadUrlAntJavaFxJarLinux = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/linux/antjar-change/alternativ/path/ant-javafx.jar"
+  val DownloadUrlAntJavaFxJarLinux   = "https://github.com/QuadStingray/sbt-javafx/raw/master/src/sbt-test/linux/antjar-change/alternativ/path/ant-javafx.jar"
 }

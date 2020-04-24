@@ -1,15 +1,20 @@
 package com.quadstingray.sbt.javafx.model
 
-import java.net.HttpURLConnection
-
 import com.quadstingray.sbt.javafx.utils.{DownloadTools, SystemTools}
 import sbt.{IO, _}
 
 import scala.reflect.io.File
 import scala.xml.Elem
 
-case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: JavaFxBuildPaths, template: TemplateSettings, dimensions: AppDimensions, permissions: Permissions, appInfo: AppInfo, signing: SigningSettings, platformSettings: JavaPlatformSettings, fileAssociations: Seq[FileAssociation]) {
-
+case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings,
+                       buildPaths: JavaFxBuildPaths,
+                       template: TemplateSettings,
+                       dimensions: AppDimensions,
+                       permissions: Permissions,
+                       appInfo: AppInfo,
+                       signing: SigningSettings,
+                       platformSettings: JavaPlatformSettings,
+                       fileAssociations: Seq[FileAssociation]) {
 
   def prepare(logger: Logger): Unit = {
 
@@ -29,7 +34,8 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
         throw new Exception("Unknown platform!")
       }
 
-    } else {
+    }
+    else {
       File(buildPaths.javafxAntPath)
     }
 
@@ -88,4 +94,3 @@ case class AppSettings(javaFxBuildSettings: JavaFxBuildSettings, buildPaths: Jav
     antBuildXml.toString()
   }
 }
-
